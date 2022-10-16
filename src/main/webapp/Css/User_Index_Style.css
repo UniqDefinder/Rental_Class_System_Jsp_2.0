@@ -1,0 +1,163 @@
+
+
+
+
+.Tabs{
+    display: flex;
+}
+
+.Tabs li {
+   
+    width: 25%;
+    margin: 5px 1px;
+}
+
+.Tabs li a{
+    display: block;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 24px;
+    line-height: 40px;
+    background-color: #8fcaca;
+}
+
+.Tabs li a:hover{
+    background-color: #71a0a0;
+}
+
+.Img{
+    height: 120px;
+    background: url(../Images/Index_Img.PNG) no-repeat  ;
+    background-size:cover;
+}
+
+.Bar{
+    height: 30px;
+    margin: 5px 0;
+    background-color: #f9f9c8;
+    padding-left: 10px;
+    font-weight: bold;
+    font-size: 22px;
+    line-height: 30px;
+}
+
+
+
+.Select_Class_Type{
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+    height: 60px;
+    background-color: #a2b7e2;
+}
+
+.Select_Class_Type select{
+    text-align: center;
+    width: 100px;
+    height: 50px;
+}
+
+.Date_Time{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px 10px;
+}
+
+.Date{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.Date th,.Date td{
+    text-align: center;
+    line-height: 38px;
+    border: 1px black solid;
+    background-color: white;
+    height: 38px;
+    width: 40px;
+}
+
+.Time{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+}
+
+.Time th,.Time td{
+    text-align: center;
+    line-height: 38px;
+    border:1px black solid;
+    background-color: white;
+    width: 144px;
+    height: 38px;
+}
+
+.Reason{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 30px 0;
+
+}
+
+.Reason_Text{
+    width: 95%;
+    height: 100px;
+}
+
+.Reason p{
+    width: 100%;
+    line-height: 50px;
+    padding-left: 10px;
+
+}
+
+.Submit{
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.Submit input{
+    font-weight: bold;
+    font-size: 20px;
+    height: 50px;
+    width: 150px;
+}
+
+/*以上是User_Index.html的Style*/
+
+.Search_Place{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.Search_Place .Select{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Search_Place .Select select{
+    height: 40px;
+    width: 47%;
+    
+    margin:10px 0 10px 10px ;
+}
+
+.Search_Place .Submit{
+    width: 20%;
+}
+
+.Search_Place .Submit input{
+    border: 1px #71a0a0 solid;
+    border-radius: 10px;
+}
+/*以上是User_Search_Place.html的Style*/
