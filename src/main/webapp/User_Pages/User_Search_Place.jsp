@@ -17,7 +17,7 @@
     
     <div class="Header">
         <div class="Head">
-            <img src="../Images/System_Logo.png" alt="">
+            <img src="/Images/System_Logo.png" alt="">
             <h1>教室租借系統</h1>
         </div>
         <div class="Logout">
@@ -28,8 +28,7 @@
 
     <div class="Container">
         <ul class="Tabs">
-            <li><a href="">租借教室</a></li>
-            <li><a href="">場地查詢</a></li>
+            <li><a href="">場地租借/查詢</a></li>
             <li><a href="">租借紀錄</a></li>
             <li><a href="">活動公告</a></li>
         </ul>
@@ -40,14 +39,42 @@
         <form class="Search_Place">
             <div class="Select">
                 <select name="">
-                    <option value="">選擇類型</option>
+                    <option value="" disabled selected>選擇類型</option>
+                    <%
+                    Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+        			Connection con=DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;");
+        			Statement smt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        
+        			String sql = "SELECT * FROM Classroom_Type_Code ";
+        			ResultSet rs = smt.executeQuery(sql);
+        			
+        			
+        			while(rs.next()){
+        				out.println("<option value='" + rs.getString("Type_Code") + "'>" + rs.getString("Type") + "</option>");
+        				con.close();
+        			}
+        			
+                    %>
                 </select>
                 <select name="選擇大樓">
-                    <option value="">選擇大樓</option>
+                    <option value="" disabled selected>選擇大樓</option>
+                    <%
+                    Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+        			 con=DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;");
+        			 smt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+        
+        			 sql = "SELECT * FROM Building_Code";
+        			 rs = smt.executeQuery(sql);
+        			
+        			
+        			while(rs.next()){
+        				out.println("<option value='" + rs.getString("Building_Code") + "'>" + rs.getString("Building_Name") + "</option>");
+        			}
+        			
+        			con.close();
+                    %>
                 </select>
-                <select name="選擇地點">
-                    <option value="">選擇地點</option>
-                </select>
+                
             </div>
             
             <div class="Submit">
@@ -55,11 +82,33 @@
             </div>
         </form>
 
-        <ul>
+        <ul class="Card">
+            <li>
+                <img src="" alt="">
+                <p>教學大樓G105</p>
+                <p>一般教室</p>
+            </li>
+            <li>
+                <img src="" alt="">
+                <p>教學大樓G105</p>
+                <p>一般教室</p>
+            </li>
             <li>
                 <img src="" alt="">
                 <p></p>
             </li>
+            <li>
+                <img src="" alt="">
+                <p></p>
+            </li>
+            <li>
+                <img src="" alt="">
+                <p></p>
+            </li>
+        </ul>
+
+        <ul>
+            <li></li>
         </ul>
 
     </div>

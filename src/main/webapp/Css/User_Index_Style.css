@@ -29,13 +29,12 @@
 
 .Img{
     height: 120px;
-    background: url(../Images/Index_Img.PNG) no-repeat  ;
-    background-size:cover;
+    background: url(../Images/Index_Img.PNG) no-repeat ;
+    background-size: 100% 100% ;
 }
 
 .Bar{
     height: 30px;
-    margin: 5px 0;
     background-color: #f9f9c8;
     padding-left: 10px;
     font-weight: bold;
@@ -160,4 +159,65 @@
     border: 1px #71a0a0 solid;
     border-radius: 10px;
 }
+
+.Card{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.Card li{
+    border: 1px #9b6b53 solid ;
+    background-color: white;
+    height: 200px;
+    width: 170px;
+    margin-bottom: 30px;
+}
+
+.Card li img{
+    width: 100%;
+    height: 70%;
+}
+
+.Card li p{
+    padding-left:5px ;
+    line-height: 30px;
+    font-size: 20px;
+    width: 100%;
+    height: 15%;
+}
 /*以上是User_Search_Place.html的Style*/
+
+.Select_Date{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #a2b7e2;
+}
+
+.Select_Date select{
+    line-height: 100%;
+    padding-left: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    height: 40px;
+    width: 300px;
+}
+
+.Select_Date input{
+    line-height: 100%;
+    background-color: white;
+    font-weight: bold;
+    font-size: 16px;
+    height: 30px;
+    width: 80px;
+    border: 1px #9b6b53 solid;
+    border-radius: 5px;
+}
+
+.Select_Date input:hover{
+    background-color: rgb(194, 194, 194);
+}
+
+/*以上是User_Record.html的Style*/
