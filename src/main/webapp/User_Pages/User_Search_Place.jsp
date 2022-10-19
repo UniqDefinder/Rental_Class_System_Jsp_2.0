@@ -17,7 +17,7 @@
     
     <div class="Header">
         <div class="Head">
-            <img src="/Images/System_Logo.png" alt="">
+            <img src="../Images/System_Logo.png" alt="">
             <h1>教室租借系統</h1>
         </div>
         <div class="Logout">
@@ -36,9 +36,9 @@
        
         <p class="Bar">目前位置：場地查詢</p>
        
-        <form class="Search_Place">
+        <form class="Search_Place" method="get">
             <div class="Select">
-                <select name="">
+                <select name="Type">
                     <option value="" disabled selected>選擇類型</option>
                     <%
                     Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -50,13 +50,13 @@
         			
         			
         			while(rs.next()){
-        				out.println("<option value='" + rs.getString("Type_Code") + "'>" + rs.getString("Type") + "</option>");
+        				out.println("<option  value='" + rs.getString("Type_Code") + "'>" + rs.getString("Type") + "</option>");
         				con.close();
         			}
         			
                     %>
                 </select>
-                <select name="選擇大樓">
+                <select name="Buliding">
                     <option value="" disabled selected>選擇大樓</option>
                     <%
                     Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -68,7 +68,7 @@
         			
         			
         			while(rs.next()){
-        				out.println("<option value='" + rs.getString("Building_Code") + "'>" + rs.getString("Building_Name") + "</option>");
+        				out.println("<option  value='" + rs.getString("Building_Code") + "'>" + rs.getString("Building_Name") + "</option>");
         			}
         			
         			con.close();
@@ -83,28 +83,54 @@
         </form>
 
         <ul class="Card">
+        	<%
+        	if(request.getParameter("Buliding")!=null || request.getParameter("Type")!=null ){
+        		
+        		String Buliding = request.getParameter("Buliding");
+        		String Type = request.getParameter("Type");
+        		
+        		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+   				con=DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;");
+   				smt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+   
+   			 	sql = "SELECT * FROM Classroom_Code WHERE Building_Code = '" + Buliding + "' AND Classroom_Type_Code ='" + Type+"'";
+   			 	rs = smt.executeQuery(sql);
+   			 	
+   			 	rs.last();
+   			 	int count = rs.getRow();
+   			 	
+   			 	if(count != 0){
+   			 		out.print("AND有抓到資料");
+   			 	}
+   			 	
+   			 	else if(Buliding == null) {
+   			 		
+	   			 	sql = "SELECT * FROM Classroom_Code WHERE  Classroom_Type_Code ='" + Type+"'";
+	   			 	rs = smt.executeQuery(sql);
+	   			 	out.print("Buliding是空的");
+	   			 	
+	   			 	
+   			 	}
+   			 	else if(Type == null){
+   			 		sql = "SELECT * FROM Classroom_Code WHERE  Building_Code = '" + Buliding +"'";
+   			 		rs = smt.executeQuery(sql);
+   			 		out.print("Type是空的");
+   			 	}
+   			 	else{
+   			 		out.print("查無相關資料。");
+   			 	}
+        	}
+        	else{
+        		out.print("請選擇類別或大樓");
+        	}
+        	
+        	%>
             <li>
                 <img src="" alt="">
                 <p>教學大樓G105</p>
                 <p>一般教室</p>
             </li>
-            <li>
-                <img src="" alt="">
-                <p>教學大樓G105</p>
-                <p>一般教室</p>
-            </li>
-            <li>
-                <img src="" alt="">
-                <p></p>
-            </li>
-            <li>
-                <img src="" alt="">
-                <p></p>
-            </li>
-            <li>
-                <img src="" alt="">
-                <p></p>
-            </li>
+            
         </ul>
 
         <ul>
