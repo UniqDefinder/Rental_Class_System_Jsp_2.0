@@ -1,5 +1,7 @@
 
-
+.Container{
+    background-color: var(--User_Color);
+}
 
 
 .Tabs{
@@ -29,7 +31,7 @@
 
 .Img{
     height: 120px;
-    background: url(../Images/Index_Img.PNG) no-repeat ;
+    background: url(../Images/Index_Img.PNG) no-repeat  ;
     background-size: 100% 100% ;
 }
 
@@ -42,9 +44,10 @@
     line-height: 30px;
 }
 
+/*以上是User 共用的Style*/
 
 
-.Select_Class_Type{
+.Rental .Select_Class_Type{
     display: flex;
     align-items: center;
     padding-left: 10px;
@@ -52,27 +55,33 @@
     background-color: #a2b7e2;
 }
 
-.Select_Class_Type select{
+.Rental .Select_Class_Type select{
     text-align: center;
     width: 100px;
     height: 50px;
 }
 
-.Date_Time{
+.Rental .Date_Time{
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     padding: 20px 10px;
 }
 
-.Date{
+.Rental .Date{
     display: flex;
     justify-content: center;
     align-items: center;
     width: 50%;
 }
 
-.Date th,.Date td{
+.Rental .Date .Red{
+    color: red;
+    font-weight: bold;
+}
+
+
+.Rental .Date th,.Date td{
     text-align: center;
     line-height: 38px;
     border: 1px black solid;
@@ -81,13 +90,13 @@
     width: 40px;
 }
 
-.Time{
+.Rental .Time{
     display: flex;
     justify-content: center;
     width: 50%;
 }
 
-.Time th,.Time td{
+.Rental .Time th,.Time td{
     text-align: center;
     line-height: 38px;
     border:1px black solid;
@@ -96,7 +105,7 @@
     height: 38px;
 }
 
-.Reason{
+.Rental .Reason{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -104,32 +113,32 @@
 
 }
 
-.Reason_Text{
+.Rental .Reason_Text{
     width: 95%;
     height: 100px;
 }
 
-.Reason p{
+.Rental .Reason p{
     width: 100%;
     line-height: 50px;
     padding-left: 10px;
 
 }
 
-.Submit{
+.Rental .Submit{
     display: flex;
     justify-content: center;
     padding: 10px 0;
 }
 
-.Submit input{
+.Rental .Submit input{
     font-weight: bold;
     font-size: 20px;
     height: 50px;
     width: 150px;
 }
 
-/*以上是User_Index.html的Style*/
+/*以上是User_Rental.html的Style*/
 
 .Search_Place{
     display: flex;
@@ -151,44 +160,85 @@
     margin:10px 0 10px 10px ;
 }
 
-.Search_Place .Submit{
+.Search .Submit input{
+    font-weight: bold;
+    font-size: 20px;
+    height: 50px;
+    width: 150px;
+}
+
+.Search .Search_Place .Submit{
     width: 20%;
 }
 
-.Search_Place .Submit input{
+.Search .Search_Place .Submit input{
     border: 1px #71a0a0 solid;
     border-radius: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    height: 50px;
+    width: 150px;
 }
 
-.Card{
+.Search .Card{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
 }
 
-.Card li{
+.Search .Card li{
     border: 1px #9b6b53 solid ;
     background-color: white;
-    height: 200px;
+    height: 220px;
     width: 170px;
     margin-bottom: 30px;
 }
 
-.Card li img{
+.Search .Card li img{
     width: 100%;
-    height: 70%;
+    height: 50%;
 }
 
-.Card li p{
+.Search .Card li p ,.Search .Card li h3 ,.Search .Card li h4{
     padding-left:5px ;
-    line-height: 30px;
-    font-size: 20px;
+    line-height: 20px;
+    font-size: 16px;
     width: 100%;
-    height: 15%;
+    height: 10%;
 }
+
+.Search .Card li h3{
+    font-weight: bold;
+    text-align: center;
+    border-top: 2px  black solid ;
+    border-bottom: 2px  black solid ;
+    padding-left:0px ;
+    height: calc(10% - 4px);
+}
+
+.Search .Card li h4{
+    font-size: 16px;
+}
+
+.Search .Card li p {
+    font-size: 14px;
+}
+
+
+.Search .Card li input{
+    padding: 0;
+    border: 0;
+    height: calc(20% - 2px);
+    width: 100%;
+}
+
+.Search .Card li input:hover{
+    background-color: rgb(139, 139, 139);
+}
+
 /*以上是User_Search_Place.html的Style*/
 
-.Select_Date{
+.Record .Select_Date{
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -196,7 +246,7 @@
     background-color: #a2b7e2;
 }
 
-.Select_Date select{
+.Record .Select_Date select{
     line-height: 100%;
     padding-left: 10px;
     font-weight: bold;
@@ -205,7 +255,7 @@
     width: 300px;
 }
 
-.Select_Date input{
+.Record .Select_Date input{
     line-height: 100%;
     background-color: white;
     font-weight: bold;
@@ -216,8 +266,28 @@
     border-radius: 5px;
 }
 
-.Select_Date input:hover{
+.Record .Select_Date input:hover{
     background-color: rgb(194, 194, 194);
+}
+
+.Record table{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.Record table th {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.Record table th ,.Record table td {
+    background-color: rgb(223, 223, 223);
+    padding: 10px 30px;
+}
+
+.Record table tr{
+    border: 1px black solid;
 }
 
 /*以上是User_Record.html的Style*/

@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="../Css/Css_Reset.css">
     <link rel="stylesheet" href="../Css/Header_Footer.css">
     
-    <link rel="stylesheet" href="../Css/User_Index_Style.css">
+    <link rel="stylesheet" href="../Css/User_Style.css">
     <title>場地查詢 - 國立臺北護理健康大學</title>
 </head>
 <body>
@@ -26,7 +26,7 @@
         </div>
     </div>
 
-    <div class="Container">
+    <div class="Search Container">
         <ul class="Tabs">
             <li><a href="">場地租借/查詢</a></li>
             <li><a href="">租借紀錄</a></li>
@@ -93,28 +93,35 @@
    				con=DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;");
    				smt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
    
-   			 	sql = "SELECT * FROM Classroom_Code WHERE Building_Code = '" + Buliding + "' AND Classroom_Type_Code ='" + Type+"'";
+   			 	sql = "SELECT * FROM (Classroom_Code AS a LEFT JOIN Classroom_Type_Code AS b ON a.Classroom_Type_Code = b.Type_Code) LEFT JOIN Building_Code AS c ON a.Building_Code = c.Building_Code   WHERE   Building_Code = '" + Buliding + "' AND Classroom_Type_Code ='" + Type+"'";
    			 	rs = smt.executeQuery(sql);
    			 	
    			 	rs.last();
    			 	int count = rs.getRow();
    			 	
    			 	if(count != 0){
-   			 		out.print("AND有抓到資料");
+   			 		rs.first();
+   			 		while(rs.next()){
+   			 			out.print("<form action='' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classromm_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
+   			 		}
+   			 		
    			 	}
    			 	
-   			 	else if(Buliding == null) {
+   			 	else if(Type != null && Buliding == null) {
    			 		
-	   			 	sql = "SELECT * FROM Classroom_Code WHERE  Classroom_Type_Code ='" + Type+"'";
+	   			 	sql = "SELECT * FROM (Classroom_Code AS a LEFT JOIN Classroom_Type_Code AS b ON a.Classroom_Type_Code = b.Type_Code) LEFT JOIN Building_Code AS c ON a.Building_Code = c.Building_Code   WHERE    Classroom_Type_Code ='" + Type+"'";
 	   			 	rs = smt.executeQuery(sql);
-	   			 	out.print("Buliding是空的");
-	   			 	
+	   			 	while(rs.next()){
+			 			out.print("<form action='' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classromm_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
+			 		}
 	   			 	
    			 	}
-   			 	else if(Type == null){
-   			 		sql = "SELECT * FROM Classroom_Code WHERE  Building_Code = '" + Buliding +"'";
+   			 	else if(Type == null && Buliding != null){
+   			 		sql = "SELECT * FROM (Classroom_Code AS a LEFT JOIN Classroom_Type_Code AS b ON a.Classroom_Type_Code = b.Type_Code) LEFT JOIN Building_Code AS c ON a.Building_Code = c.Building_Code   WHERE   Building_Code = '" + Buliding+"'";
    			 		rs = smt.executeQuery(sql);
-   			 		out.print("Type是空的");
+   			 		while(rs.next()){
+			 			out.print("<form action='' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classromm_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
+			 		}
    			 	}
    			 	else{
    			 		out.print("查無相關資料。");
@@ -125,17 +132,10 @@
         	}
         	
         	%>
-            <li>
-                <img src="" alt="">
-                <p>教學大樓G105</p>
-                <p>一般教室</p>
-            </li>
+            
             
         </ul>
 
-        <ul>
-            <li></li>
-        </ul>
 
     </div>
 
