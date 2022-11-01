@@ -2,11 +2,12 @@
 <%@ page language="java" contentType="text/html; charset=BIG5"
     pageEncoding="UTF-8"%>
 <%
-if(session.getAttribute("Access_Type") !="1"){
-	response.sendRedirect("../Index.jsp");
-	//登入控管
-}
+//if(session.getAttribute("Access_Type") !="1"){
+//	response.sendRedirect("../Index.jsp");
+//登入控管
+//}
 %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +16,7 @@ if(session.getAttribute("Access_Type") !="1"){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Css/Css_Reset.css">
     <link rel="stylesheet" href="../Css/Header_Footer.css">
-    <link rel="stylesheet" href="../Css/User_Index_Style.css">
+    <link rel="stylesheet" href="../Css/User_Style.css">
     <title>租借教室 - 國立臺北護理健康大學</title>
 </head>
 <body>
@@ -26,25 +27,23 @@ if(session.getAttribute("Access_Type") !="1"){
             <h1>教室租借系統</h1>
         </div>
         <div class="Logout">
-            <p>歡迎！<span id="User_Name">User</span></p>
+            <p>歡迎！<%= session.getAttribute("Access_Id") %></p>
             <a href="">登出</a>
         </div>
     </div>
 
-    <div class="Container">
+    <div class="Rental Container">
         <ul class="Tabs">
             <li><a href="">場地租借/查詢</a></li>
             <li><a href="">租借紀錄</a></li>
-            <li><a href="">活動公告</a></li>
+            <li><a href="">系統公告</a></li>
         </ul>
         <div class="Img"></div>
        
-        <p class="Bar">目前位置：租借教室</p>
+        <p class="Bar">目前位置：場地查詢/租借教室</p>
        
         <form>
-            <div class="Select_Class_Type">
-                
-            </div>
+            
             <p class="Bar">請選擇日期與時段</p>
             <div class="Date_Time" >
                 <div class="Date">
@@ -54,13 +53,13 @@ if(session.getAttribute("Access_Type") !="1"){
                             <th colspan="2">十月</th>
                         </tr>
                         <tr>
-                            <th>日</th>
+                            <th class="Red">日</th>
                             <th>一</th>
                             <th>二</th>
                             <th>三</th>
                             <th>四</th>
                             <th>五</th>
-                            <th>六</th>
+                            <th class="Red">六</th>
                         </tr>
                         <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
                         <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>

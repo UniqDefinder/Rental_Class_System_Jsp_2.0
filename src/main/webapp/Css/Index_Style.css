@@ -1,21 +1,16 @@
 
-html{
-    height:100% ;
-}
-
-
 
 
     
 .Container{
     display: flex;
     justify-content: center;
-    align-content: center;
-    height: 100%;
-    padding: 10%;
+    align-items: center;
+    min-height: 800px;
+    height:50vh;
+    min-width: 1000px ;
     margin: 0px;
-    background:url(/Images/Index_Background.jpg) no-repeat  center -150px ;
-    background-blend-mode: multiply;
+    background:url(../Images/Index_Background.jpg) no-repeat   ;
     background-size:cover;
     box-shadow: 
     0 -10px 15px 0 black inset,

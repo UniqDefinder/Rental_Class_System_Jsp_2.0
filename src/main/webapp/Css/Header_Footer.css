@@ -1,24 +1,26 @@
 body *{
-    font-family:微軟正黑體;
+    font-family:微軟正黑體,Arial, Helvetica, sans-serif;
 }
 
 :root {
     --Primary_Color:#bcc35a;
-    --Secondary_Color:;
-    --Tertiary_Color:;
     --User_Color:#e5ebf7;
+    --Inspector_Color:#ffd8be;
   }
-
 
 html{
     
-    height: 100%;
+    background-color: var(--Primary_Color);
+    min-width: 1000px;
 }
 
 body{
-    height: 100%;
     display: flex;
     flex-direction: column;
+    position: relative;
+    min-height: 100vh;
+    
+    
     background:url(../Images/Index_Texture.PNG) ;
 }
 
@@ -63,6 +65,8 @@ body{
 .Logout p{
     margin: auto 10px;
     font-size: 24px;
+    color: white;
+    font-weight: bold;
 }
 
 .Logout button{
@@ -84,21 +88,22 @@ body{
 /*登出按鈕*/
 
 .Container{
-    height: 100%;
     margin: 0 15%;
-    background-color: #e5ebf7;
-    
+    height: 100%;
+    padding-bottom: 200px;
 }
 
 
 .Footer{
-    
-    border-top: 5px #9b6b53 solid;
-    height: 100px;
     display: flex;
     justify-content: center;
+    position: absolute;
+    border-top: 5px #9b6b53 solid;
+    height: 100px;
     background-color: var(--Primary_Color);
     padding-top: 10px;
+    width: 100%;
+    bottom: 0;
 }
 
 

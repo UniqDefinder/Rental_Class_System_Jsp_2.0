@@ -1,6 +1,6 @@
 
 .Container{
-    background-color: var(--User_Color);
+    background-color: var(--Inspector_Color);
 }
 
 
@@ -22,11 +22,11 @@
     text-decoration: none;
     font-size: 24px;
     line-height: 40px;
-    background-color: #8fcaca;
+    background-color: #ee8f58;
 }
 
 .Tabs li a:hover{
-    background-color: #71a0a0;
+    background-color: #af6a41;
 }
 
 .Img{
@@ -44,7 +44,72 @@
     line-height: 30px;
 }
 
-/*以上是User 共用的Style*/
+/*以上是Inspector 共用的Style*/
+
+
+.Search .Search_Place{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.Search .Search_Place .Select{
+    width: 80%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.Search .Search_Place .Select select{
+    height: 40px;
+    width: 47%;
+    
+    margin:10px 0 10px 10px ;
+}
+
+
+.Search .Search_Place .Submit{
+    width: 20%;
+}
+
+.Search .Search_Place .Submit input{
+    border: 1px #c0802d solid;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    height: 50px;
+    width: 150px;
+}
+
+.Search .Card{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.Search .Card li{
+    border: 1px #9b6b53 solid ;
+    background-color: white;
+    height: 200px;
+    width: 170px;
+    margin-bottom: 30px;
+}
+
+.Search .Card li img{
+    width: 100%;
+    height: 70%;
+}
+
+.Search .Card li p{
+    padding-left:5px ;
+    line-height: 30px;
+    font-size: 20px;
+    width: 100%;
+    height: 15%;
+}
+/*以上是Inspector_Search_Place.html的Style*/
+
+
 
 
 .Rental .Select_Class_Type{
@@ -79,7 +144,6 @@
     color: red;
     font-weight: bold;
 }
-
 
 .Rental .Date th,.Date td{
     text-align: center;
@@ -138,112 +202,15 @@
     width: 150px;
 }
 
-/*以上是User_Rental.html的Style*/
+/*以上是Inspector_Rental.html的Style*/
 
-.Search_Place{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-}
-
-.Search_Place .Select{
-    width: 80%;
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.Search_Place .Select select{
-    height: 40px;
-    width: 47%;
-    
-    margin:10px 0 10px 10px ;
-}
-
-.Search .Submit input{
-    font-weight: bold;
-    font-size: 20px;
-    height: 50px;
-    width: 150px;
-}
-
-.Search .Search_Place .Submit{
-    width: 20%;
-}
-
-.Search .Search_Place .Submit input{
-    border: 1px #71a0a0 solid;
-    border-radius: 10px;
-    font-weight: bold;
-    font-size: 20px;
-    height: 50px;
-    width: 150px;
-}
-
-.Search .Card{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-}
-
-.Search .Card li{
-    border: 2px #9b6b53 solid ;
-    background-color: white;
-    height: 220px;
-    width: 170px;
-    margin-bottom: 30px;
-}
-
-.Search .Card li img{
-    width: 100%;
-    height: 50%;
-}
-
-.Search .Card li p ,.Search .Card li h3 ,.Search .Card li h4{
-    padding-left:5px ;
-    line-height: 20px;
-    font-size: 16px;
-    width: 100%;
-    height: 10%;
-}
-
-.Search .Card li h3{
-    font-weight: bold;
-    text-align: center;
-    border-top: 2px  black solid ;
-    border-bottom: 2px  black solid ;
-    padding-left:0px ;
-    height: calc(10% - 4px);
-}
-
-.Search .Card li h4{
-    font-size: 16px;
-}
-
-.Search .Card li p {
-    font-size: 12px;
-}
-
-
-.Search .Card li input{
-    padding: 0;
-    border: 0;
-    height: calc(20% - 2px) ;
-    width: 100%;
-}
-
-.Search .Card li input:hover{
-    background-color: rgb(139, 139, 139);
-}
-
-/*以上是User_Search_Place.html的Style*/
 
 .Record .Select_Date{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
-    background-color: #a2b7e2;
+    padding: 10px;  
+    background-color: #ec9461;
 }
 
 .Record .Select_Date select{
@@ -290,4 +257,40 @@
     border: 1px black solid;
 }
 
-/*以上是User_Record.html的Style*/
+/*以上是Inspector_Record.html的Style*/
+
+.Approval .Approval_Type{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.Approval .Approval_Type label{
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+
+
+.Approval  table{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.Approval table th {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.Approval table th ,.Approval table td {
+    background-color: rgb(223, 223, 223);
+    padding: 10px 30px;
+}
+
+.Approval table tr{
+    border: 1px black solid;
+}
+
+/*以上是Inspector_Approval.html的Style*/

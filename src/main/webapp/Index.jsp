@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="Css/Header_Footer.css">
     <link rel="stylesheet" href="Css/Index_Style.css">
     <title>登入 - 教室租借系統 - 國立臺北護理健康大學</title>
-    
     <%
     	session.setAttribute("accessType",null);
     	
@@ -64,7 +63,7 @@
     %>
 </head>
 <body>
-         <div class="Header">
+        <div class="Header">
             <div class="Head">
                 <img src="Images/System_Logo.png" alt="">
                 <h1>教室租借系統</h1>

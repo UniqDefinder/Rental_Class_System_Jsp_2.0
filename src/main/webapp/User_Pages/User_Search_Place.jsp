@@ -9,19 +9,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../Css/Css_Reset.css">
     <link rel="stylesheet" href="../Css/Header_Footer.css">
-    
     <link rel="stylesheet" href="../Css/User_Style.css">
     <title>場地查詢 - 國立臺北護理健康大學</title>
 </head>
 <body>
-    
+    	
     <div class="Header">
         <div class="Head">
             <img src="../Images/System_Logo.png" alt="">
             <h1>教室租借系統</h1>
         </div>
         <div class="Logout">
-            <p>歡迎！<span id="User_Name">User</span></p>
+            <p>歡迎！<%= session.getAttribute("Access_Id") %></p>
             <a href="">登出</a>
         </div>
     </div>
@@ -30,13 +29,13 @@
         <ul class="Tabs">
             <li><a href="">場地租借/查詢</a></li>
             <li><a href="">租借紀錄</a></li>
-            <li><a href="">活動公告</a></li>
+            <li><a href="">系統公告</a></li>
         </ul>
         <div class="Img"></div>
        
         <p class="Bar">目前位置：場地查詢</p>
        
-        <form class="Search_Place" method="get">
+        <form class="Search_Place">
             <div class="Select">
                 <select name="Type">
                     <option value="" disabled selected>選擇類型</option>
@@ -55,6 +54,7 @@
         			}
         			
                     %>
+                    
                 </select>
                 <select name="Buliding">
                     <option value="" disabled selected>選擇大樓</option>
@@ -72,9 +72,8 @@
         			}
         			
         			con.close();
-                    %>
+                    %> 
                 </select>
-                
             </div>
             
             <div class="Submit">
@@ -83,7 +82,7 @@
         </form>
 
         <ul class="Card">
-        	<%
+             <%
         	if(request.getParameter("Buliding")!=null || request.getParameter("Type")!=null ){
         		
         		String Buliding = request.getParameter("Buliding");
@@ -102,7 +101,7 @@
    			 	if(count != 0){
    			 		rs.first();
    			 		while(rs.next()){
-   			 			out.print("<form action='' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classromm_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
+   			 			out.print("<form action='User_Rental.jsp' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classromm_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
    			 		}
    			 		
    			 	}
@@ -112,7 +111,7 @@
 	   			 	sql = "SELECT * FROM (Classroom_Code AS a LEFT JOIN Classroom_Type_Code AS b ON a.Classroom_Type_Code = b.Type_Code) LEFT JOIN Building_Code AS c ON a.Building_Code = c.Building_Code   WHERE    Classroom_Type_Code ='" + Type+"'";
 	   			 	rs = smt.executeQuery(sql);
 	   			 	while(rs.next()){
-			 			out.print("<form action='' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classromm_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
+			 			out.print("<form action='User_Rental.jsp' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classromm_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
 			 		}
 	   			 	
    			 	}
@@ -120,7 +119,7 @@
    			 		sql = "SELECT * FROM (Classroom_Code AS a LEFT JOIN Classroom_Type_Code AS b ON a.Classroom_Type_Code = b.Type_Code) LEFT JOIN Building_Code AS c ON a.Building_Code = c.Building_Code   WHERE   Building_Code = '" + Buliding+"'";
    			 		rs = smt.executeQuery(sql);
    			 		while(rs.next()){
-			 			out.print("<form action='' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classromm_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
+			 			out.print("<form action='User_Rental.jsp' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classromm_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
 			 		}
    			 	}
    			 	else{
@@ -132,8 +131,7 @@
         	}
         	
         	%>
-            
-            
+
         </ul>
 
 
