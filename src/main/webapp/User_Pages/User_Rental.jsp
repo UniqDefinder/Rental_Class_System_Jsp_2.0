@@ -40,6 +40,7 @@
         </ul>
         <div class="Img"></div>
        
+       
         <p class="Bar">目前位置：場地查詢/租借教室</p>
        
         <form>
@@ -47,27 +48,8 @@
             <p class="Bar">請選擇日期與時段</p>
             <div class="Date_Time" >
                 <div class="Date">
-                    <table>
-                        <tr>
-                            <th colspan="5">2022</th>
-                            <th colspan="2">十月</th>
-                        </tr>
-                        <tr>
-                            <th class="Red">日</th>
-                            <th>一</th>
-                            <th>二</th>
-                            <th>三</th>
-                            <th>四</th>
-                            <th>五</th>
-                            <th class="Red">六</th>
-                        </tr>
-                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                    </table>
-                </div>
+                    <jsp:include page="../rili.jsp"></jsp:include>
+				</div>
                 <div class="Time">
                     <table>
                         <tr>

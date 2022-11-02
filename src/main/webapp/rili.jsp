@@ -12,6 +12,8 @@
     <title>本月日曆</title>
 </head>
 <%!String days[];%>
+<%!
+    %>
 <body>
     <%days=new String[42]; %><!--6*7的表格-->
     <%
@@ -20,11 +22,13 @@
         }
     %>
 <%
+
+	
     GregorianCalendar currentday=new GregorianCalendar();
-    int year=currentday.get(Calendar.YEAR);
+    int year=currentday.get(Calendar.YEAR) ;
     int month=currentday.get(Calendar.MONTH);
     int day=currentday.get(Calendar.DAY_OF_MONTH);
-    out.println(year+"年"+ (month+1)+"月"+day+"日");
+    
     Calendar currentmonth=Calendar.getInstance();
     currentmonth.set(Calendar.DAY_OF_YEAR,year);
     currentmonth.set(Calendar.DAY_OF_MONTH,month);
@@ -38,6 +42,14 @@
 %>
 <table  border="0" width="161" height="100">
 <div align=center>
+	<tr>
+		<th colspan="5">
+		<form><input type="submit" onClick="Year_Plus()" ></form>
+		<%=year %>年
+		<form><input type="submit" onClick="Year_Minus()" ></form>
+		</th>
+        <th colspan="2"><%=month %>月</th>
+	</tr>
     <tr>
         <th bgcolor="yellow" width="25" height="16"><font color="red">日</font></th>
         <th bgcolor="yellow" width="25" height="16">一</th>
