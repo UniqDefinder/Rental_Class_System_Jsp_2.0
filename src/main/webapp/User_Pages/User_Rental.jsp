@@ -85,5 +85,6 @@
             <tr><td style="text-align: center;"colspan="2">請尊重與保護智慧財產權，並使用正版教科書</td></tr>
         </table>
     </div>
+   <script src="../Js/Rental.js" charset="utf-8"></script>
 </body>
 </html>

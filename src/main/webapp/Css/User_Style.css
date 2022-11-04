@@ -75,12 +75,6 @@
     width: 50%;
 }
 
-.Rental .Date .Red{
-    color: red;
-    font-weight: bold;
-}
-
-
 .Rental .Date th,.Date td{
     text-align: center;
     line-height: 38px;
@@ -89,6 +83,16 @@
     height: 38px;
     width: 40px;
 }
+
+
+.Today{
+    background-color: rgb(252, 243, 196) !important;
+}
+
+.Empty_Day{
+    background-color: rgb(105, 105, 105) !important;
+}
+
 
 .Rental .Time{
     display: flex;

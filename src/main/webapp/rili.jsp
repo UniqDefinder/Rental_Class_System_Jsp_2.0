@@ -7,9 +7,10 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" import="java.util.*"%>
 
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>本月日曆</title>
+    <title>日曆</title>
 </head>
 <%!String days[];%>
 <%!
@@ -40,39 +41,42 @@
         days[first+i]=String.valueOf(i+1);
     }
 %>
-<table  border="0" width="161" height="100">
-<div align=center>
-	<tr>
-		<th colspan="5">
-		<form><input type="submit" onClick="Year_Plus()" ></form>
-		<%=year %>年
-		<form><input type="submit" onClick="Year_Minus()" ></form>
-		</th>
-        <th colspan="2"><%=month %>月</th>
-	</tr>
-    <tr>
-        <th bgcolor="yellow" width="25" height="16"><font color="red">日</font></th>
-        <th bgcolor="yellow" width="25" height="16">一</th>
-        <th bgcolor="yellow" width="25" height="16">二</th>
-        <th bgcolor="yellow" width="25" height="16">三</th>
-        <th bgcolor="yellow" width="25" height="16">四</th>
-        <th bgcolor="yellow" width="25" height="16">五</th>
-        <th bgcolor="yellow" width="25" height="16"><font color="green">六</font> </th>
-    </tr>
-
-    <%for(int i=0;i<6;i++){%>
-    <tr>
-           <% for(int j=i*7;j<(i+1)*7;j++){%>
-                    <%if((j-first+1)==day){%><!--當天-->
-                        <td bgcolor="red"><%=days[j]%></td>
-                    <%}else{%>
-                        <td bgcolor="#808080"> <%=days[j]%></td>
-                        <%}%>
-                    <%}%>
-
-           <% }%>
-    </tr>
-</div>
-</table>
+	<div class="Date">
+		<table>
+				<tr>
+					<th id="<%=year %>" colspan="5"><%=year %>年</th>
+			        <th id="<%=month %>" colspan="2"><%=month %>月</th>
+				</tr>
+			    <tr>
+			        <th><font color="red">日</font></th>
+			        <th>一</th>
+			        <th>二</th>
+			        <th>三</th>
+			        <th>四</th>
+			        <th>五</th>
+			        <th><font color="red">六</font> </th>
+			    </tr>
+			
+			    <%for(int i=0;i<6;i++){%>
+			    <tr>
+			           <% for(int j=i*7;j<(i+1)*7;j++){%>
+			                    <%if((j-first+1)==day){%><!--判斷是否是當天-->  
+			                        <td class="Today" onclick="Post_Day(<%=year%>,<%=month%>,<%=days[j]%>)"><%=days[j]%></td>
+			                        
+			                    <%}else if(j<first){%><!--判斷是否是上個月的日子-->  
+			                        <td class="Empty_Day"><%=days[j]%></td> 
+			                        
+			                    <%}else if(j>last+first){%><!--判斷是否是下個月的日子-->  
+			                        <td class="Empty_Day"><%=days[j]%></td> 
+			                        
+			                    <%}else{%>
+			                        <td onclick="Post_Day(<%=year%>,<%=month%>,<%=days[j]%>)"><%=days[j]%></td>
+			                        <%}%>
+			                    <%}%>
+			
+			           <% }%>
+			    </tr>
+		</table>
+	</div>
 </body>
 </html>
