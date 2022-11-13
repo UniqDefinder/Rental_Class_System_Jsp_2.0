@@ -56,12 +56,22 @@
                             <th>上午</th>
                             <th>下午</th>
                         </tr>
-                        <tr><td></td><td></td></tr>
-                        <tr><td></td><td></td></tr>
-                        <tr><td></td><td></td></tr>
-                        <tr><td></td><td></td></tr>
-                        <tr><td></td><td></td></tr>
-                        <tr><td></td><td></td></tr>
+        <%-- <%
+	    if(request.getParameter("Classromm_Code") !=null &&request.getParameter("Date") !=null){
+	        Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+			Connection con=DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;");
+			Statement smt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+			String Sql = "SELECT * FROM Rental_Term WHERE Classroom_Code='"+request.getParameter("Classromm_Code")+"' AND Rental_Date='" +request.getParameter("Date")+"'";
+			ResultSet rs = smt.executeQuery(Sql);  
+			if(rs != null){
+				
+			}
+			else{
+				
+			}
+			
+	    }
+		%> --%>
                     </table>
                 </div>
                 
@@ -70,7 +80,7 @@
             <div class="Reason">
                 <input class="Reason_Text" type="text" name="Reason">
                 <p>上傳附件：<input type="file"></p>
-            </div>
+            </div> 
             <div class="Submit">
                 <input type="submit">
             </div>

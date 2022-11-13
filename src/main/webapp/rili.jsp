@@ -12,30 +12,27 @@
 <head>
     <title>日曆</title>
 </head>
-<%!String days[];%>
-<%!
-    %>
+	<%!String days[];//新增天數陣列%>
 <body>
-    <%days=new String[42]; %><!--6*7的表格-->
+   	<%days=new String[42]; %><!--6*7的表格-->
     <%
         for(int i=0;i<42;i++){
             days[i]="";
         }
+    //清空陣列
     %>
 <%
 
 	
     GregorianCalendar currentday=new GregorianCalendar();
     int year=currentday.get(Calendar.YEAR) ;
-    int month=currentday.get(Calendar.MONTH);
+    int month=currentday.get(Calendar.MONTH)+1;
     int day=currentday.get(Calendar.DAY_OF_MONTH);
-    
+  //以上是取得使用者當天的日期
     Calendar currentmonth=Calendar.getInstance();
-    currentmonth.set(Calendar.DAY_OF_YEAR,year);
-    currentmonth.set(Calendar.DAY_OF_MONTH,month);
     currentmonth.setFirstDayOfWeek(Calendar.SUNDAY);//設置每週第一天是週日
-    currentmonth.set(Calendar.DAY_OF_MONTH,1);//設置每月第一天是一號
-    int first=currentmonth.get(Calendar.DAY_OF_WEEK)-1;//本月第一天是周幾，也就是當月日曆顯示的第一個數字
+    currentmonth.set(Calendar.DAY_OF_MONTH,1);//設置每月第一天是一號 */
+    int first=currentmonth.get(Calendar.DAY_OF_WEEK)-1;//假日曆的第一天是這週的第幾天
     int last=currentmonth.getActualMaximum(Calendar.DAY_OF_MONTH);
     for(int i=0;i<last;i++){
         days[first+i]=String.valueOf(i+1);
@@ -66,7 +63,7 @@
 			                    <%}else if(j<first){%><!--判斷是否是上個月的日子-->  
 			                        <td class="Empty_Day"><%=days[j]%></td> 
 			                        
-			                    <%}else if(j>last+first){%><!--判斷是否是下個月的日子-->  
+			                    <%}else if(j>last+first-1){%><!--判斷是否是下個月的日子-->  
 			                        <td class="Empty_Day"><%=days[j]%></td> 
 			                        
 			                    <%}else{%>
@@ -74,7 +71,7 @@
 			                        <%}%>
 			                    <%}%>
 			
-			           <% }%>
+			 <% }%>
 			    </tr>
 		</table>
 	</div>
