@@ -56,22 +56,46 @@
                             <th>上午</th>
                             <th>下午</th>
                         </tr>
-        <%-- <%
+        <%
 	    if(request.getParameter("Classromm_Code") !=null &&request.getParameter("Date") !=null){
-	        Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+	    	String Term[] = {"8:10~9:00","9:10~10:00","10:10~11:00","11:10~12:00","12:40~13:30","13:40~14:30","14:10~15:30","15:40~16:30","16:40~17:30","17:40~18:30"};
+	    	String TF_Term[];
+	    	TF_Term = new String[10];
+	    	Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			Connection con=DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;");
 			Statement smt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			String Sql = "SELECT * FROM Rental_Term WHERE Classroom_Code='"+request.getParameter("Classromm_Code")+"' AND Rental_Date='" +request.getParameter("Date")+"'";
+			String Sql = "SELECT * FROM Rental_Term WHERE Classroom_Code='"+request.getParameter("Classromm_Code")+"' AND Rental_Date=#" +request.getParameter("Date")+"#";  
+			
 			ResultSet rs = smt.executeQuery(Sql);  
-			if(rs != null){
-				
+			rs.last();
+			int count = rs.getRow();
+			 if(count != 0){
+					for(int i=0;i<10;){
+						 if( rs.getString(Term[i]) ==null){
+							 TF_Term[i] = "T";
+							 i++;
+						 }
+						 else{
+							 TF_Term[i] = null;
+							 i++;
+						 }
+				 	}
+					 
+					for(int i=0;i<5;){
+							out.print("<tr><td><label><input type='checkbox' name='"+Term[i]+"' value = '"+TF_Term[i]+"'><span class='Check'>"+Term[i]+"</span></label></td><td><label><input type='checkbox' name='"+Term[i+5]+"' value = '"+TF_Term[i+5]+"'><span class='Check'>"+Term[i+5]+"</span></label></td></tr>");
+							i++;
+						}
+				 
 			}
 			else{
-				
-			}
+				for(int i=0;i<5;){
+					out.print("<tr><td><label><input type='checkbox' name='"+Term[i]+"' value ='T'><span class='Check'>"+Term[i]+"</span></label></td><td><label><input type='checkbox' name='"+Term[i+5]+"' value = 'T'><span class='Check'>"+Term[i+5]+"</span></label></td></tr>");
+					i++;
+				}
+			} 
 			
-	    }
-		%> --%>
+	    }  
+		%>
                     </table>
                 </div>
                 

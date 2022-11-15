@@ -142,6 +142,37 @@
     width: 150px;
 }
 
+.Rental .Time input{
+    display: none;
+    appearance:none ;
+    visibility: hidden;
+    
+}
+
+.Rental .Time input[value="T"] ~ .Check{
+    background-color: rgb(162, 255, 162);
+    user-select: none;
+}
+.Rental .Time input[value="null"] ~ .Check{
+    background-color: rgb(255, 162, 162);
+    user-select: none;
+}
+.Rental .Time input[value="T"]:checked ~ .Check{
+    background-color: rgb(96, 151, 96);
+}
+
+.Rental .Time .Check {
+    display: block;
+    
+
+}
+.Rental .Time input[value="T"] ~ .Check{
+    cursor: pointer;
+}
+
+
+
+
 /*以上是User_Rental.html的Style*/
 
 .Search_Place{

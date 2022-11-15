@@ -12,32 +12,32 @@
 <head>
     <title>日曆</title>
 </head>
-	<%!String days[];//新增天數陣列%>
+	
 <body>
+	<%!String days[];//新增天數陣列%>
    	<%days=new String[42]; %><!--6*7的表格-->
     <%
         for(int i=0;i<42;i++){
             days[i]="";
-        }
-    //清空陣列
+        }//清空陣列
     %>
-<%
-
+	<%
 	
-    GregorianCalendar currentday=new GregorianCalendar();
-    int year=currentday.get(Calendar.YEAR) ;
-    int month=currentday.get(Calendar.MONTH)+1;
-    int day=currentday.get(Calendar.DAY_OF_MONTH);
-  //以上是取得使用者當天的日期
-    Calendar currentmonth=Calendar.getInstance();
-    currentmonth.setFirstDayOfWeek(Calendar.SUNDAY);//設置每週第一天是週日
-    currentmonth.set(Calendar.DAY_OF_MONTH,1);//設置每月第一天是一號 */
-    int first=currentmonth.get(Calendar.DAY_OF_WEEK)-1;//假日曆的第一天是這週的第幾天
-    int last=currentmonth.getActualMaximum(Calendar.DAY_OF_MONTH);
-    for(int i=0;i<last;i++){
-        days[first+i]=String.valueOf(i+1);
-    }
-%>
+		
+	    GregorianCalendar currentday=new GregorianCalendar();
+	    int year=currentday.get(Calendar.YEAR) ;
+	    int month=currentday.get(Calendar.MONTH)+1;
+	    int day=currentday.get(Calendar.DAY_OF_MONTH);
+	  //以上是取得使用者當天的日期
+	    Calendar currentmonth=Calendar.getInstance();
+	    currentmonth.setFirstDayOfWeek(Calendar.SUNDAY);//設置每週第一天是週日
+	    currentmonth.set(Calendar.DAY_OF_MONTH,1);//設置每月第一天是一號 */
+	    int first=currentmonth.get(Calendar.DAY_OF_WEEK)-1;//假日曆的第一天是這週的第幾天
+	    int last=currentmonth.getActualMaximum(Calendar.DAY_OF_MONTH);
+	    for(int i=0;i<last;i++){
+	        days[first+i]=String.valueOf(i+1);
+	    }
+	%>
 	<div class="Date">
 		<table>
 				<tr>
@@ -45,13 +45,13 @@
 			        <th id="<%=month %>" colspan="2"><%=month %>月</th>
 				</tr>
 			    <tr>
-			        <th><font color="red">日</font></th>
+			        <th>日</th>
 			        <th>一</th>
 			        <th>二</th>
 			        <th>三</th>
 			        <th>四</th>
 			        <th>五</th>
-			        <th><font color="red">六</font> </th>
+			        <th>六</th>
 			    </tr>
 			
 			    <%for(int i=0;i<6;i++){%>
@@ -70,9 +70,9 @@
 			                        <td onclick="Post_Day(<%=year%>,<%=month%>,<%=days[j]%>)"><%=days[j]%></td>
 			                        <%}%>
 			                    <%}%>
-			
+				</tr>
 			 <% }%>
-			    </tr>
+			    
 		</table>
 	</div>
 </body>

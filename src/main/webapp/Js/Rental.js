@@ -19,7 +19,7 @@ function Post_Day(Y,M,D){
 	
 	let stateObj = { '': 1 }; // 設定狀態，目前沒用
 	
-	let Date = Y.toString()+"/"+ M.toString() + "/"+D.toString();
+	let Date =  M.toString() + "/"+D.toString()+"/"+Y.toString();
 	
 	history.replaceState(stateObj, "", "?"+Classromm_Code+"&Date="+Date); // 網址後面加上文字
 	
