@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%!String 
+/*DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";*/
+DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
+%>
 <%@ page import="java.sql.*"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +46,7 @@
                     <option value="" disabled selected>選擇類型</option>
                     <%
                     Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-        			Connection con=DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;");
+        			Connection con=DriverManager.getConnection(DB);
         			Statement smt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         
         			String sql = "SELECT * FROM Classroom_Type_Code ";
@@ -60,7 +65,7 @@
                     <option value="" disabled selected>選擇大樓</option>
                     <%
                     Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-        			 con=DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;");
+        			 con=DriverManager.getConnection(DB);
         			 smt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
         
         			 sql = "SELECT * FROM Building_Code";
@@ -89,7 +94,7 @@
         		String Type = request.getParameter("Type");
         		
         		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-   				con=DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;");
+   				con=DriverManager.getConnection(DB);
    				smt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
    
    			 	sql = "SELECT * FROM (Classroom_Code AS a LEFT JOIN Classroom_Type_Code AS b ON a.Classroom_Type_Code = b.Type_Code) LEFT JOIN Building_Code AS c ON a.Building_Code = c.Building_Code   WHERE   Building_Code = '" + Buliding + "' AND Classroom_Type_Code ='" + Type+"'";

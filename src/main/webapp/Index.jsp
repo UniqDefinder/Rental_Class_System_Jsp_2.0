@@ -1,6 +1,10 @@
 <%@ page import="java.sql.*"%>
 <%@ page language="java" contentType="text/html; charset=BIG5"
     pageEncoding="UTF-8"%>
+<%!String 
+/*DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";*/
+DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
+%>
 
 
 <!DOCTYPE html>
@@ -18,7 +22,7 @@
     	
 	    if(request.getParameter("Account") !=null &&request.getParameter("Password") !=null){
 	        Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			Connection con=DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;");
+			Connection con=DriverManager.getConnection(DB);
 			Statement smt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
 			String getpaperdata = "SELECT * FROM User WHERE Account='"+request.getParameter("Account")+"' AND Password='" +request.getParameter("Password")+"'";
 			ResultSet rs = smt.executeQuery(getpaperdata);

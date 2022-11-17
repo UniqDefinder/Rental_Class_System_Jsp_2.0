@@ -8,6 +8,11 @@
 //}
 %>
 
+<%!String 
+/*DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";*/
+DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,7 +67,7 @@
 	    	String TF_Term[];
 	    	TF_Term = new String[10];
 	    	Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			Connection con=DriverManager.getConnection("jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;");
+			Connection con=DriverManager.getConnection(DB);
 			Statement smt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
 			String Sql = "SELECT * FROM Rental_Term WHERE Classroom_Code='"+request.getParameter("Classromm_Code")+"' AND Rental_Date=#" +request.getParameter("Date")+"#";  
 			
