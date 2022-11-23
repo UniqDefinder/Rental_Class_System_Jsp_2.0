@@ -9,8 +9,8 @@
 %>
 
 <%!String 
-/*DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";*/
-DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
+DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
+/* DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;"; */
 %>
 
 <!DOCTYPE html>
@@ -24,8 +24,8 @@ DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\sr
     <link rel="stylesheet" href="../Css/User_Style.css">
     <title>租借教室 - 國立臺北護理健康大學</title>
 </head>
+	
 <body>
-    
     <div class="Header">
         <div class="Head">
             <img src="../Images/System_Logo.png" alt="">
@@ -45,16 +45,14 @@ DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\sr
         </ul>
         <div class="Img"></div>
        
-       
+       <form onsubmit="return checkForm(this);"  action="User_Rental_Final.jsp" method="get">
         <p class="Bar">目前位置：場地查詢/租借教室</p>
-       
-        <form>
-            
             <p class="Bar">請選擇日期與時段</p>
             <div class="Date_Time" >
                 <div class="Date">
                     <jsp:include page="../rili.jsp"></jsp:include>
 				</div>
+
                 <div class="Time">
                     <table>
                         <tr>
@@ -107,13 +105,12 @@ DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\sr
             </div>
             <p class="Bar">租借事由</p>
             <div class="Reason">
-                <input class="Reason_Text" type="text" name="Reason">
-                <p>上傳附件：<input type="file"></p>
+                <input class="Reason_Text" id="Reason" type="text" name="Reason">
             </div> 
             <div class="Submit">
                 <input type="submit">
             </div>
-        </form>
+            </form>
     </div>
 
     <div class="Footer">
@@ -124,6 +121,16 @@ DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\sr
             <tr><td style="text-align: center;"colspan="2">請尊重與保護智慧財產權，並使用正版教科書</td></tr>
         </table>
     </div>
-   <script src="../Js/Rental.js" charset="utf-8"></script>
+   <script src="../Js/Rental.js" charset="utf-8">
+   		let url = location.href;
+		if(url.indexOf('Classromm_Code=')==-1 ){
+		window.location.href='../User_Pages/User_Search_Place.jsp';
+		}
+   </script>
+   <%
+	session.setAttribute("Classromm_Code",request.getParameter("Classromm_Code"));
+	session.setAttribute("Date",request.getParameter("Date"));
+	
+	%>
 </body>
 </html>

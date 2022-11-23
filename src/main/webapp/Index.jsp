@@ -2,8 +2,8 @@
 <%@ page language="java" contentType="text/html; charset=BIG5"
     pageEncoding="UTF-8"%>
 <%!String 
-/*DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";*/
-DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
+DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
+/* DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;"; */
 %>
 
 
@@ -58,13 +58,7 @@ DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\sr
 				
 				
 				
-				
-			}else
-				out.print("登入失敗");
-	    }
-    
-    
-    %>
+				%>
 </head>
 <body>
         <div class="Header">
@@ -79,6 +73,10 @@ DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\sr
                 <input type="text" id="Account" name="Account" placeholder="學號/教職員帳號">
                 <input type="password" id="Password" name="Password"  placeholder="密碼">
                 <input class="Login_Btn" type="submit" value="登錄">
+                <%
+			}else
+				out.print("登入失敗");
+	    } %>
                 <a href="">忘記密碼？</a>
             </form>
         </div>

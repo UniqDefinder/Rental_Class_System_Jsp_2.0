@@ -1,10 +1,4 @@
 
-let url = location.href;
-if(url.indexOf('Classromm_Code=')==-1 ){
-	window.location.href='../User_Pages/User_Search_Place.jsp';
-	}
-
-
  
  
 function Post_Day(Y,M,D){
@@ -25,4 +19,17 @@ function Post_Day(Y,M,D){
 	
 	window.history.go(); //刷新頁面 
 	return;
+}
+function checkForm(){
+	const Reason = document.getElementById('Reason');
+	
+	
+	if(Reason.value == ""){
+		alert("請輸入租借原因")
+		return false;
+	}
+	else if (){
+		
+	}
+	
 }
