@@ -9,8 +9,8 @@
 %>
 
 <%!String 
-DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
-/* DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;"; */
+/* DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";*/
+DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;"; 
 %>
 
 <!DOCTYPE html>
@@ -85,14 +85,14 @@ DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_
 				 	}
 					 
 					for(int i=0;i<5;){
-							out.print("<tr><td><label><input type='checkbox' name='"+Term[i]+"' value = '"+TF_Term[i]+"'><span class='Check'>"+Term[i]+"</span></label></td><td><label><input type='checkbox' name='"+Term[i+5]+"' value = '"+TF_Term[i+5]+"'><span class='Check'>"+Term[i+5]+"</span></label></td></tr>");
+							out.print("<tr><td><label><input type='checkbox' id='"+Term[i]+"' name='"+Term[i]+"' value = '"+TF_Term[i]+"'><span class='Check'>"+Term[i]+"</span></label></td><td><label><input type='checkbox' id='"+Term[i+5]+"'  name='"+Term[i+5]+"' value = '"+TF_Term[i+5]+"'><span class='Check'>"+Term[i+5]+"</span></label></td></tr>");
 							i++;
 						}
 				 
 			}
 			else{
 				for(int i=0;i<5;){
-					out.print("<tr><td><label><input type='checkbox' name='"+Term[i]+"' value ='T'><span class='Check'>"+Term[i]+"</span></label></td><td><label><input type='checkbox' name='"+Term[i+5]+"' value = 'T'><span class='Check'>"+Term[i+5]+"</span></label></td></tr>");
+					out.print("<tr><td><label><input type='checkbox' id='"+Term[i]+"'  name='"+Term[i]+"' value ='T'><span class='Check'>"+Term[i]+"</span></label></td><td><label><input type='checkbox' id='"+Term[i+5]+"'  name='"+Term[i+5]+"' value = 'T'><span class='Check'>"+Term[i+5]+"</span></label></td></tr>");
 					i++;
 				}
 			} 
@@ -121,12 +121,14 @@ DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_
             <tr><td style="text-align: center;"colspan="2">請尊重與保護智慧財產權，並使用正版教科書</td></tr>
         </table>
     </div>
-   <script src="../Js/Rental.js" charset="utf-8">
-   		let url = location.href;
-		if(url.indexOf('Classromm_Code=')==-1 ){
-		window.location.href='../User_Pages/User_Search_Place.jsp';
-		}
-   </script>
+   <script src="../Js/Rental.js" charset="utf-8"></script>
+   <script>
+   let url = location.href;
+	if(url.indexOf('Classromm_Code=')==-1 ){
+	window.location.href='../User_Pages/User_Search_Place.jsp';
+	}
+
+	</script>
    <%
 	session.setAttribute("Classromm_Code",request.getParameter("Classromm_Code"));
 	session.setAttribute("Date",request.getParameter("Date"));
