@@ -9,10 +9,30 @@
 %>
 
 <%!String 
-/* DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";*/
-DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;"; 
+DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
+/*DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;"; */
 %>
+<%
+	String Classroom_Code = (String)session.getAttribute("Classroom_Code") ;
+	String Date = (String)session.getAttribute("Date") ;
+	
+    if(Classroom_Code !=null && Date !=null ){
+	 	Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+		Connection con=DriverManager.getConnection(DB);
+		Statement smt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
 
+		String sql = "SELECT * FROM Classroom_Code Where Classroom_Code='"+Classroom_Code+"'";
+		ResultSet rs = smt.executeQuery(sql);
+	 	rs.last();
+	 	int count = rs.getRow();
+	 	if(count == 0){
+	 		response.sendRedirect("User_Search_Place.jsp");
+	 	}
+	}else{
+		response.sendRedirect("User_Search_Place.jsp");
+	}
+	%>
+		 	
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,8 +44,8 @@ DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\sr
     <link rel="stylesheet" href="../Css/User_Style.css">
     <title>租借教室 - 國立臺北護理健康大學</title>
 </head>
+	
 <body>
-    
     <div class="Header">
         <div class="Head">
             <img src="../Images/System_Logo.png" alt="">
@@ -45,11 +65,12 @@ DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\sr
         </ul>
         <div class="Img"></div>
        
-       <form action="User_Rental_Final.jsp" method="get">
-      
-       </form>
     </div>
-
+    
+	<%
+	
+	
+	%>
     <div class="Footer">
         <table>
             <tr><td>國立臺北護理健康大學</td><td>National Taipei University of Nursing and Health Sciences</td></tr>
@@ -59,10 +80,6 @@ DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\sr
         </table>
     </div>
    <script src="../Js/Rental.js" charset="utf-8"></script>
+ 
 </body>
-	<%
-	session.setAttribute("Classromm_Code",request.getParameter("Classromm_Code"));
-	session.setAttribute("Date",request.getParameter("Date"));
-	
-	%>
 </html>

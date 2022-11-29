@@ -1,11 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%!String 
-/* DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";*/
-DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;"; 
-%>
+
 <%@ page import="java.sql.*"%>
+<%!String 
+ DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
+ /*DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;"; */
+%>
+
+
+<%
+session.setAttribute("Classroom_Code",null);
+session.setAttribute("Date",null); 
+//重製教室與日期Session
+%>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -106,7 +116,7 @@ DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\sr
    			 	if(count != 0){
    			 		rs.first();
    			 		while(rs.next()){
-   			 			out.print("<form action='User_Rental.jsp' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classromm_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
+   			 			out.print("<form action='User_Rental.jsp' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classroom_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
    			 		}
    			 		
    			 	}
@@ -116,7 +126,7 @@ DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\sr
 	   			 	sql = "SELECT * FROM (Classroom_Code AS a LEFT JOIN Classroom_Type_Code AS b ON a.Classroom_Type_Code = b.Type_Code) LEFT JOIN Building_Code AS c ON a.Building_Code = c.Building_Code   WHERE    Classroom_Type_Code ='" + Type+"'";
 	   			 	rs = smt.executeQuery(sql);
 	   			 	while(rs.next()){
-			 			out.print("<form action='User_Rental.jsp' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classromm_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
+			 			out.print("<form action='User_Rental.jsp' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classroom_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
 			 		}
 	   			 	
    			 	}
@@ -124,7 +134,7 @@ DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\sr
    			 		sql = "SELECT * FROM (Classroom_Code AS a LEFT JOIN Classroom_Type_Code AS b ON a.Classroom_Type_Code = b.Type_Code) LEFT JOIN Building_Code AS c ON a.Building_Code = c.Building_Code   WHERE   Building_Code = '" + Buliding+"'";
    			 		rs = smt.executeQuery(sql);
    			 		while(rs.next()){
-			 			out.print("<form action='User_Rental.jsp' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classromm_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
+			 			out.print("<form action='User_Rental.jsp' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classroom_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
 			 		}
    			 	}
    			 	else{

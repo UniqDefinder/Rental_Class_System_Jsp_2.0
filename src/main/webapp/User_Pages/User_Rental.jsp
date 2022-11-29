@@ -9,8 +9,8 @@
 %>
 
 <%!String 
-/* DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";*/
-DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;"; 
+DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
+/*DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;"; */
 %>
 
 <!DOCTYPE html>
@@ -23,9 +23,18 @@ DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\sr
     <link rel="stylesheet" href="../Css/Header_Footer.css">
     <link rel="stylesheet" href="../Css/User_Style.css">
     <title>租借教室 - 國立臺北護理健康大學</title>
+    <%
+String Classroom_Code = request.getParameter("Classroom_Code");
+String Date = request.getParameter("Date");
+
+session.setAttribute("Classroom_Code",Classroom_Code);
+session.setAttribute("Date",Date);
+
+%>
 </head>
 	
 <body>
+
     <div class="Header">
         <div class="Head">
             <img src="../Images/System_Logo.png" alt="">
@@ -45,7 +54,7 @@ DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\sr
         </ul>
         <div class="Img"></div>
        
-       <form onsubmit="return checkForm(this);"  action="User_Rental_Final.jsp" method="get">
+       <form onsubmit="return checkForm(this);"  action="Senting.jsp" method="get">
         <p class="Bar">目前位置：場地查詢/租借教室</p>
             <p class="Bar">請選擇日期與時段</p>
             <div class="Date_Time" >
@@ -60,14 +69,14 @@ DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\sr
                             <th>下午</th>
                         </tr>
         <%
-	    if(request.getParameter("Classromm_Code") !=null &&request.getParameter("Date") !=null){
+	    if(request.getParameter("Classroom_Code") !=null &&request.getParameter("Date") !=null){
 	    	String Term[] = {"8:10~9:00","9:10~10:00","10:10~11:00","11:10~12:00","12:40~13:30","13:40~14:30","14:10~15:30","15:40~16:30","16:40~17:30","17:40~18:30"};
 	    	String TF_Term[];
 	    	TF_Term = new String[10];
 	    	Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			Connection con=DriverManager.getConnection(DB);
 			Statement smt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			String Sql = "SELECT * FROM Rental_Term WHERE Classroom_Code='"+request.getParameter("Classromm_Code")+"' AND Rental_Date=#" +request.getParameter("Date")+"#";  
+			String Sql = "SELECT * FROM Rental_Term WHERE Classroom_Code='"+request.getParameter("Classroom_Code")+"' AND Rental_Date=#" +request.getParameter("Date")+"#";  
 			
 			ResultSet rs = smt.executeQuery(Sql);  
 			rs.last();
@@ -124,15 +133,11 @@ DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\sr
    <script src="../Js/Rental.js" charset="utf-8"></script>
    <script>
    let url = location.href;
-	if(url.indexOf('Classromm_Code=')==-1 ){
+	if(url.indexOf('Classroom_Code=')==-1 ){
 	window.location.href='../User_Pages/User_Search_Place.jsp';
 	}
 
 	</script>
-   <%
-	session.setAttribute("Classromm_Code",request.getParameter("Classromm_Code"));
-	session.setAttribute("Date",request.getParameter("Date"));
-	
-	%>
+  
 </body>
 </html>
