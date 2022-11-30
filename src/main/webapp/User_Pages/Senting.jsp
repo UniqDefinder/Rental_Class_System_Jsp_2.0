@@ -1,4 +1,6 @@
 <%@ page import="java.sql.*"%>
+<%@ page import="java.io.*,java.util.*" %>
+<%@ page import="javax.servlet.*,java.text.*" %>
 <%@ page language="java" contentType="text/html; charset=BIG5"
     pageEncoding="UTF-8"%>
 <%
@@ -25,9 +27,7 @@ DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_
 		ResultSet rs = smt.executeQuery(sql);
 	 	rs.last();
 	 	int count = rs.getRow();
-	 	if(count == 0){
-	 		response.sendRedirect("User_Search_Place.jsp");
-	 	}
+	 	if(count == 0){response.sendRedirect("User_Search_Place.jsp");}
 	}else{
 		response.sendRedirect("User_Search_Place.jsp");
 	}
@@ -64,7 +64,35 @@ DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_
             <li><a href="">系統公告</a></li>
         </ul>
         <div class="Img"></div>
+       <% 
+       //租借編號 = 租借日期+發送時間+帳號 Ex: 22122022235001User
+       java.util.Date dNow = new java.util.Date();
+       SimpleDateFormat ft = new SimpleDateFormat ("HHmmss");
+       SimpleDateFormat ft_2 = new SimpleDateFormat ("MM/dd/yyyy");
+       String Reason = request.getParameter("Reason"),
+       			   Term[] = (String[])request.getParameterValues("T") ,
+       			   Serial_Number = (String)session.getAttribute("Date")+ft.format(dNow)+(String) session.getAttribute("Access_Id"),
+       			   Apply_Date =ft_2.format(dNow) ;
        
+	    Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+		Connection con=DriverManager.getConnection(DB);
+		Statement smt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
+		String Sql = "SELECT * FROM Rental_Term WHERE Classroom_Code='"+Classroom_Code+"' AND Rental_Date=#" +Date+"#";  
+		ResultSet rs = smt.executeQuery(Sql);  
+		rs.last();
+		con.close();
+		int count = rs.getRow();	
+		
+		 if(count==0){
+			 Sql = "INSERT INTO Rental_Record(Rental_Serial_Number,Classroom,Date_Of_Application,Rental_Date,Account,Reason,Check_State)  VALUES('"+Serial_Number+"','"+Classroom_Code+"',#"+Apply_Date+"#,#"+Date+"#,'User','"+Reason+"','?')";
+			 out.print(Sql);
+				/* smt.execute("INSERT INTO Rental_Record(Rental_Serial_Number,Classroom,Date_Of_Application,Rental_Date,Account,Reason,Check_State)  VALUES('"+Serial_Number+"','"+Classroom_Code+"',#"+Apply_Date+"#,#"+Date+"#,'"+(String) session.getAttribute("Access_Id")+"','"+Reason+"','?')"); */
+		}else{
+			 Sql = "INSERT INTO Rental_Record(Rental_Serial_Number,Classroom,Date_Of_Application,Rental_Date,Account,Reason,Check_State)  VALUES('"+Serial_Number+"','"+Classroom_Code+"',#"+Apply_Date+"#,#"+Date+"#,'User','"+Reason+"','?')";
+			 out.print(Sql);
+		}  
+       
+       %>
     </div>
     
 	<%

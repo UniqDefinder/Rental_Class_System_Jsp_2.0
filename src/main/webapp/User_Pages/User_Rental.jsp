@@ -80,11 +80,12 @@ session.setAttribute("Date",Date);
 			
 			ResultSet rs = smt.executeQuery(Sql);  
 			rs.last();
+			
 			int count = rs.getRow();
 			 if(count != 0){
 					for(int i=0;i<10;){
 						 if( rs.getString(Term[i]) ==null){
-							 TF_Term[i] = "T";
+							 TF_Term[i] = Term[i];
 							 i++;
 						 }
 						 else{
@@ -94,19 +95,20 @@ session.setAttribute("Date",Date);
 				 	}
 					 
 					for(int i=0;i<5;){
-							out.print("<tr><td><label><input type='checkbox' id='"+Term[i]+"' name='"+Term[i]+"' value = '"+TF_Term[i]+"'><span class='Check'>"+Term[i]+"</span></label></td><td><label><input type='checkbox' id='"+Term[i+5]+"'  name='"+Term[i+5]+"' value = '"+TF_Term[i+5]+"'><span class='Check'>"+Term[i+5]+"</span></label></td></tr>");
+							out.print("<tr><td><label><input type='checkbox' id='"+Term[i]+"' name='T' value = '"+TF_Term[i]+"'><span class='Check'>"+Term[i]+"</span></label></td><td><label><input type='checkbox' id='"+Term[i+5]+"'  name='T' value = '"+TF_Term[i+5]+"'><span class='Check'>"+Term[i+5]+"</span></label></td></tr>");
 							i++;
 						}
 				 
 			}
 			else{
 				for(int i=0;i<5;){
-					out.print("<tr><td><label><input type='checkbox' id='"+Term[i]+"'  name='"+Term[i]+"' value ='T'><span class='Check'>"+Term[i]+"</span></label></td><td><label><input type='checkbox' id='"+Term[i+5]+"'  name='"+Term[i+5]+"' value = 'T'><span class='Check'>"+Term[i+5]+"</span></label></td></tr>");
+					out.print("<tr><td><label><input type='checkbox' id='"+Term[i]+"'  name='T' value ='"+Term[i]+"'><span class='Check'>"+Term[i]+"</span></label></td><td><label><input type='checkbox' id='"+Term[i+5]+"'  name='T' value = '"+Term[i]+"T'><span class='Check'>"+Term[i+5]+"</span></label></td></tr>");
 					i++;
 				}
 			} 
 			
 	    }  
+        
 		%>
                     </table>
                 </div>

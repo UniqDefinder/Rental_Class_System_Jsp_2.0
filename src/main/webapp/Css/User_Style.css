@@ -149,7 +149,7 @@
     
 }
 
-.Rental .Time input[value="T"] ~ .Check{
+.Rental .Time input:not([value = "null"]) ~ .Check{
     background-color: rgb(162, 255, 162);
     user-select: none;
 }
@@ -157,7 +157,7 @@
     background-color: rgb(255, 162, 162);
     user-select: none;
 }
-.Rental .Time input[value="T"]:checked ~ .Check{
+.Rental .Time input:not([value = "null"]):checked ~ .Check{
     background-color: rgb(96, 151, 96);
 }
 
