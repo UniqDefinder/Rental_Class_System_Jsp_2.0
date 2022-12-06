@@ -7,3 +7,6 @@
     <jsp:include page="rili.jsp"></jsp:include>
 </body>
 </html>
+
+<jsp:useBean id="students" 
+                    class="com.runoob.StudentsBean"> 
