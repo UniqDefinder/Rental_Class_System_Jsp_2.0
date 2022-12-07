@@ -1,7 +1,7 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="java.io.*,java.util.*" %>
 <%@ page import="javax.servlet.*,java.text.*" %>
-<%@ page language="java" contentType="text/html; charset=BIG5"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 //if(session.getAttribute("Access_Type") !="1"){
@@ -33,7 +33,7 @@ DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_
 				
 	
 	
-    if(Classroom_Code !=null && Date !=null && Reason!=null){
+    if(Classroom_Code !=null && Date !=null && Reason!=null ){
 	 	Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 		Connection con=DriverManager.getConnection(DB);
 		Statement smt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
@@ -41,7 +41,6 @@ DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_
 		ResultSet rs = smt.executeQuery(sql);
 	 	rs.last();
 	 	
-	 	//Reason = new String(Reason.getBytes("ISO-8859-1"), "UTF-8"); //轉換Reason編碼
 	 	
 	 	int count = rs.getRow();
 	 	if(count == 0){
@@ -82,10 +81,25 @@ DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_
 			 if(count==0){
 				con=DriverManager.getConnection(DB);
 				smt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-				smt.execute("INSERT INTO Rental_Record(Rental_Serial_Number,Classroom,Date_Of_Application,Rental_Date,Account,Reason,Check_State)  VALUES('"+Serial_Number+"','"+Classroom_Code+"',#"+Apply_Date+"#,#"+Date+"#,'"+(String) session.getAttribute("Access_Id")+"','"+Reason+"','?')"); 
-			}else{
-				 Sql = "INSERT INTO Rental_Record(Rental_Serial_Number,Classroom,Date_Of_Application,Rental_Date,Account,Reason,Check_State)  VALUES('"+Serial_Number+"','"+Classroom_Code+"',#"+Apply_Date+"#,#"+Date+"#,'User','"+Reason+"','?')";
-				 out.print(Sql);
+				smt.execute("INSERT INTO Rental_Record(Rental_Serial_Number,Classroom,Date_Of_Application,Rental_Date,Account,Reason,Check_State)  VALUES('"+Serial_Number+"','"+Classroom_Code+"',#"+Apply_Date+"#,#"+Date+"#,'"+(String) session.getAttribute("Access_Id")+"','"+Reason+"','?')");
+				
+				int Arrlength = Term.length;
+				String Rental_Term = "",
+							Rental_Term_Serial_Number = "";
+				
+				for(int i=0;i<Arrlength;){
+					
+					Rental_Term = Rental_Term +",["+Term[i]+"]";
+					Rental_Term_Serial_Number = Rental_Term_Serial_Number+",'"+Serial_Number+"'";
+					i++;
+				}
+				
+				
+				String sql = "INSERT INTO Rental_Term(Classroom_Code,Rental_Date"+Rental_Term+") VALUES('"+Classroom_Code+"',#"+Date+"#"+Rental_Term_Serial_Number+")";
+				smt.execute(sql);
+				
+			 }else{
+				 return;
 				 }   
 			 
        }else{

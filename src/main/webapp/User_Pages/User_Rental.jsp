@@ -1,5 +1,5 @@
 <%@ page import="java.sql.*"%>
-<%@ page language="java" contentType="text/html; charset=BIG5"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 //if(session.getAttribute("Access_Type") !="1"){
@@ -70,7 +70,7 @@ session.setAttribute("Date",Date);
                         </tr>
         <%
 	    if(request.getParameter("Classroom_Code") !=null &&request.getParameter("Date") !=null){
-	    	String Term[] = {"8:10~9:00","9:10~10:00","10:10~11:00","11:10~12:00","12:40~13:30","13:40~14:30","14:10~15:30","15:40~16:30","16:40~17:30","17:40~18:30"};
+	    	String Term[] = {"08：10至09：00","09：10至10：00","10：10至11：00","11：10至12：00","12：40至13：30","13：40至14：30","14：10至15：30","15：40至16：30","16：40至17：30","17：40至18：30"};
 	    	String TF_Term[];
 	    	TF_Term = new String[10];
 	    	Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -102,7 +102,7 @@ session.setAttribute("Date",Date);
 			}
 			else{
 				for(int i=0;i<5;){
-					out.print("<tr><td><label><input type='checkbox' id='"+Term[i]+"'  name='T' value ='"+Term[i]+"'><span class='Check'>"+Term[i]+"</span></label></td><td><label><input type='checkbox' id='"+Term[i+5]+"'  name='T' value = '"+Term[i]+"T'><span class='Check'>"+Term[i+5]+"</span></label></td></tr>");
+					out.print("<tr><td><label><input type='checkbox' id='"+Term[i]+"'  name='T' value ='"+Term[i]+"'><span class='Check'>"+Term[i]+"</span></label></td><td><label><input type='checkbox' id='"+Term[i+5]+"'  name='T' value = '"+Term[i]+"'><span class='Check'>"+Term[i+5]+"</span></label></td></tr>");
 					i++;
 				}
 			} 
