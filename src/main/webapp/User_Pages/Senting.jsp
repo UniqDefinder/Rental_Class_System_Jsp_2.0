@@ -11,9 +11,18 @@
 session.setAttribute("Access_Id","User");
 %>
 
-<%!String 
-DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
-/*DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;"; */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>資料傳送中....</title>
+</head>
+
+<%!String
+/*DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";*/
+DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
 %>
 <%
 	java.util.Date dNow = new java.util.Date();
@@ -24,16 +33,27 @@ DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_
 				Reason = request.getParameter("Reason"),
 				Term[] = (String[])request.getParameterValues("T") ,
 				Serial_Number = (String)session.getAttribute("Date")+ft.format(dNow)+(String) session.getAttribute("Access_Id"),
-				Apply_Date =ft_2.format(dNow) ;
+				Apply_Date =ft_2.format(dNow),
+				Rental_Term = "",
+				Rental_Term_Serial_Number = "";
 	
 	
-	Boolean Class_Date_Check = false;
+	Boolean Class_Date_Check = false,
+					isEmpty = true;
 //租借編號 = 租借日期+發送時間+帳號 Ex: 22122022235001User
+	
+	
+	int Arrlength = 0;
+	
+				
 
+	
+	
+				
 				
 	
 	
-    if(Classroom_Code !=null && Date !=null && Reason!=null ){
+    if(Classroom_Code !=null && Date !=null && Reason!=null && Term[0]!=null){
 	 	Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 		Connection con=DriverManager.getConnection(DB);
 		Statement smt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
@@ -41,9 +61,16 @@ DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_
 		ResultSet rs = smt.executeQuery(sql);
 	 	rs.last();
 	 	
-	 	
-	 	int count = rs.getRow();
-	 	if(count == 0){
+		int count = rs.getRow();
+		sql = "SELECT * FROM Rental_Term WHERE Classroom_Code='"+Classroom_Code+"' AND Rental_Date=#"+Date+"#";
+		rs = smt.executeQuery(sql);
+		
+		for(int i = 0 ; i<Arrlength;){
+			if(rs.getString(Term[i]) != null){ isEmpty = false; break;};
+			i++;
+		}//偵測時段是否被租借
+		
+	 	if(count == 0 && isEmpty == false){
 	 		response.sendRedirect("User_Search_Place.jsp");
 	 		return;
 	 		}else{
@@ -57,14 +84,7 @@ DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_
 	}
 	%>
 		 	
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>資料傳送中....</title>
-</head>
+
 	
 
        <% 
@@ -77,22 +97,19 @@ DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_
 			rs.last();
 			con.close();
 			int count = rs.getRow();	
-		
+			
+			Arrlength = Term.length;
+			for(int i=0;i<Arrlength;){
+				
+				Rental_Term = Rental_Term +",["+Term[i]+"]";
+				Rental_Term_Serial_Number = Rental_Term_Serial_Number+",'"+Serial_Number+"'";
+				i++;
+			}
+			
 			 if(count==0){
 				con=DriverManager.getConnection(DB);
 				smt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
 				smt.execute("INSERT INTO Rental_Record(Rental_Serial_Number,Classroom,Date_Of_Application,Rental_Date,Account,Reason,Check_State)  VALUES('"+Serial_Number+"','"+Classroom_Code+"',#"+Apply_Date+"#,#"+Date+"#,'"+(String) session.getAttribute("Access_Id")+"','"+Reason+"','?')");
-				
-				int Arrlength = Term.length;
-				String Rental_Term = "",
-							Rental_Term_Serial_Number = "";
-				
-				for(int i=0;i<Arrlength;){
-					
-					Rental_Term = Rental_Term +",["+Term[i]+"]";
-					Rental_Term_Serial_Number = Rental_Term_Serial_Number+",'"+Serial_Number+"'";
-					i++;
-				}
 				
 				
 				String sql = "INSERT INTO Rental_Term(Classroom_Code,Rental_Date"+Rental_Term+") VALUES('"+Classroom_Code+"',#"+Date+"#"+Rental_Term_Serial_Number+")";
