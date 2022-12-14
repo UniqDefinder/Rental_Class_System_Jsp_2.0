@@ -17,9 +17,17 @@
     <link rel="stylesheet" href="Css/Header_Footer.css">
     <link rel="stylesheet" href="Css/Index_Style.css">
     <title>登入 - 教室租借系統 - 國立臺北護理健康大學</title>
+   
     <%
-    	session.setAttribute("accessType",null);
-    	
+  		//公告
+  		
+  		
+  		
+	    if(session.getAttribute("Alert") != null && (String)session.getAttribute("Alert") != ""){
+	    	out.print("<script>alert('"+(String) session.getAttribute("Alert")+"');</script>");
+	    	session.setAttribute("Alert","");
+	    }
+    
 	    if(request.getParameter("Account") !=null &&request.getParameter("Password") !=null){
 	        Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			Connection con=DriverManager.getConnection(DB);
@@ -30,35 +38,40 @@
 				
 				int i = Integer.parseInt(rs.getString("User_Type"));
 				
-				switch (i){
-				case 1:
-					session.setAttribute("Access_Type","1");
-					session.setAttribute("Access_Id",request.getParameter("Account"));
-					session.setMaxInactiveInterval(10*60);
-					response.sendRedirect("User_Pages/User_Search_Place.jsp");
-					break;
-					
-				case 2:
-					session.setAttribute("Access_Type","2");
-					session.setAttribute("Access_Id",request.getParameter("Account"));
-					session.setMaxInactiveInterval(10*60);
-					response.sendRedirect("Inspector_Pages/Inspector_Search_Place.jsp");
-					break;
-					
-				case 3:
-					session.setAttribute("Access_Type","3");
-					session.setAttribute("Access_Id",request.getParameter("Account"));
-					session.setMaxInactiveInterval(10*60);
-					response.sendRedirect("Admin_Pages/Admin_Index.jsp");
-					break;
-					
+					switch (i){
+					case 1:
+						session.setAttribute("Access_Type","1");
+						session.setAttribute("Access_Id",request.getParameter("Account"));
+						session.setAttribute("Alert","使用者登入成功！");
+						session.setMaxInactiveInterval(10*60);
+						response.sendRedirect("Pages/Search_Place.jsp");
+						break;
+						
+					case 2:
+						session.setAttribute("Access_Type","2");
+						session.setAttribute("Access_Id",request.getParameter("Account"));
+						session.setAttribute("Alert","審核者登入成功！");
+						session.setMaxInactiveInterval(10*60);
+						response.sendRedirect("Pages/Search_Place.jsp");
+						break;
+						
+					case 3:
+						session.setAttribute("Access_Type","3");
+						session.setAttribute("Access_Id",request.getParameter("Account"));
+						session.setAttribute("Alert","管理員登入成功！");
+						session.setMaxInactiveInterval(10*60);
+						response.sendRedirect("Pages/Admin.jsp");
+						break;
+					}
+			}else{
+				session.setAttribute("Alert","登入失敗！");
+			}
 				
-				}
-				
-				
-				
-				
-				%>
+		}
+	
+    
+  	
+%>
 </head>
 <body>
         <div class="Header">
@@ -73,10 +86,6 @@
                 <input type="text" id="Account" name="Account" placeholder="學號/教職員帳號">
                 <input type="password" id="Password" name="Password"  placeholder="密碼">
                 <input class="Login_Btn" type="submit" value="登錄">
-                <%
-			}else
-				out.print("登入失敗");
-	    } %>
                 <a href="">忘記密碼？</a>
             </form>
         </div>

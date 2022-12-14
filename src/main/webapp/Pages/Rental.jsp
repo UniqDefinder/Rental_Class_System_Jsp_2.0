@@ -2,15 +2,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-//if(session.getAttribute("Access_Type") !="1"){
-//	response.sendRedirect("../Index.jsp");
+if(session.getAttribute("Access_Type") ==null){
+	response.sendRedirect("../Index.jsp");
 //登入控管
-//}
+}
 %>
 
 <%!String 
-DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
-/*DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;"; */
+/*DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";*/
+DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
 %>
 
 <!DOCTYPE html>
@@ -31,6 +31,14 @@ session.setAttribute("Classroom_Code",Classroom_Code);
 session.setAttribute("Date",Date);
 
 %>
+<%
+    //公告
+    if(session.getAttribute("Alert") != null && (String)session.getAttribute("Alert") != ""){
+    	out.print("<script>alert('"+(String) session.getAttribute("Alert")+"');</script>");
+    	session.setAttribute("Alert","");
+    }
+    
+    %>
 </head>
 	
 <body>
@@ -42,7 +50,7 @@ session.setAttribute("Date",Date);
         </div>
         <div class="Logout">
             <p>歡迎！<%= session.getAttribute("Access_Id") %></p>
-            <a href="">登出</a>
+            <a  href="Logout.jsp">登出</a>
         </div>
     </div>
 
@@ -59,7 +67,7 @@ session.setAttribute("Date",Date);
             <p class="Bar">請選擇日期與時段</p>
             <div class="Date_Time" >
                 <div class="Date">
-                    <jsp:include page="../rili.jsp"></jsp:include>
+                    <jsp:include page="Calendar.jsp"></jsp:include>
 				</div>
 
                 <div class="Time">
@@ -70,9 +78,11 @@ session.setAttribute("Date",Date);
                         </tr>
         <%
 	    if(request.getParameter("Classroom_Code") !=null &&request.getParameter("Date") !=null){
-	    	String Term[] = {"08：10至09：00","09：10至10：00","10：10至11：00","11：10至12：00","12：40至13：30","13：40至14：30","14：10至15：30","15：40至16：30","16：40至17：30","17：40至18：30"};
-	    	String TF_Term[];
+	    	String Term[] = {"08：10至09：00","09：10至10：00","10：10至11：00","11：10至12：00","12：40至13：30","13：40至14：30","14：10至15：30","15：40至16：30","16：40至17：30","17：40至18：30"},
+	    				TF_Term[],
+	    				Empty_Term[];
 	    	TF_Term = new String[10];
+	    	Empty_Term = new String[10];
 	    	Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			Connection con=DriverManager.getConnection(DB);
 			Statement smt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
@@ -85,17 +95,19 @@ session.setAttribute("Date",Date);
 			 if(count != 0){
 					for(int i=0;i<10;){
 						 if( rs.getString(Term[i]) ==null){
+							 Empty_Term[i] = "T";
 							 TF_Term[i] = Term[i];
 							 i++;
 						 }
 						 else{
+							 Empty_Term[i] = "F";
 							 TF_Term[i] = null;
 							 i++;
 						 }
 				 	}
 					 
 					for(int i=0;i<5;){
-							out.print("<tr><td><label><input type='checkbox' id='"+Term[i]+"' name='T' value = '"+TF_Term[i]+"'><span class='Check'>"+Term[i]+"</span></label></td><td><label><input type='checkbox' id='"+Term[i+5]+"'  name='T' value = '"+TF_Term[i+5]+"'><span class='Check'>"+Term[i+5]+"</span></label></td></tr>");
+							out.print("<tr><td><label><input type='checkbox' id='"+Term[i]+"' name='"+Empty_Term[i]+"' value = '"+TF_Term[i]+"'><span class='Check'>"+Term[i]+"</span></label></td><td><label><input type='checkbox' id='"+Term[i+5]+"'  name='"+Empty_Term[i+5]+"' value = '"+TF_Term[i+5]+"'><span class='Check'>"+Term[i+5]+"</span></label></td></tr>");
 							i++;
 						}
 				 
@@ -132,14 +144,12 @@ session.setAttribute("Date",Date);
             <tr><td style="text-align: center;"colspan="2">請尊重與保護智慧財產權，並使用正版教科書</td></tr>
         </table>
     </div>
-   <script src="../Js/Rental.js" charset="utf-8"></script>
-   <script>
-   let url = location.href;
-	if(url.indexOf('Classroom_Code=')==-1 ){
-	window.location.href='../User_Pages/User_Search_Place.jsp';
-	}
-
+   <script src="../Js/User.js" charset="utf-8"></script>
+   <script src="../Js/Rental.js" charset="utf-8"> 
+   	let url = location.href;
+	if(url.indexOf('Classroom_Code=')==-1 ){window.location.href='Search_Place.jsp';}
 	</script>
+   
   
 </body>
 </html>

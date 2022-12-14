@@ -2,9 +2,17 @@
     pageEncoding="UTF-8"%>
 
 <%@ page import="java.sql.*"%>
+
+<%
+if(session.getAttribute("Access_Type") ==null){
+	response.sendRedirect("../Index.jsp");
+//登入控管
+}
+%>
+
 <%!String 
- DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
- /*DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;"; */
+/*DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";*/
+DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
 %>
 
 
@@ -26,6 +34,15 @@ session.setAttribute("Date",null);
     <link rel="stylesheet" href="../Css/Header_Footer.css">
     <link rel="stylesheet" href="../Css/User_Style.css">
     <title>場地查詢 - 國立臺北護理健康大學</title>
+    <%
+    
+    //公告
+    if(session.getAttribute("Alert") != null && (String)session.getAttribute("Alert") != ""){
+    	out.print("<script>alert('"+(String) session.getAttribute("Alert")+"');</script>");
+    	session.setAttribute("Alert","");
+    }
+    
+    %>
 </head>
 <body>
     	
@@ -36,7 +53,7 @@ session.setAttribute("Date",null);
         </div>
         <div class="Logout">
             <p>歡迎！<%= session.getAttribute("Access_Id") %></p>
-            <a href="">登出</a>
+            <a  href="Logout.jsp">登出</a>
         </div>
     </div>
 
@@ -116,7 +133,7 @@ session.setAttribute("Date",null);
    			 	if(count != 0){
    			 		rs.first();
    			 		while(rs.next()){
-   			 			out.print("<form action='User_Rental.jsp' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classroom_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
+   			 			out.print("<form action='Rental.jsp' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classroom_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
    			 		}
    			 		
    			 	}
@@ -126,7 +143,7 @@ session.setAttribute("Date",null);
 	   			 	sql = "SELECT * FROM (Classroom_Code AS a LEFT JOIN Classroom_Type_Code AS b ON a.Classroom_Type_Code = b.Type_Code) LEFT JOIN Building_Code AS c ON a.Building_Code = c.Building_Code   WHERE    Classroom_Type_Code ='" + Type+"'";
 	   			 	rs = smt.executeQuery(sql);
 	   			 	while(rs.next()){
-			 			out.print("<form action='User_Rental.jsp' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classroom_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
+			 			out.print("<form action='Rental.jsp' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classroom_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
 			 		}
 	   			 	
    			 	}
@@ -134,7 +151,7 @@ session.setAttribute("Date",null);
    			 		sql = "SELECT * FROM (Classroom_Code AS a LEFT JOIN Classroom_Type_Code AS b ON a.Classroom_Type_Code = b.Type_Code) LEFT JOIN Building_Code AS c ON a.Building_Code = c.Building_Code   WHERE   Building_Code = '" + Buliding+"'";
    			 		rs = smt.executeQuery(sql);
    			 		while(rs.next()){
-			 			out.print("<form action='User_Rental.jsp' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classroom_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
+			 			out.print("<form action='Rental.jsp' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classroom_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
 			 		}
    			 	}
    			 	else{
@@ -160,5 +177,6 @@ session.setAttribute("Date",null);
             <tr><td style="text-align: center;"colspan="2">請尊重與保護智慧財產權，並使用正版教科書</td></tr>
         </table>
     </div>
+    <script src="../Js/User.js" charset="utf-8"></script>
 </body>
 </html>
