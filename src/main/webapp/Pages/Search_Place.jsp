@@ -11,8 +11,8 @@ if(session.getAttribute("Access_Type") ==null){
 %>
 
 <%!String 
-DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
-/*DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";*/
+/*DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";*/
+DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
 %>
 
 
@@ -61,6 +61,7 @@ session.setAttribute("Date",null);
         <ul class="Tabs">
             <li><a href="">場地租借/查詢</a></li>
             <li><a href="">租借紀錄</a></li>
+            <li><a href="">審核專區</a></li>
             <li><a href="">系統公告</a></li>
         </ul>
         <div class="Img"></div>
