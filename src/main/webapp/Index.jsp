@@ -1,10 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
-<%@ page language="java" contentType="text/html; charset=BIG5"
-    pageEncoding="UTF-8"%>
-<%!String 
-/*DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";*/
-DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
-%>
+    
+
 
 
 <!DOCTYPE html>
@@ -17,17 +14,10 @@ DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\sr
     <link rel="stylesheet" href="Css/Header_Footer.css">
     <link rel="stylesheet" href="Css/Index_Style.css">
     <title>登入 - 教室租借系統 - 國立臺北護理健康大學</title>
+    
+   <%@include file="Pages/Page_Function/DB_Path&Alert.jsp" %>
    
     <%
-  		//公告
-  		
-  		
-  		
-	    if(session.getAttribute("Alert") != null && (String)session.getAttribute("Alert") != ""){
-	    	out.print("<script>alert('"+(String) session.getAttribute("Alert")+"');</script>");
-	    	session.setAttribute("Alert","");
-	    }
-    
 	    if(request.getParameter("Account") !=null &&request.getParameter("Password") !=null){
 	        Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 			Connection con=DriverManager.getConnection(DB);
@@ -89,14 +79,7 @@ DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\sr
                 <a href="">忘記密碼？</a>
             </form>
         </div>
-        <div class="Footer">
-            <table>
-                <tr><td>國立臺北護理健康大學</td><td>National Taipei University of Nursing and Health Sciences</td></tr>
-                <tr><td>校本部地址：112303 台北市北投區明德路365號</td><td>城區部地址：108306 台北市內江街89號</td></tr>
-                <tr><td>電話代表號：(02)28227101</td><td>電話代表號：(02)23885111</td></tr>
-                <tr><td style="text-align: center;"colspan="2">請尊重與保護智慧財產權，並使用正版教科書</td></tr>
-            </table>
-        </div>
+        <jsp:include page="Pages/Page_Function/Footer.jsp"></jsp:include>
  
 </body>
 

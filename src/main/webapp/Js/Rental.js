@@ -20,14 +20,15 @@ function Post_Day(Y,M,D){
 }
 function checkForm(){
 	const Reason = document.getElementById('Reason');
-	const TermArr = ["8:10~9:00","9:10~10:00","10:10~11:00","11:10~12:00","12:40~13:30","13:40~14:30","14:10~15:30","15:40~16:30","16:40~17:30","17:40~18:30"];
+	const TermArr = ["08：10至09：00","09：10至10：00","10：10至11：00","11：10至12：00","12：40至13：30","13：40至14：30","14：10至15：30","15：40至16：30","16：40至17：30","17：40至18：30"];
 	let TermCheck =false;
 	
 	
 	for(let i=0;i<10;){
-		let Term;
+		let Term , Term_Value;
 		Term = document.getElementById(TermArr[i]);
-		if( Term.checked == true){
+		Term_Value = document.getElementById(TermArr[i]).name
+		if( Term.checked == true && Term_Value == "T" ){
 			TermCheck = true
 		}
 		i++

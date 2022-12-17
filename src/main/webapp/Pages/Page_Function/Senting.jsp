@@ -18,12 +18,11 @@ session.setAttribute("Access_Id","User");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>資料傳送中....</title>
+    <%@include file="DB_Path&Alert.jsp" %>
 </head>
 
-<%!String 
-/*DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";*/
-DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
-%>
+
+
 <%
 	java.util.Date dNow = new java.util.Date();
 	SimpleDateFormat ft = new SimpleDateFormat ("HHmmss");
@@ -91,17 +90,19 @@ DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\sr
 			rs.last();
 			
 			int count = rs.getRow();	
-			smt.execute("INSERT INTO Rental_Record(Rental_Serial_Number,Classroom,Date_Of_Application,Rental_Date,Account,Reason,Check_State)  VALUES('"+Serial_Number+"','"+Classroom_Code+"',#"+Apply_Date+"#,#"+Date+"#,'"+(String) session.getAttribute("Access_Id")+"','"+Reason+"','?')");
+			
 
 			Arrlength = Term.length;
-			String Insert_Rental_Term = "",
-						Update_Rental_Term = "",
-						Rental_Term_Serial_Number = "";
+			String Insert_Rental_Term = "", //新增時段
+						Update_Rental_Term = "", //更新時段
+						Rental_Term_Serial_Number = "",
+						Total_Term = "";
 			
 			for(int i=0;i<Arrlength;){
-				Update_Rental_Term = Update_Rental_Term + ",["+Term[i]+"] = '"+Serial_Number+"'";
-				Insert_Rental_Term = Insert_Rental_Term +",["+Term[i]+"]";
-				Rental_Term_Serial_Number = Rental_Term_Serial_Number+",'"+Serial_Number+"'";
+				Total_Term += "<br>["+Term[i]+"] ";
+				Update_Rental_Term +=  ",["+Term[i]+"] = '"+Serial_Number+"'";
+				Insert_Rental_Term += ",["+Term[i]+"]";
+				Rental_Term_Serial_Number += ",'"+Serial_Number+"'";
 				i++;
 			}
 			
@@ -113,11 +114,12 @@ DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\sr
 			
 			Update_Rental_Term = Bulid_Update.toString();
 			
+			smt.execute("INSERT INTO Rental_Record(Rental_Serial_Number,Classroom,Date_Of_Application,Rental_Date,Rental_Term,Account,Reason,Check_State)  VALUES('"+Serial_Number+"','"+Classroom_Code+"',#"+Apply_Date+"#,#"+Date+"#,'"+Total_Term+"','"+(String) session.getAttribute("Access_Id")+"','"+Reason+"','審核中')");
+			
 			if(count==0){
 
 				
-				String sql = "INSERT INTO Rental_Term(Classroom_Code,Rental_Date"+Insert_Rental_Term+") VALUES('"+Classroom_Code+"',#"+Date+"#"+Rental_Term_Serial_Number+")";
-				smt.execute(sql);
+				smt.execute("INSERT INTO Rental_Term(Classroom_Code,Rental_Date"+Insert_Rental_Term+") VALUES('"+Classroom_Code+"',#"+Date+"#"+Rental_Term_Serial_Number+")");
 				con.close();
 			 }else{
 				
@@ -126,10 +128,10 @@ DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\sr
 			
 				 }   
 			session.setAttribute("Alert","租借成功！租借編號=「"+Serial_Number+"」。");
-			response.sendRedirect("Search_Place.jsp");
+			response.sendRedirect("../Rental_Record.jsp");
 			
        }else{
-    	   response.sendRedirect("Search_Place.jsp");
+    	   response.sendRedirect("../Search_Place.jsp");
     	   return;
        }
        
