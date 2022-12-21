@@ -32,7 +32,7 @@ session.setAttribute("Access_Id","User");
 				Date = (String)session.getAttribute("Date") ,
 				Reason = request.getParameter("Reason"),
 				Term[] = (String[])request.getParameterValues("T") ,
-				Serial_Number = (String)session.getAttribute("Date")+ft.format(dNow)+(String) session.getAttribute("Access_Id"),
+				Serial_Number = Date.replaceAll("/", "")+ft.format(dNow)+(String) session.getAttribute("Access_Id"),
 				Apply_Date =ft_2.format(dNow),
 				Rental_Term = "";
 	
