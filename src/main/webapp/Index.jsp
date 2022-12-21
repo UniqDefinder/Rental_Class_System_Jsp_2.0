@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
-    
+<%@ page import="com.RCS.*"%>
 
 
 
@@ -19,11 +19,10 @@
    
     <%
 	    if(request.getParameter("Account") !=null &&request.getParameter("Password") !=null){
-	        Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			Connection con=DriverManager.getConnection(DB);
-			Statement smt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			String getpaperdata = "SELECT * FROM User WHERE Account='"+request.getParameter("Account")+"' AND Password='" +request.getParameter("Password")+"'";
-			ResultSet rs = smt.executeQuery(getpaperdata);
+	    	
+	    	DB_CRUD DB = new DB_CRUD();
+            ResultSet rs =DB.getResultSet("SELECT * FROM User WHERE Account='"+request.getParameter("Account")+"' AND Password='" +request.getParameter("Password")+"'");
+			
 			if(rs.next()){
 				
 				int i = Integer.parseInt(rs.getString("User_Type"));

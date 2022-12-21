@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
-
+<%@ page import="com.RCS.*"%>
 <%
 if(session.getAttribute("Access_Type") ==null){
 	response.sendRedirect("../Index.jsp");
@@ -33,19 +33,15 @@ if(session.getAttribute("Access_Type") ==null){
             
                 <tr><th>申請日期</th><th>租借教室</th><th>租借時段</th><th>租借理由</th><th>審核狀態</th><th>取消申請</th></tr>
                 <% 
+                
                 String Account = (String)session.getAttribute("Access_Id");
+                DB_CRUD DB = new DB_CRUD();
+                ResultSet rs =DB.getResultSet("SELECT * FROM Rental_Record Where Account ='" + Account + "' ORDER BY Date_Of_Application  DESC ");
                 
-                
-                Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-    			Connection con=DriverManager.getConnection(DB);
-    			Statement smt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-    			ResultSet rs = smt.executeQuery("SELECT * FROM Rental_Record Where Account ='" + Account + "' ORDER BY Date_Of_Application  DESC ");
-
     			while(rs.next()){
     				out.println("<tr><td>" + rs.getString("Date_Of_Application") + "</td><td>" + rs.getString("Classroom") + "</td><td>" + rs.getString("Rental_Date") + rs.getString("Rental_Term") + "</td><td>" + rs.getString("Reason") + "</td><td>" + rs.getString("Check_State") + "</td><td><a href='Page_Function/Delete_Record.jsp?Serial_Number=" + rs.getString("Rental_Serial_Number") + "' >取消租借</a></td></tr>");
     				
     			}
-    			con.close();
                 %>
                 
             

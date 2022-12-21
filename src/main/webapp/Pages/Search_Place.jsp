@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
-
+<%@ page import="com.RCS.*"%>
 <%
 if(session.getAttribute("Access_Type") ==null){
 	response.sendRedirect("../Index.jsp");
@@ -44,38 +44,28 @@ session.setAttribute("Date",null);
                 <select name="Type">
                     <option value="" disabled selected>選擇類型</option>
                     <%
-                    Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-        			Connection con=DriverManager.getConnection(DB);
-        			Statement smt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-        
-        			String sql = "SELECT * FROM Classroom_Type_Code ";
-        			ResultSet rs = smt.executeQuery(sql);
+                    DB_CRUD DB = new DB_CRUD();
+                    ResultSet rs =DB.getResultSet("SELECT * FROM Classroom_Type_Code ");
         			
         			
         			while(rs.next()){
         				out.println("<option  value='" + rs.getString("Type_Code") + "'>" + rs.getString("Type") + "</option>");
         				
         			}
-        			con.close();
                     %>
                     
                 </select>
                 <select name="Buliding">
                     <option value="" disabled selected>選擇大樓</option>
                     <%
-                    Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-        			 con=DriverManager.getConnection(DB);
-        			 smt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-        
-        			 sql = "SELECT * FROM Building_Code";
-        			 rs = smt.executeQuery(sql);
+                    
+                    rs =DB.getResultSet("SELECT * FROM Building_Code");
         			
         			
         			while(rs.next()){
         				out.println("<option  value='" + rs.getString("Building_Code") + "'>" + rs.getString("Building_Name") + "</option>");
         			}
         			
-        			con.close();
                     %> 
                 </select>
             </div>
@@ -92,12 +82,7 @@ session.setAttribute("Date",null);
         		String Buliding = request.getParameter("Buliding");
         		String Type = request.getParameter("Type");
         		
-        		Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-   				con=DriverManager.getConnection(DB);
-   				smt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-   
-   			 	sql = "SELECT * FROM (Classroom_Code AS a LEFT JOIN Classroom_Type_Code AS b ON a.Classroom_Type_Code = b.Type_Code) LEFT JOIN Building_Code AS c ON a.Building_Code = c.Building_Code   WHERE   Building_Code = '" + Buliding + "' AND Classroom_Type_Code ='" + Type+"'";
-   			 	rs = smt.executeQuery(sql);
+        		rs =DB.getResultSet("SELECT * FROM (Classroom_Code AS a LEFT JOIN Classroom_Type_Code AS b ON a.Classroom_Type_Code = b.Type_Code) LEFT JOIN Building_Code AS c ON a.Building_Code = c.Building_Code   WHERE   Building_Code = '" + Buliding + "' AND Classroom_Type_Code ='" + Type+"'");
    			 	
    			 	rs.last();
    			 	int count = rs.getRow();
@@ -111,17 +96,16 @@ session.setAttribute("Date",null);
    			 	}
    			 	
    			 	else if(Type != null && Buliding == null) {
-   			 		
-	   			 	sql = "SELECT * FROM (Classroom_Code AS a LEFT JOIN Classroom_Type_Code AS b ON a.Classroom_Type_Code = b.Type_Code) LEFT JOIN Building_Code AS c ON a.Building_Code = c.Building_Code   WHERE    Classroom_Type_Code ='" + Type+"'";
-	   			 	rs = smt.executeQuery(sql);
+   			 		rs =DB.getResultSet("SELECT * FROM (Classroom_Code AS a LEFT JOIN Classroom_Type_Code AS b ON a.Classroom_Type_Code = b.Type_Code) LEFT JOIN Building_Code AS c ON a.Building_Code = c.Building_Code   WHERE    Classroom_Type_Code ='" + Type+"'");
+	   			 	
 	   			 	while(rs.next()){
 			 			out.print("<form action='Rental.jsp' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classroom_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
 			 		}
 	   			 	
    			 	}
    			 	else if(Type == null && Buliding != null){
-   			 		sql = "SELECT * FROM (Classroom_Code AS a LEFT JOIN Classroom_Type_Code AS b ON a.Classroom_Type_Code = b.Type_Code) LEFT JOIN Building_Code AS c ON a.Building_Code = c.Building_Code   WHERE   Building_Code = '" + Buliding+"'";
-   			 		rs = smt.executeQuery(sql);
+   			 		rs =DB.getResultSet("SELECT * FROM (Classroom_Code AS a LEFT JOIN Classroom_Type_Code AS b ON a.Classroom_Type_Code = b.Type_Code) LEFT JOIN Building_Code AS c ON a.Building_Code = c.Building_Code   WHERE   Building_Code = '" + Buliding+"'");
+   			 		
    			 		while(rs.next()){
 			 			out.print("<form action='Rental.jsp' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classroom_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
 			 		}

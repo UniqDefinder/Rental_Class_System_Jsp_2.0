@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
+<%@ page import="com.RCS.*"%>
 <%
 if(session.getAttribute("Access_Type") ==null){
 	response.sendRedirect("../Index.jsp");
@@ -64,12 +65,10 @@ session.setAttribute("Date",Date);
 	    				Empty_Term[];
 	    	TF_Term = new String[10];
 	    	Empty_Term = new String[10];
-	    	Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-			Connection con=DriverManager.getConnection(DB);
-			Statement smt= con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_READ_ONLY);
-			String Sql = "SELECT * FROM Rental_Term WHERE Classroom_Code='"+request.getParameter("Classroom_Code")+"' AND Rental_Date=#" +request.getParameter("Date")+"#";  
+	    	
+	    	DB_CRUD DB = new DB_CRUD();
+			ResultSet rs =DB.getResultSet("SELECT * FROM Rental_Term WHERE Classroom_Code='"+request.getParameter("Classroom_Code")+"' AND Rental_Date=#" +request.getParameter("Date")+"#");
 			
-			ResultSet rs = smt.executeQuery(Sql);  
 			rs.last();
 			
 			int count = rs.getRow();
