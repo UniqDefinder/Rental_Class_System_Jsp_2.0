@@ -39,7 +39,7 @@ if(session.getAttribute("Access_Type") ==null){
                 ResultSet rs =DB.getResultSet("SELECT * FROM Rental_Record Where Account ='" + Account + "' ORDER BY Date_Of_Application  DESC ");
                 
     			while(rs.next()){
-    				out.println("<tr><td>" + rs.getString("Date_Of_Application") + "</td><td>" + rs.getString("Classroom") + "</td><td>" + rs.getString("Rental_Date") + rs.getString("Rental_Term") + "</td><td>" + rs.getString("Reason") + "</td><td>" + rs.getString("Check_State") + "</td><td><a href='Page_Function/Delete_Record.jsp?Serial_Number=" + rs.getString("Rental_Serial_Number") + "' >取消租借</a></td></tr>");
+    				out.println("<tr><td>" + rs.getDate("Date_Of_Application") + "</td><td>" + rs.getString("Classroom") + "</td><td>" + rs.getDate("Rental_Date") +"<br>"+ rs.getString("Rental_Term") + "</td><td>" + rs.getString("Reason") + "</td><td>" + rs.getString("Check_State") + "</td><td><a href='Page_Function/Delete_Record.jsp?Serial_Number=" + rs.getString("Rental_Serial_Number") + "&Classroom="+rs.getString("Classroom")+"&Rental_Date="+rs.getDate("Rental_Date")+"' >取消租借</a></td></tr>");
     				
     			}
                 %>

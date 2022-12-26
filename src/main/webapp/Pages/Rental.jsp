@@ -94,7 +94,7 @@ session.setAttribute("Date",Date);
 			}
 			else{
 				for(int i=0;i<5;){
-					out.print("<tr><td><label><input type='checkbox' id='"+Term[i]+"'  name='T' value ='"+Term[i]+"'><span class='Check'>"+Term[i]+"</span></label></td><td><label><input type='checkbox' id='"+Term[i+5]+"'  name='T' value = '"+Term[i]+"'><span class='Check'>"+Term[i+5]+"</span></label></td></tr>");
+					out.print("<tr><td><label><input type='checkbox' id='"+Term[i]+"'  name='T' value ='"+Term[i]+"'><span class='Check'>"+Term[i]+"</span></label></td><td><label><input type='checkbox' id='"+Term[i+5]+"'  name='T' value = '"+Term[i+5]+"'><span class='Check'>"+Term[i+5]+"</span></label></td></tr>");
 					i++;
 				}
 			} 

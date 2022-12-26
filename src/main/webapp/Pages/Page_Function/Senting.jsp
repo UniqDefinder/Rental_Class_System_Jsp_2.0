@@ -94,7 +94,7 @@ session.setAttribute("Access_Id","User");
 						Total_Term = "";
 			
 			for(int i=0;i<Arrlength;){
-				Total_Term += "<br>["+Term[i]+"] ";
+				Total_Term += "["+Term[i]+"] ";
 				Update_Rental_Term +=  ",["+Term[i]+"] = '"+Serial_Number+"'";
 				Insert_Rental_Term += ",["+Term[i]+"]";
 				Rental_Term_Serial_Number += ",'"+Serial_Number+"'";

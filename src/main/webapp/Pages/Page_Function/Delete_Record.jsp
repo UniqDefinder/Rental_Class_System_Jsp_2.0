@@ -13,39 +13,21 @@
 </head>
 <% 
 	String Serial_Number = (String)request.getParameter("Serial_Number"),
-				Term[] = {"08：10至09：00","09：10至10：00","10：10至11：00","11：10至12：00","12：40至13：30","13：40至14：30","14：10至15：30","15：40至16：30","16：40至17：30","17：40至18：30"},
-				Delet = "";
+				Classroom = (String)request.getParameter("Classroom"),
+				Rental_Date = (String)request.getParameter("Rental_Date"),
+				Term[] = {"08：10至09：00","09：10至10：00","10：10至11：00","11：10至12：00","12：40至13：30","13：40至14：30","14：10至15：30","15：40至16：30","16：40至17：30","17：40至18：30"};
 	
-	for(int i =0 ; i<10;){ Delet+= ",["+Term[i] +"]='"+Serial_Number+"'"; i++;}
-	
-	StringBuilder Update = new StringBuilder();
-	
-	Update = Update.append(Delet);
-	
-	Update.deleteCharAt(0);
-	
-	Delet = Update.toString();
-	
-	
-	out.print(Delet);
-	
-	/* try{
-		
+	if(Serial_Number !=null && Classroom!=null && Rental_Date!=null){
 		DB_CRUD DB = new DB_CRUD();
-        boolean rs = DB.CRUD_B("DELETE FROM Rental_Record WHERE Serial_Number = '"+Serial_Number+"'");
-        rs = DB.CRUD_B("UPDATE Table SET 08：10至09：00 = 'value1', column2 = 'value2' WHERE condition;");
-        
-        
-	}catch(SQLException e){
-		out.print("資料刪除錯誤，請重新再試。錯誤代碼："+e);
-	} */
-
-
+		DB.replaceNull("SELECT * FROM Rental_Term WHERE Classroom_Code = '"+Classroom+"' AND Rental_Date = #"+Rental_Date+"#",Serial_Number);
+		boolean rs = DB.CRUD_B("DELETE FROM Rental_Record WHERE Rental_Serial_Number = '"+Serial_Number+"'"); 
+		
+		session.setAttribute("Alert","租借紀錄刪除成功！");
+		response.sendRedirect("../Rental_Record.jsp");
+		
+	}else{
+		response.sendRedirect("../Rental_Record.jsp");
+		
+	}
 %>
-
-
-
-
-
-
 </html>

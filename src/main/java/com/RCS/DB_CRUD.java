@@ -40,5 +40,29 @@ public class DB_CRUD {
 	
 	}
 	
+	public void replaceNull (String Sql , String Data ) throws ClassNotFoundException, SQLException {
+		
+	 	Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+		Connection con=DriverManager.getConnection(DB);
+		Statement smt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+		ResultSet rs = smt.executeQuery(Sql);
+		rs.last();
+		int count = rs.getRow();
+		
+		 for(int i = 3 ; count !=0 && i <= 12 ;){ 
+			 rs.getString(i);
+			  if(rs.wasNull() == false && rs.getString(i).equals(Data) ){rs.updateString(i,"");} 
+			  i++;
+		  
+		 }
+		 rs.updateRow(); 
+		
+		con.close();
+		
+	    }
+			
+		
+	
+
 	
 }
