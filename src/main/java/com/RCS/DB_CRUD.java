@@ -61,7 +61,20 @@ public class DB_CRUD {
 		
 	    }
 			
+public void updateString (String Sql ,String Index, String Data ) throws ClassNotFoundException, SQLException {
 		
+	 	Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+		Connection con=DriverManager.getConnection(DB);
+		Statement smt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
+		ResultSet rs = smt.executeQuery(Sql);
+		rs.last();
+		
+		rs.updateString(Index,Data);
+		rs.updateRow(); 
+		
+		con.close();
+		
+	    }
 	
 
 	

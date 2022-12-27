@@ -273,37 +273,6 @@
 
 /*以上是User_Search_Place.html的Style*/
 
-.Record .Select_Date{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    background-color: #a2b7e2;
-}
-
-.Record .Select_Date select{
-    line-height: 100%;
-    padding-left: 10px;
-    font-weight: bold;
-    font-size: 20px;
-    height: 40px;
-    width: 300px;
-}
-
-.Record .Select_Date input{
-    line-height: 100%;
-    background-color: white;
-    font-weight: bold;
-    font-size: 16px;
-    height: 30px;
-    width: 80px;
-    border: 1px #9b6b53 solid;
-    border-radius: 5px;
-}
-
-.Record .Select_Date input:hover{
-    background-color: rgb(194, 194, 194);
-}
 
 .Record table{
     margin-top: 10px;
@@ -326,3 +295,26 @@
 }
 
 /*以上是User_Record.html的Style*/
+
+
+.Approval  table{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.Approval  table th {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.Approval  table th ,.Approval  table td {
+    background-color: rgb(223, 223, 223);
+    padding: 10px 30px;
+}
+
+.Approval  table tr{
+    border: 1px black solid;
+}
+
+/*以上是Approval.JSP的Style*/

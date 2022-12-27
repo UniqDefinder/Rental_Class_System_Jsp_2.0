@@ -18,7 +18,7 @@ if(session.getAttribute("Access_Type") ==null){
     <link rel="stylesheet" href="../Css/Header_Footer.css">
     <link rel="stylesheet" href="../Css/User_Style.css">
     <title>租借教室 - 國立臺北護理健康大學</title>
-    <%@include file="Page_Function/DB_Path&Alert.jsp" %>
+    <%@include file="Page_Function/Alert.jsp" %>
     <%
 String Classroom_Code = request.getParameter("Classroom_Code");
 String Date = request.getParameter("Date");
@@ -27,14 +27,7 @@ session.setAttribute("Classroom_Code",Classroom_Code);
 session.setAttribute("Date",Date);
 
 %>
-<%
-    //公告
-    if(session.getAttribute("Alert") != null && (String)session.getAttribute("Alert") != ""){
-    	out.print("<script>alert('"+(String) session.getAttribute("Alert")+"');</script>");
-    	session.setAttribute("Alert","");
-    }
-    
-    %>
+
 </head>
 	
 <body>

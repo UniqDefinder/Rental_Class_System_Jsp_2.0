@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>資料處理中。。。</title>
-	<%@include file="DB_Path&Alert.jsp" %>
+	<%@include file="Alert.jsp" %>
 </head>
 <% 
 	String Serial_Number = (String)request.getParameter("Serial_Number"),
@@ -20,7 +20,7 @@
 	if(Serial_Number !=null && Classroom!=null && Rental_Date!=null){
 		DB_CRUD DB = new DB_CRUD();
 		DB.replaceNull("SELECT * FROM Rental_Term WHERE Classroom_Code = '"+Classroom+"' AND Rental_Date = #"+Rental_Date+"#",Serial_Number);
-		boolean rs = DB.CRUD_B("DELETE FROM Rental_Record WHERE Rental_Serial_Number = '"+Serial_Number+"'"); 
+		boolean rs = DB.CRUD_B("UPDATE Rental_Record SET Check_State = '已取消申請'  WHERE Rental_Serial_Number = '"+Serial_Number+"'"); 
 		
 		session.setAttribute("Alert","租借紀錄刪除成功！");
 		response.sendRedirect("../Rental_Record.jsp");

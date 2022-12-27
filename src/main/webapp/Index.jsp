@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="Css/Index_Style.css">
     <title>登入 - 教室租借系統 - 國立臺北護理健康大學</title>
     
-   <%@include file="Pages/Page_Function/DB_Path&Alert.jsp" %>
+   <%@include file="Pages/Page_Function/Alert.jsp" %>
    
     <%
 	    if(request.getParameter("Account") !=null &&request.getParameter("Password") !=null){

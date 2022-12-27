@@ -28,7 +28,7 @@ session.setAttribute("Date",null);
     <link rel="stylesheet" href="../Css/Header_Footer.css">
     <link rel="stylesheet" href="../Css/User_Style.css">
     <title>場地查詢 - 國立臺北護理健康大學</title>
-    <%@include file="Page_Function/DB_Path&Alert.jsp" %>
+    <%@include file="Page_Function/Alert.jsp" %>
 </head>
 <body>
     	

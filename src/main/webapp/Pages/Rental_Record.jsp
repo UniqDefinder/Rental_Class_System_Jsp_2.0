@@ -18,7 +18,7 @@ if(session.getAttribute("Access_Type") ==null){
     <link rel="stylesheet" href="../Css/Header_Footer.css">
     <link rel="stylesheet" href="../Css/User_Style.css">
     <title>租借紀錄 - 國立臺北護理健康大學</title>
-	<%@include file="Page_Function/DB_Path&Alert.jsp" %>
+	<%@include file="Page_Function/Alert.jsp" %>
 </head>
 <body>
     	
@@ -36,11 +36,14 @@ if(session.getAttribute("Access_Type") ==null){
                 
                 String Account = (String)session.getAttribute("Access_Id");
                 DB_CRUD DB = new DB_CRUD();
-                ResultSet rs =DB.getResultSet("SELECT * FROM Rental_Record Where Account ='" + Account + "' ORDER BY Date_Of_Application  DESC ");
+                ResultSet rs =DB.getResultSet("SELECT * FROM Rental_Record Where Account ='" + Account + "' ORDER BY Date_Of_Application DESC ");
                 
     			while(rs.next()){
-    				out.println("<tr><td>" + rs.getDate("Date_Of_Application") + "</td><td>" + rs.getString("Classroom") + "</td><td>" + rs.getDate("Rental_Date") +"<br>"+ rs.getString("Rental_Term") + "</td><td>" + rs.getString("Reason") + "</td><td>" + rs.getString("Check_State") + "</td><td><a href='Page_Function/Delete_Record.jsp?Serial_Number=" + rs.getString("Rental_Serial_Number") + "&Classroom="+rs.getString("Classroom")+"&Rental_Date="+rs.getDate("Rental_Date")+"' >取消租借</a></td></tr>");
-    				
+    				if(rs.getString("Check_State").equals("已取消申請")){
+    					out.println("<tr><td>" + rs.getDate("Date_Of_Application") + "</td><td>" + rs.getString("Classroom") + "</td><td>" + rs.getDate("Rental_Date") +"<br>"+ rs.getString("Rental_Term") + "</td><td>" + rs.getString("Reason") + "</td><td>" + rs.getString("Check_State") + "</td><td>已取消申請</td></tr>");
+    				}else{
+    					out.println("<tr><td>" + rs.getDate("Date_Of_Application") + "</td><td>" + rs.getString("Classroom") + "</td><td>" + rs.getDate("Rental_Date") +"<br>"+ rs.getString("Rental_Term") + "</td><td>" + rs.getString("Reason") + "</td><td>" + rs.getString("Check_State") + "</td><td><a href='Page_Function/Delete_Record.jsp?Serial_Number=" + rs.getString("Rental_Serial_Number") + "&Classroom="+rs.getString("Classroom")+"&Rental_Date="+rs.getDate("Rental_Date")+"' >取消申請</a></td></tr>");
+    				}
     			}
                 %>
                 

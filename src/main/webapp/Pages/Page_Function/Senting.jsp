@@ -19,7 +19,7 @@ session.setAttribute("Access_Id","User");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>資料傳送中....</title>
-    <%@include file="DB_Path&Alert.jsp" %>
+    <%@include file="Alert.jsp" %>
 </head>
 
 

@@ -4,7 +4,7 @@
 <ul class="Tabs">
       <li><a href="Search_Place.jsp">場地租借/查詢</a></li>
       <li><a href="Rental_Record.jsp">租借紀錄</a></li>
-      <li><a href="">審核專區</a></li>
+      <li><a href="Approval.jsp">審核專區</a></li>
       <li><a href="">系統公告</a></li>
 </ul>
 
