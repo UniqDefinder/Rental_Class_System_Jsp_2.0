@@ -4,12 +4,67 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/Css/Css_Reset.css">
-    <link rel="stylesheet" href="/Css/Header_Footer.css">
-    <link rel="stylesheet" href="/Css/Admin_Index_Style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    
     <title>系統管理員主頁 - 教室租借系統 - 國立臺北護理健康大學</title>
+    
 </head>
 <body>
-    
+    <div class="container ">
+        <div class="row ">
+            <nav class="nav nav-pills text-center">
+                <a class="nav-link col active" aria-current="page" href="#">教室管理</a>
+                <a class="nav-link col" href="#">使用者管理</a>
+                <a class="nav-link col" href="#">公告管理</a>
+            </nav>
+            
+        </div>
+        
+    </div>
+    <div class="container border border-2 border-primary">
+        <form class="row p-3" action="">
+            <fieldset class="col-6 text-center">
+                <p class="m-0">
+                    <label for="select">Example select</label>
+                    <select id="select">
+                        <option value="">Choose...</option>
+                        <optgroup label="Option group 1">
+                        <option value="">Option 1</option>
+                        <option value="">Option 2</option>
+                        <option value="">Option 3</option>
+                        </optgroup>
+                        <optgroup label="Option group 2">
+                        <option value="">Option 4</option>
+                        <option value="">Option 5</option>
+                        <option value="">Option 6</option>
+                        </optgroup>
+                    </select>
+                </p>
+            </fieldset>
+            <fieldset class="col-6 text-center">
+                <p class="m-0">
+                    <label for="search">Example search</label>
+                    <input type="search" id="search">
+                </p>
+            </fieldset>
+        </form>
+        <div class="row">
+            <div class="list-group p-0">
+
+                <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+                  <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+                  <div class="d-flex gap-2 w-100 justify-content-between">
+                    <div>
+                      <h6 class="mb-0">教室名稱</h6>
+                      <p class="mb-0 opacity-75">大樓名稱</p>
+                    </div>
+                    
+                  </div>
+                </a>
+                
+              </div>
+        </div>
+    </div>
 </body>
+
 </html>
