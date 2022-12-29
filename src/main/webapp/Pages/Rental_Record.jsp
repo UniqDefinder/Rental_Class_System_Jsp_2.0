@@ -27,7 +27,7 @@ if(session.getAttribute("Access_Type") ==null){
     <div class="Record Container">
         
 		<%@include file="Page_Function/Tabs.jsp" %>
-        <p class="Bar">目前位置：場地查詢</p>
+        <p class="Bar">目前位置：租借紀錄</p>
         
        <table>
             
