@@ -41,7 +41,7 @@
 						session.setAttribute("Access_Id",request.getParameter("Account"));
 						session.setAttribute("Alert","審核者登入成功！");
 						session.setMaxInactiveInterval(10*60);
-						response.sendRedirect("Pages/Search_Place.jsp");
+						response.sendRedirect("Pages/Approval.jsp");
 						break;
 						
 					case 3:
@@ -49,7 +49,7 @@
 						session.setAttribute("Access_Id",request.getParameter("Account"));
 						session.setAttribute("Alert","管理員登入成功！");
 						session.setMaxInactiveInterval(10*60);
-						response.sendRedirect("Pages/Admin.jsp");
+						response.sendRedirect("Ad_Pages/Ad_Class.jsp");
 						break;
 					}
 			}else{

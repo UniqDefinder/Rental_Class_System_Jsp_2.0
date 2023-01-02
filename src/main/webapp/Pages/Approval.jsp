@@ -2,7 +2,7 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="com.RCS.*"%>
 <%
-if(session.getAttribute("Access_Type") ==null){
+if(session.getAttribute("Access_Type") =="2"){
 	response.sendRedirect("../Index.jsp");
 //登入控管
 }
