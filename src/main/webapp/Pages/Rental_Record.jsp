@@ -3,6 +3,7 @@
 <%@ page import="com.RCS.*"%>
 <%
 if(session.getAttribute("Access_Type") ==null){
+	session.setAttribute("Alert","您無權存取此網頁，或超過存取期限！將自動跳轉登入頁面！");
 	response.sendRedirect("../Index.jsp");
 //登入控管
 }

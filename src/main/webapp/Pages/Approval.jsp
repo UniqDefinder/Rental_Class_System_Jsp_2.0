@@ -2,11 +2,11 @@
 <%@ page import="java.sql.*"%>
 <%@ page import="com.RCS.*"%>
 <%
-if(session.getAttribute("Access_Type") =="2"){
-	response.sendRedirect("../Index.jsp");
-//登入控管
-}
-%>
+if(session.getAttribute("Access_Type") !="2"){
+	session.setAttribute("Alert","您無權存取此網頁，或超過存取期限！將自動跳轉登入頁面！");
+	response.sendRedirect("../Index.jsp");}
+
+%> 
 
 <!DOCTYPE html>
 <html lang="en">
