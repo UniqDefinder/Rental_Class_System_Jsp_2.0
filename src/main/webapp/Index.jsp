@@ -32,6 +32,7 @@
 					case 1:
 						session.setAttribute("Access_Type","1");
 						session.setAttribute("Access_Id",request.getParameter("Account"));
+						session.setAttribute("Access_Name",rs.getString("User_Name"));
 						session.setAttribute("Alert","使用者登入成功！");
 						session.setMaxInactiveInterval(10*60);
 						response.sendRedirect("Pages/Search_Place.jsp");
@@ -40,6 +41,7 @@
 					case 2:
 						session.setAttribute("Access_Type","2");
 						session.setAttribute("Access_Id",request.getParameter("Account"));
+						session.setAttribute("Access_Name",rs.getString("User_Name"));
 						session.setAttribute("Alert","審核者登入成功！");
 						session.setMaxInactiveInterval(10*60);
 						response.sendRedirect("Pages/Approval.jsp");
@@ -48,6 +50,7 @@
 					case 3:
 						session.setAttribute("Access_Type","3");
 						session.setAttribute("Access_Id",request.getParameter("Account"));
+						session.setAttribute("Access_Name",rs.getString("User_Name"));
 						session.setAttribute("Alert","管理員登入成功！");
 						session.setMaxInactiveInterval(10*60);
 						response.sendRedirect("Ad_Pages/Ad_Class.jsp");

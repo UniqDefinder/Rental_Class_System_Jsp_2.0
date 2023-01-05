@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*"%>
 <%@ page import="com.RCS.*"%>
-<%
-if(session.getAttribute("Access_Type") !="2"){
-	session.setAttribute("Alert","您無權存取此網頁，或超過存取期限！將自動跳轉登入頁面！");
-	response.sendRedirect("../Index.jsp");}
 
-%> 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +13,15 @@ if(session.getAttribute("Access_Type") !="2"){
     <link rel="stylesheet" href="../Css/Header_Footer.css">
     <link rel="stylesheet" href="../Css/User_Style.css">
     <title>審核專區 - 國立臺北護理健康大學</title>
+    <%
+	if(session.getAttribute("Access_Type") ==null){
+		session.setAttribute("Alert","您無權存取此網頁，或超過存取期限！將自動跳轉登入頁面！");
+		response.sendRedirect("../Index.jsp");}
+	else if(session.getAttribute("Access_Type") =="1"){
+		session.setAttribute("Alert","您無權存取此網頁！");
+		out.print("<script type='text/javascript'>history.go(-1) </script>");
+	}
+	%> 
     <%@include file="Page_Function/Alert.jsp" %>
   
 </head>

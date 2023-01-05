@@ -22,7 +22,7 @@
 		DB.replaceNull("SELECT * FROM Rental_Term WHERE Classroom_Code = '"+Classroom+"' AND Rental_Date = #"+Rental_Date+"#",Serial_Number);
 		boolean rs = DB.CRUD_B("UPDATE Rental_Record SET Check_State = '已取消申請'  WHERE Rental_Serial_Number = '"+Serial_Number+"'"); 
 		
-		session.setAttribute("Alert","租借紀錄刪除成功！");
+		session.setAttribute("Alert","租借紀錄取消成功！");
 		response.sendRedirect("../Rental_Record.jsp");
 		
 	}else{

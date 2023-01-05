@@ -5,11 +5,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-//if(session.getAttribute("Access_Type") !="1"){
-//	response.sendRedirect("../Index.jsp");
+if(session.getAttribute("Access_Type") ==null){
+	session.setAttribute("Alert","您無權存取此網頁，或超過存取期限！將自動跳轉登入頁面！");
+	response.sendRedirect("../Index.jsp");
 //登入控管
-//}
-session.setAttribute("Access_Id","User");
+}
 %>
 
 <!DOCTYPE html>

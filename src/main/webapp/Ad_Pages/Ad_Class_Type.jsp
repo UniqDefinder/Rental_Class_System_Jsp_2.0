@@ -40,7 +40,7 @@ if(session.getAttribute("Access_Type") !="3"){
 						  <div class="col  accordion-item">
 						    <h2 class="accordion-header" id="headingOne">
 						      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" >
-						        公告管理
+						        其他功能(登出)
 						      </button>
 						    </h2>
 						  </div>
@@ -54,6 +54,11 @@ if(session.getAttribute("Access_Type") !="3"){
 					<div id="collapseTwo" class="accordion-collapse collapse col-12"  data-bs-parent="#Nav_Bar">
 					      <div class="accordion-body row d-flex justify-content-evenly m-0 p-0 pt-2 text-center" >
 						        <a class="nav-link pb-0 col-4  " href="Ad_Account.jsp">使用者管理</a>
+					      </div>
+					</div>
+					<div id="collapseThree" class="accordion-collapse collapse col-12  "  data-bs-parent="#Nav_Bar">
+					      <div class="accordion-body row d-flex justify-content-evenly m-0 p-0 pt-2 text-center" >
+						        <a class="nav-link pb-0 col-4  active " href="../Pages/Page_Function/Logout.jsp">登出</a>
 					      </div>
 					</div>
             </div>
