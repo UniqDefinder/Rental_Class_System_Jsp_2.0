@@ -26,7 +26,7 @@ if(session.getAttribute("Access_Type") !="3"){
             <div class="row accordion nav nav-pills "id="Nav_Bar">
 						  <div class="col   accordion-item">
 						    <h2 class="accordion-header" id="headingOne">
-						      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" >
+						      <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" >
 						        教室管理
 						      </button>
 						    </h2>

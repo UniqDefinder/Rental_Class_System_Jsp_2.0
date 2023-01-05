@@ -21,16 +21,42 @@ if(session.getAttribute("Access_Type") !="3"){
 <body>
     
     <div class="container p-0 shadow-lg ">
-        <div class="container">
-            <div class="row ">
-                <nav class="nav nav-pills text-center">
-                    <a class="nav-link col" href="Ad_Class.jsp">教室管理</a>
-                    <a class="nav-link col active" aria-current="page" href="Ad_Account.jsp">使用者管理</a>
-                    <a class="nav-link col" href="#">公告管理</a>
-                </nav>
-                
+        <div class="container ">
+            <div class="row accordion nav nav-pills "id="Nav_Bar">
+						  <div class="col   accordion-item">
+						    <h2 class="accordion-header" id="headingOne">
+						      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" >
+						        教室管理
+						      </button>
+						    </h2>
+						  </div>
+						  <div class="col  accordion-item">
+						    <h2 class="accordion-header" id="headingOne">
+						      <button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" >
+						        使用者管理
+						      </button>
+						    </h2>
+						  </div>
+						  <div class="col  accordion-item">
+						    <h2 class="accordion-header" id="headingOne">
+						      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" >
+						        公告管理
+						      </button>
+						    </h2>
+						  </div>
+					<div id="collapseOne" class="accordion-collapse collapse col-12 "  data-bs-parent="#Nav_Bar">
+					      <div class="accordion-body row d-flex justify-content-evenly m-0 p-0 pt-2 text-center" >
+						        <a class="nav-link pb-0 col-4   "  href="Ad_Class.jsp">教室管理</a>
+		                   		<a class="nav-link pb-0 col-4" href="Ad_Building.jsp">大樓管理</a>
+		                    	<a class="nav-link pb-0 col-4 " href="Ad_Class_Type.jsp">教室類型管理</a>
+					      </div>
+					</div>
+					<div id="collapseTwo" class="accordion-collapse collapse col-12  show"  data-bs-parent="#Nav_Bar">
+					      <div class="accordion-body row d-flex justify-content-evenly m-0 p-0 pt-2 text-center" >
+						        <a class="nav-link pb-0 col-4  active " href="Ad_Account.jsp">使用者管理</a>
+					      </div>
+					</div>
             </div>
-            
         </div>
         <div class="container border border-2 border-primary ">
             <div class="row border-bottom border-1 border-primary">
@@ -55,21 +81,46 @@ if(session.getAttribute("Access_Type") !="3"){
                         <th scope="col">帳號</th>
                         <th scope="col">身分</th>
                         <th scope="col">姓名</th>
+                        <th scope="col">電話</th>
                         <th scope="col">電子信箱</th>
                         <th scope="col">功能</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@4444444444444444444444444444444444444444444444444444444444444444444444444444444</td>
-                        <td class="d-flex flex-nowarp">
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#Edit_Account" class="btn btn-sm btn-danger  ">編輯</button>
-                            <button type="button" data-bs-toggle="modal" data-bs-target="#Delet_Account" class="btn btn-sm btn-danger  ">刪除</button>
-                        </td>
-                      </tr>
+                      
+                       <% 
+			                String Search = request.getParameter("Search");
+			                 
+			                DB_CRUD DB = new DB_CRUD();
+			                ResultSet rs =DB.getResultSet("SELECT * FROM User AS a LEFT JOIN User_Type_Code AS b ON a.User_Type = b.User_Type_Code WHERE Account LIKE '%"+Search+"%' ");
+			                rs.last();
+			                
+			                if(Search != null &&  rs.getRow()!=0 ){
+			                	rs.first();
+			                	rs.beforeFirst();
+			                }else if(Search != null &&  rs.getRow()==0){
+			                	out.print("查無資料");
+			                }else{
+			                	rs =DB.getResultSet("SELECT * FROM User AS a LEFT JOIN User_Type_Code AS b ON a.User_Type = b.User_Type_Code ");
+			                }
+			                
+			                int i =0;
+			                while(rs.next()){
+			                	out.println("<tr>");
+			                	out.println("<tr>");
+			                	out.println("<th scope='row'>"+rs.getString("Account")+"</th>");
+			                	out.println("<td>"+rs.getString("User_Type_Name")+"</td>");
+			                	out.println("<td>"+rs.getString("User_Name")+"</td>");
+			                	out.println("<td>"+rs.getString("Phone_Number")+"</td>");
+			                	out.println("<td>"+rs.getString("Email")+"</td>");
+			                	out.println("<td class='d-flex flex-nowarp jus'>");
+			                	out.println(" <button type='button' data-bs-toggle='modal' data-bs-target='#Edit_Account' class='btn btn-sm btn-danger'>編輯</button>");
+			                	out.println("	<button type='button' data-bs-toggle='modal' data-bs-target='#Delet_Account' class='btn btn-sm btn-danger'>刪除</button>");
+			                	out.println("</td>");
+			                	out.println("</tr>");
+			               	 }
+			                %>
+                          	
                     
                     </tbody>
                   </table>
