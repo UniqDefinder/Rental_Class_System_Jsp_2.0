@@ -111,7 +111,7 @@ if(session.getAttribute("Access_Type") !="3"){
                 	out.println("<img class='img-fluid' src='"+rs.getString("Imgs")+"' alt='教室圖片'>");
                 	out.println("</div>");
                 	out.println("<div class='col-8'>");
-                	out.println(" <p>場地位置：<span id='B"+i+"'>"+rs.getString("Building_Name")+"</span></p>");
+                	out.println(" <p>大樓位置：<span id='B"+i+"'>"+rs.getString("Building_Name")+"</span></p>");
                 	out.println(" <p>教室名稱：<span id='C"+i+"'>"+rs.getString("Classroom_Code")+"</span></p>");
                 	out.println(" <p>教室類型：<span id='T"+i+"'>"+rs.getString("Type")+"</span></p>");
                 	out.println(" </div>   ");
@@ -142,9 +142,9 @@ if(session.getAttribute("Access_Type") !="3"){
                 </div>
                 <div class="modal-body">
                     <div class="d-flex justify-content-center">
-                    	<label class="text-nowrap fs-4" for="input_B">場地位置：</label>
+                    	<label class="text-nowrap fs-4" for="input_B">大樓位置：</label>
                     	<select class="form-control width-25"  id="input_B" name="Buliding">
-	                    <option value="" disabled selected>選擇場地位置</option>
+	                    <option value="" disabled selected>選擇大樓位置</option>
 	                    <%
 	                    
 	                    rs =DB.getResultSet("SELECT * FROM Building_Code");
@@ -196,9 +196,9 @@ if(session.getAttribute("Access_Type") !="3"){
                 </div>
                 <div class="modal-body">
                     <div class="d-flex justify-content-center">
-                      	<label class="text-nowrap fs-4" for="Edit_input_A">場地位置：</label>
+                      	<label class="text-nowrap fs-4" for="Edit_input_A">大樓位置：</label>
                     	<select class="form-control width-25"  id="Edit_input_A" name="Buliding">
-	                    <option value="" disabled selected>選擇場地位置</option>
+	                    <option value="" disabled selected>選擇大樓位置</option>
 	                    <%
 	                    
 	                    rs =DB.getResultSet("SELECT * FROM Building_Code");

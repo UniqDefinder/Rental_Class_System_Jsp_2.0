@@ -73,7 +73,7 @@ if(session.getAttribute("Access_Type") !="3"){
                 </div>
 
                 <div class="col d-flex justify-content-center align-items-center">
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#Create_Class_Form" class="btn btn-lg btn-danger  ">新增教室</button>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#Create_Class_Form" class="btn btn-lg btn-danger  ">新增大樓</button>
                 </div>
                 
             </div>
@@ -86,7 +86,7 @@ if(session.getAttribute("Access_Type") !="3"){
                 String Search = request.getParameter("Search");
                  
                 DB_CRUD DB = new DB_CRUD();
-                ResultSet rs =DB.getResultSet("SELECT * FROM Classroom_Code WHERE Classroom_Code LIKE '%"+Search+"%' ");
+                ResultSet rs =DB.getResultSet("SELECT * FROM  Building_Code WHERE Building_Name LIKE '%"+Search+"%' ");
                 rs.last();
                 
                 if(Search != null &&  rs.getRow()!=0 ){
@@ -95,24 +95,20 @@ if(session.getAttribute("Access_Type") !="3"){
                 }else if(Search != null &&  rs.getRow()==0){
                 	out.print("查無資料");
                 }else{
-                	rs =DB.getResultSet("SELECT * FROM (Classroom_Code AS a LEFT JOIN Classroom_Type_Code AS b ON a.Classroom_Type_Code = b.Type_Code) LEFT JOIN Building_Code AS c ON a.Building_Code = c.Building_Code ");
+                	rs =DB.getResultSet("SELECT * FROM Building_Code");
                 }
                 
                 int i =0;
                 while(rs.next()){
                 	out.println("<div class='accordion-item'>");
                 	out.println("<h2 class='accordion-header' id='H"+i+"'>");
-                	out.println("<button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#C"+i+"' >"+rs.getString("Classroom_Code")+"</button>");
+                	out.println("<button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#C"+i+"' >"+rs.getString("Building_Name")+"</button>");
                 	out.println("</h2>");
                 	out.println("<div id='C"+i+"' class='accordion-collapse collapse' "+i+"' data-bs-parent='#accordionExample'>");
                 	out.println("<div class='accordion-body row'>");
-                	out.println("<div class='col-4'>");
-                	out.println("<img class='img-fluid' src='"+rs.getString("Imgs")+"' alt='教室圖片'>");
-                	out.println("</div>");
-                	out.println("<div class='col-8'>");
-                	out.println(" <p>場地位置：<span id=''>"+rs.getString("Building_Name")+"</span></p>");
-                	out.println(" <p>教室名稱：<span id=''>"+rs.getString("Classroom_Code")+"</span></p>");
-                	out.println(" <p>教室類型：<span id=''>"+rs.getString("Type")+"</span></p>");
+                	out.println("<div class='col-12'>");
+                	out.println(" <p>大樓名稱：<span id=''>"+rs.getString("Building_Name")+"</span></p>");
+                	out.println(" <p>大樓代碼：<span id=''>"+rs.getString("Building_Code")+"</span></p>");
                 	out.println(" </div>   ");
                 	out.println("<div class='col-12 mt-2 d-flex flex-column'>");
                 	out.println("<button type='button' data-bs-toggle='modal' data-bs-target='#Edit_Class_Form' class='btn btn-secondary '>編輯</button>");
