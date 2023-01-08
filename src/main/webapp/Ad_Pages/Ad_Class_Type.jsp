@@ -15,6 +15,8 @@ if(session.getAttribute("Access_Type") !="3"){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="../Js/Ad.js" ></script>
+    
     <title>教室類型管理  - 國立臺北護理健康大學</title>
     
 </head>
@@ -107,11 +109,11 @@ if(session.getAttribute("Access_Type") !="3"){
                 	out.println("<div id='C"+i+"' class='accordion-collapse collapse' "+i+"' data-bs-parent='#accordionExample'>");
                 	out.println("<div class='accordion-body row'>");
                 	out.println("<div class='col-12'>");
-                	out.println(" <p>類型名稱：<span id=''>"+rs.getString("Type")+"</span></p>");
-                	out.println(" <p>類型代碼：<span id=''>"+rs.getString("Type_Code")+"</span></p>");
+                	out.println(" <p>類型名稱：<span>"+rs.getString("Type")+"</span></p>");
+                	out.println(" <p>類型代碼：<span id='Ob_"+i+"'>"+rs.getString("Type_Code")+"</span></p>");
                 	out.println(" </div>   ");
                 	out.println("<div class='col-12 mt-2 d-flex flex-column'>");
-                	out.println("<button type='button' data-bs-toggle='modal' data-bs-target='#Edit_Class_Form' class='btn btn-secondary '>編輯</button>");
+                	out.println("<button type='button' onclick='Edit("+i+")' data-bs-toggle='modal' data-bs-target='#Edit_Class_Form' class='btn btn-secondary '>編輯</button>");
                 	out.println("<button type='button' class='btn btn-danger '>刪除</button>");
                 	out.println("</div>");
                 	out.println("</div>");
@@ -128,7 +130,7 @@ if(session.getAttribute("Access_Type") !="3"){
     
 
 
-    
+    <%%>
     <div class="modal fade" id="Create_Class_Form" tabindex="-1" >
         <div class="modal-dialog">
           <div class="modal-content">

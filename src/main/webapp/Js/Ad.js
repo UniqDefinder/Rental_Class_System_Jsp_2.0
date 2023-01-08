@@ -2,11 +2,8 @@
  * 
  */
  
- function Edit_Class(I){
- 	const text = document.querySelector('#myText').innerText;
+ function Edit(I){
+ 	const Text = document.querySelector('#Ob_'+I).innerText;
+ 	
 }
  
-
-  button.addEventListener('click', () => {
-    window.location.href = `https://example.com?text=${text}`;
-  });
