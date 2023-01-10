@@ -7,9 +7,9 @@ public class DB_CRUD {
 	
 	//private InputStream inputStream = getClass().getResourceAsStream("/NtunhsClassroom.accdb");
 	
-	private String //DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
+	private String DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
 						  	//DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
-							DB = "jdbc:ucanaccess://C:\\Users\\login\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
+							//DB = "jdbc:ucanaccess://C:\\Users\\login\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
 	public void CRUD (String Sql) throws ClassNotFoundException, SQLException {
 		
 	 	Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -65,17 +65,39 @@ public class DB_CRUD {
 	    }
 			
 public void updateString (String Sql ,String Index, String Data ) throws ClassNotFoundException, SQLException {
+		boolean isInt;
+		int  int_Index = 0;
+		String str_Index = null;
 		
+		
+		 try {
+			 int_Index = Integer.parseInt(Index);
+			 isInt = true;
+	     } catch (NumberFormatException e) {
+	    	 str_Index = Index;
+	    	 isInt = false;
+	     }
 	 	Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
 		Connection con=DriverManager.getConnection(DB);
 		Statement smt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,ResultSet.CONCUR_UPDATABLE);
-		ResultSet rs = smt.executeQuery(Sql);
-		rs.last();
 		
-		rs.updateString(Index,Data);
-		rs.updateRow(); 
+		if(isInt && int_Index!=0) {
+			ResultSet rs = smt.executeQuery(Sql);
+			rs.last();
+			rs.updateString(int_Index,Data);
+			rs.updateRow(); 
+			con.close();
+		}else if (isInt ==false && str_Index != null) {
+			ResultSet rs = smt.executeQuery(Sql);
+			rs.last();
+			rs.updateString(str_Index,Data);
+			rs.updateRow(); 
+			con.close();
+		}else {
+			System.out.print("資料傳送失敗");
+		}
 		
-		con.close();
+		
 		
 	    }
 	

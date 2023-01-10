@@ -15,8 +15,9 @@ if(session.getAttribute("Access_Type") !="3"){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="../Js/Ad.js" ></script>
     <title>帳號管理 - 國立臺北護理健康大學</title>
-    
+    <%@include file="../../Pages/Page_Function/Alert.jsp" %>
 </head>
 <body>
     
@@ -84,6 +85,7 @@ if(session.getAttribute("Access_Type") !="3"){
                     <thead>
                       <tr>
                         <th scope="col">帳號</th>
+                        <th scope="col">密碼</th>
                         <th scope="col">身分</th>
                         <th scope="col">姓名</th>
                         <th scope="col">電話</th>
@@ -111,18 +113,36 @@ if(session.getAttribute("Access_Type") !="3"){
 			                
 			                int i =0;
 			                while(rs.next()){
-			                	out.println("<tr>");
-			                	out.println("<tr>");
-			                	out.println("<th scope='row'>"+rs.getString("Account")+"</th>");
-			                	out.println("<td>"+rs.getString("User_Type_Name")+"</td>");
-			                	out.println("<td>"+rs.getString("User_Name")+"</td>");
-			                	out.println("<td>"+rs.getString("Phone_Number")+"</td>");
-			                	out.println("<td>"+rs.getString("Email")+"</td>");
-			                	out.println("<td class='d-flex flex-nowarp jus'>");
-			                	out.println(" <button type='button' data-bs-toggle='modal' data-bs-target='#Edit_Account' class='btn btn-sm btn-danger'>編輯</button>");
-			                	out.println("	<button type='button' data-bs-toggle='modal' data-bs-target='#Delet_Account' class='btn btn-sm btn-danger'>刪除</button>");
-			                	out.println("</td>");
-			                	out.println("</tr>");
+			                	
+			                	if(rs.getString("User_Type_Name").equals("管理者")!=true){
+			                		out.println("<tr>");
+				                	out.println("<tr>");
+				                	out.println("<th scope='row' id='Ob2_"+i+"'>"+rs.getString("Account")+"</th>");
+				                	out.println("<td id='Ob3_"+i+"'>"+rs.getString("Password")+"</td>");
+				                	out.println("<td>[<span id='Ob4_"+i+"'>"+rs.getString("User_Type")+"</span>]"+rs.getString("User_Type_Name")+"</td>");
+				                	out.println("<td id='Ob5_"+i+"'>"+rs.getString("User_Name")+"</td>");
+				                	out.println("<td id='Ob6_"+i+"'>"+rs.getString("Phone_Number")+"</td>");
+				                	out.println("<td id='Ob7_"+i+"'>"+rs.getString("Email")+"</td>");
+				                	out.println("<td class='d-flex flex-nowarp jus'>");
+				                	out.println("<button onclick ='Edit("+i+")' type='button' data-bs-toggle='modal' data-bs-target='#Edit' class='btn btn-sm btn-danger'>編輯</button>");
+				                	out.println("<button onclick ='Edit("+i+")' type='button' data-bs-toggle='modal' data-bs-target='#Delet_Account' class='btn btn-sm btn-danger'>刪除</button>");
+				                	out.println("</td>");
+				                	out.println("</tr>");
+			                	}else{
+			                		out.println("<tr>");
+				                	out.println("<tr>");
+				                	out.println("<th scope='row'>"+rs.getString("Account")+"</th>");
+				                	out.println("<td>"+rs.getString("Password")+"</td>");
+				                	out.println("<td>"+rs.getString("User_Type_Name")+"</td>");
+				                	out.println("<td>"+rs.getString("User_Name")+"</td>");
+				                	out.println("<td>"+rs.getString("Phone_Number")+"</td>");
+				                	out.println("<td>"+rs.getString("Email")+"</td>");
+				                	out.println("<td class='d-flex flex-nowarp jus'>系統管理員無法編輯");
+				                	out.println("</td>");
+				                	out.println("</tr>");
+			                	}
+			                
+			                	i++;
 			               	 }
 			                %>
                           	
@@ -175,34 +195,61 @@ if(session.getAttribute("Access_Type") !="3"){
     </div>
 
     <!-- 編輯 -->
-    <div class="modal fade" id="Edit_Account" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    
+    <div class="modal fade" id="Edit" tabindex="-1" >
         <div class="modal-dialog">
           <div class="modal-content">
-            <form action="">
+            <form action="Function/Edit.jsp" method="get">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">個人資料編輯</h5>
-                    <button type="reset" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="exampleModalLabel">編輯使用者資料</h5>
+                    <button type="reset" class="btn-close" data-bs-dismiss="modal" ></button>
                 </div>
                 <div class="modal-body">
-                    <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="input_A">帳號：</label>
-                        <input class="form-control width-25" id="input_A" type="text" placeholder="帳號" aria-label="default input example">
+                	<div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="Ob0">資料表位置：</label>
+                        <input class="form-control width-25 " id="Ob0" type="text"  readonly="true" name="Ob0" value="User" >
                     </div>
                     <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="input_B">密碼：</label>
-                        <input class="form-control" id="input_B" type="text" placeholder="密碼" aria-label="default input example">
+                        <label class="text-nowrap fs-4" for="Ob1">主鍵欄位名稱：</label>
+                        <input class="form-control width-25 " id="Ob1" type="text"  readonly="true" name="Ob1" value="Account" >
                     </div>
                     <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="input_C">身分：</label>
-                        <input class="form-control" id="input_C" type="text" placeholder="身分" aria-label="default input example">
+                        <label class="text-nowrap fs-4" for="Ob2">帳號：</label>
+                        <input class="form-control width-25 " id="Ob2" type="text"  readonly="true" name="Ob2" >
                     </div>
                     <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="input_D">姓名：</label>
-                        <input class="form-control" id="input_D" type="text" placeholder="姓名" aria-label="default input example">
+                        <label class="text-nowrap fs-4" for="Ob3">密碼：</label>
+                        <input class="form-control width-25 " id="Ob3" type="text"   name="Ob3" >
                     </div>
                     <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="input_E">電子信箱：</label>
-                        <input class="form-control" id="input_E" type="text" placeholder="電子信箱" aria-label="default input example">
+                        <label class="text-nowrap fs-4" for="Ob4">身分：</label>
+                    	<select class="form-control width-25"  id="Ob4" name="Ob4">
+	                    <option value="" disabled selected>選擇身分</option>
+	                    <%
+	                    rs =DB.getResultSet("SELECT * FROM User_Type_Code ");
+	        			
+	        			
+	        			while(rs.next()){
+	        				if(rs.getString("User_Type_Code").equals("3")!=true){
+	        					out.println("<option  value='" + rs.getString("User_Type_Code") + "'>" + rs.getString("User_Type_Name") + "</option>");
+	        				}
+	        				
+	        			}
+	                    %>
+                		</select>
+                    </div>
+                    
+                    <div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="Ob5">姓名：</label>
+                        <input class="form-control width-25 " id="Ob5" type="text"   name="Ob5" >
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="Ob6">電話：</label>
+                        <input class="form-control width-25 " id="Ob6" type="text"   name="Ob6" >
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="Ob7">電子信箱：</label>
+                        <input class="form-control width-25 " id="Ob7" type="text"   name="Ob7" >
                     </div>
                 </div>
                 <div class="modal-footer">

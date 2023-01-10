@@ -15,8 +15,9 @@ if(session.getAttribute("Access_Type") !="3"){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+    <script src="../Js/Ad.js" ></script>
     <title>大樓管理  - 國立臺北護理健康大學</title>
-    
+    <%@include file="../../Pages/Page_Function/Alert.jsp" %>
 </head>
 <body>
     
@@ -107,12 +108,11 @@ if(session.getAttribute("Access_Type") !="3"){
                 	out.println("<div id='C"+i+"' class='accordion-collapse collapse' "+i+"' data-bs-parent='#accordionExample'>");
                 	out.println("<div class='accordion-body row'>");
                 	out.println("<div class='col-12'>");
-                	out.println(" <p>大樓名稱：<span id=''>"+rs.getString("Building_Name")+"</span></p>");
-                	out.println(" <p>大樓代碼：<span id=''>"+rs.getString("Building_Code")+"</span></p>");
+                	out.println(" <p>大樓名稱：<span id='Ob3_"+i+"'>"+rs.getString("Building_Name")+"</span></p>");
+                	out.println(" <p>大樓代碼：<span id='Ob2_"+i+"'>"+rs.getString("Building_Code")+"</span></p>");
                 	out.println(" </div>   ");
                 	out.println("<div class='col-12 mt-2 d-flex flex-column'>");
-                	out.println("<button type='button' data-bs-toggle='modal' data-bs-target='#Edit_Class_Form' class='btn btn-secondary '>編輯</button>");
-                	out.println("<button type='button' class='btn btn-danger '>刪除</button>");
+                	out.println("<button type='button' onclick='Edit("+i+")' data-bs-toggle='modal' data-bs-target='#Edit_Class_Form' class='btn btn-danger '>編輯</button>");
                 	out.println("</div>");
                 	out.println("</div>");
                 	out.println("</div>");
@@ -159,27 +159,31 @@ if(session.getAttribute("Access_Type") !="3"){
           </div>
         </div>
     </div>
-
-    <div class="modal fade" id="Edit_Class_Form" tabindex="-1" >
+	
+	<div class="modal fade" id="Edit_Class_Form" tabindex="-1" >
         <div class="modal-dialog">
           <div class="modal-content">
-            <form action="">
+            <form action="Function/Edit.jsp" method="get">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">教室資訊</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">編輯教室類型</h5>
                     <button type="reset" class="btn-close" data-bs-dismiss="modal" ></button>
                 </div>
                 <div class="modal-body">
-                    <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="input_B">場地位置：</label>
-                        <input class="form-control width-25" id="input_B" type="text" placeholder="場地位置" >
+                	<div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="Ob0">資料表位置：</label>
+                        <input class="form-control width-25 " id="Ob0" type="text"  readonly="true" name="Ob0" value="Building_Code" >
                     </div>
                     <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="input_C">教室名稱：</label>
-                        <input class="form-control" id="input_C" type="text" placeholder="教室名稱" >
+                        <label class="text-nowrap fs-4" for="Ob1">主鍵欄位名稱：</label>
+                        <input class="form-control width-25 " id="Ob1" type="text"  readonly="true" name="Ob1" value="Building_Code" >
                     </div>
                     <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="input_D">教室類型：</label>
-                        <input class="form-control" id="input_D" type="text" placeholder="教室類型" >
+                        <label class="text-nowrap fs-4" for="Ob2">大樓代碼：</label>
+                        <input class="form-control width-25 " id="Ob2" type="text"  readonly="true" name="Ob2" >
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="Ob3">大樓名稱：</label>
+                        <input class="form-control" id="Ob3" type="text" name="Ob3" placeholder="大樓名稱" >
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -190,6 +194,8 @@ if(session.getAttribute("Access_Type") !="3"){
           </div>
         </div>
     </div>
+	
+    
 
 </body>
 

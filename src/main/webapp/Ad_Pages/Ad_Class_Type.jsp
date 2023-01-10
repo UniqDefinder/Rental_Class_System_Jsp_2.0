@@ -18,7 +18,7 @@ if(session.getAttribute("Access_Type") !="3"){
     <script src="../Js/Ad.js" ></script>
     
     <title>教室類型管理  - 國立臺北護理健康大學</title>
-    
+    <%@include file="../../Pages/Page_Function/Alert.jsp" %>
 </head>
 <body>
     
@@ -109,12 +109,11 @@ if(session.getAttribute("Access_Type") !="3"){
                 	out.println("<div id='C"+i+"' class='accordion-collapse collapse' "+i+"' data-bs-parent='#accordionExample'>");
                 	out.println("<div class='accordion-body row'>");
                 	out.println("<div class='col-12'>");
-                	out.println(" <p>類型名稱：<span>"+rs.getString("Type")+"</span></p>");
-                	out.println(" <p>類型代碼：<span id='Ob_"+i+"'>"+rs.getString("Type_Code")+"</span></p>");
+                	out.println(" <p>類型名稱：<span id='Ob3_"+i+"'>"+rs.getString("Type")+"</span></p>");
+                	out.println(" <p>類型代碼：<span id='Ob2_"+i+"'>"+rs.getString("Type_Code")+"</span></p>");
                 	out.println(" </div>   ");
                 	out.println("<div class='col-12 mt-2 d-flex flex-column'>");
-                	out.println("<button type='button' onclick='Edit("+i+")' data-bs-toggle='modal' data-bs-target='#Edit_Class_Form' class='btn btn-secondary '>編輯</button>");
-                	out.println("<button type='button' class='btn btn-danger '>刪除</button>");
+                	out.println("<button type='button' onclick='Edit("+i+")' data-bs-toggle='modal' data-bs-target='#Edit_Class_Form' class='btn btn-danger '>編輯</button>");
                 	out.println("</div>");
                 	out.println("</div>");
                 	out.println("</div>");
@@ -128,9 +127,6 @@ if(session.getAttribute("Access_Type") !="3"){
         </div>
     </div>
     
-
-
-    <%%>
     <div class="modal fade" id="Create_Class_Form" tabindex="-1" >
         <div class="modal-dialog">
           <div class="modal-content">
@@ -165,23 +161,27 @@ if(session.getAttribute("Access_Type") !="3"){
     <div class="modal fade" id="Edit_Class_Form" tabindex="-1" >
         <div class="modal-dialog">
           <div class="modal-content">
-            <form action="">
+            <form action="Function/Edit.jsp" method="get">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">教室資訊</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">編輯教室類型</h5>
                     <button type="reset" class="btn-close" data-bs-dismiss="modal" ></button>
                 </div>
                 <div class="modal-body">
-                    <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="input_B">場地位置：</label>
-                        <input class="form-control width-25" id="input_B" type="text" placeholder="場地位置" >
+                	<div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="Ob0">資料表位置：</label>
+                        <input class="form-control width-25 " id="Ob0" type="text"  readonly="true" name="Ob0" value="Classroom_Type_Code" >
                     </div>
                     <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="input_C">教室名稱：</label>
-                        <input class="form-control" id="input_C" type="text" placeholder="教室名稱" >
+                        <label class="text-nowrap fs-4" for="Ob1">主鍵欄位名稱：</label>
+                        <input class="form-control width-25 " id="Ob1" type="text"  readonly="true" name="Ob1" value="Type_Code" >
                     </div>
                     <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="input_D">教室類型：</label>
-                        <input class="form-control" id="input_D" type="text" placeholder="教室類型" >
+                        <label class="text-nowrap fs-4" for="Ob2">教室類型代碼：</label>
+                        <input class="form-control width-25 " id="Ob2" type="text"  readonly="true" name="Ob2" >
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="Ob3">教室類型名稱：</label>
+                        <input class="form-control" id="Ob3" type="text" name="Ob3" placeholder="教室名稱" >
                     </div>
                 </div>
                 <div class="modal-footer">

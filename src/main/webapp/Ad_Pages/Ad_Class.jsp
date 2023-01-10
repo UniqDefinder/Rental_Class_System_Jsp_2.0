@@ -15,9 +15,9 @@ if(session.getAttribute("Access_Type") !="3"){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
-    <script src="Ad.js" ></script>
+    <script src="../Js/Ad.js" ></script>
     <title>教室管理  - 國立臺北護理健康大學</title>
-    
+    <%@include file="../../Pages/Page_Function/Alert.jsp" %>
 </head>
 <body>
     
@@ -96,14 +96,14 @@ if(session.getAttribute("Access_Type") !="3"){
                 }else if(Search != null &&  rs.getRow()==0){
                 	out.print("查無資料");
                 }else{
-                	rs =DB.getResultSet("SELECT * FROM (Classroom_Code AS a LEFT JOIN Classroom_Type_Code AS b ON a.Classroom_Type_Code = b.Type_Code) LEFT JOIN Building_Code AS c ON a.Building_Code = c.Building_Code ");
+                	rs =DB.getResultSet("SELECT * FROM (Classroom_Code AS a LEFT JOIN Classroom_Type_Code AS b ON a.Classroom_Type_Code = b.Type_Code) LEFT JOIN Building_Code AS c ON a.Building_Code = c.Building_Code ORDER BY a.Classroom_Code");
                 }
                 
                 int i =0;
                 while(rs.next()){
                 	out.println("<div class='accordion-item'>");
                 	out.println("<h2 class='accordion-header' >");
-                	out.println("<button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#H"+i+"' >"+rs.getString("Classroom_Code")+"</button>");
+                	out.println("<button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#H"+i+"' ><span>"+rs.getString("Classroom_Code")+"</span></button>");
                 	out.println("</h2>");
                 	out.println("<div id='H"+i+"' class='accordion-collapse collapse' "+i+"' data-bs-parent='#accordionExample'>");
                 	out.println("<div class='accordion-body row'>");
@@ -111,12 +111,12 @@ if(session.getAttribute("Access_Type") !="3"){
                 	out.println("<img class='img-fluid' src='"+rs.getString("Imgs")+"' alt='教室圖片'>");
                 	out.println("</div>");
                 	out.println("<div class='col-8'>");
-                	out.println(" <p>大樓位置：<span id='B"+i+"'>"+rs.getString("Building_Name")+"</span></p>");
-                	out.println(" <p>教室名稱：<span id='C"+i+"'>"+rs.getString("Classroom_Code")+"</span></p>");
-                	out.println(" <p>教室類型：<span id='T"+i+"'>"+rs.getString("Type")+"</span></p>");
+                	out.println(" <p>教室名稱：<span id='Ob2_"+i+"'>"+rs.getString("Classroom_Code")+"</span></p>");
+                	out.println(" <p>教室類型：［<span id='Ob3_"+i+"'>"+rs.getString("Classroom_Type_Code")+"</span>］<span>"+rs.getString("Type")+"</span></p>");
+                	out.println(" <p>大樓位置：［<span id='Ob4_"+i+"'>"+rs.getString("Building_Code")+"</span>］<span>"+rs.getString("Building_Name")+"</span></p>");
                 	out.println(" </div>   ");
                 	out.println("<div class='col-12 mt-2 d-flex flex-column'>");
-                	out.println("<button type='button' onclick ='Edit_Class(I)' data-bs-toggle='modal' data-bs-target='#Edit_Class_Form' class='btn btn-secondary '>編輯</button>");
+                	out.println("<button type='button' onclick ='Edit("+i+")' data-bs-toggle='modal' data-bs-target='#Edit_Class_Form' class='btn btn-secondary '>編輯</button>");
                 	out.println("<button type='button' class='btn btn-danger '>刪除</button>");
                 	out.println("</div>");
                 	out.println("</div>");
@@ -189,15 +189,41 @@ if(session.getAttribute("Access_Type") !="3"){
     <div class="modal fade" id="Edit_Class_Form" tabindex="-1" >
         <div class="modal-dialog">
           <div class="modal-content">
-            <form action="">
+            <form action="Function/Edit.jsp" method="get">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">教室資訊</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">編輯教室類型</h5>
                     <button type="reset" class="btn-close" data-bs-dismiss="modal" ></button>
                 </div>
                 <div class="modal-body">
+                	<div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="Ob0">資料表位置：</label>
+                        <input class="form-control width-25 " id="Ob0" type="text"  readonly="true" name="Ob0" value="Classroom_Code" >
+                    </div>
                     <div class="d-flex justify-content-center">
-                      	<label class="text-nowrap fs-4" for="Edit_input_A">大樓位置：</label>
-                    	<select class="form-control width-25"  id="Edit_input_A" name="Buliding">
+                        <label class="text-nowrap fs-4" for="Ob1">主鍵欄位名稱：</label>
+                        <input class="form-control width-25 " id="Ob1" type="text"  readonly="true" name="Ob1" value="Classroom_Code" >
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="Ob2">教室名稱：</label>
+                        <input class="form-control width-25 " id="Ob2" type="text"  readonly="true" name="Ob2" >
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="Ob3">教室類型：</label>
+                    	<select class="form-control width-25"  id="Ob3" name="Ob3">
+	                    <option value="" disabled selected>選擇教室類型</option>
+	                    <%
+	                    rs =DB.getResultSet("SELECT * FROM Classroom_Type_Code ");
+	        			
+	        			
+	        			while(rs.next()){
+	        				out.println("<option  value='" + rs.getString("Type_Code") + "'>" + rs.getString("Type") + "</option>");
+	        			}
+	                    %>
+                		</select>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                    	<label class="text-nowrap fs-4" for="Ob4">大樓位置：</label>
+                    	<select class="form-control width-25"  id="Ob4" name="Ob4">
 	                    <option value="" disabled selected>選擇大樓位置</option>
 	                    <%
 	                    
@@ -210,25 +236,9 @@ if(session.getAttribute("Access_Type") !="3"){
 	        			
 	                    %> 
                 		</select>
+                       
                     </div>
-                    <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="Edit_input_B">教室名稱：</label>
-                        <input class="form-control" id="Edit_input_B" type="text" placeholder="教室名稱" >
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="Edit_input_C">教室類型：</label>
-                    	<select class="form-control width-25"  id="Edit_input_C" name="Buliding">
-	                    <option value="" disabled selected>選擇教室類型</option>
-	                    <%
-	                    rs =DB.getResultSet("SELECT * FROM Classroom_Type_Code ");
-	        			
-	        			
-	        			while(rs.next()){
-	        				out.println("<option  value='" + rs.getString("Type_Code") + "'>" + rs.getString("Type") + "</option>");
-	        			}
-	                    %>
-                		</select>
-                    </div>
+                   
                 </div>
                 <div class="modal-footer">
                     <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">取消變更</button>
@@ -238,6 +248,7 @@ if(session.getAttribute("Access_Type") !="3"){
           </div>
         </div>
     </div>
+	
 
 </body>
 
