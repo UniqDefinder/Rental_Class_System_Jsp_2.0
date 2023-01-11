@@ -112,7 +112,8 @@ if(session.getAttribute("Access_Type") !="3"){
                 	out.println(" <p>大樓代碼：<span id='Ob2_"+i+"'>"+rs.getString("Building_Code")+"</span></p>");
                 	out.println(" </div>   ");
                 	out.println("<div class='col-12 mt-2 d-flex flex-column'>");
-                	out.println("<button type='button' onclick='Edit("+i+")' data-bs-toggle='modal' data-bs-target='#Edit_Class_Form' class='btn btn-danger '>編輯</button>");
+                	out.println("<button type='button' onclick='Edit("+i+")' data-bs-toggle='modal' data-bs-target='#Edit_Class_Form' class='btn btn-secondary '>編輯</button>");
+                	out.println("<button type='button' onclick ='Delete("+i+")' data-bs-toggle='modal' data-bs-target='#Delete' class='btn btn-danger '>刪除</button>");
                 	out.println("</div>");
                 	out.println("</div>");
                 	out.println("</div>");
@@ -195,7 +196,38 @@ if(session.getAttribute("Access_Type") !="3"){
         </div>
     </div>
 	
-    
+    <!-- 刪除 -->
+    <div class="modal fade" id="Delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <form action="Function/Delete.jsp" method="get">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">確定刪除？</h5>
+                    <button type="reset" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                	<div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="Ob0">資料表位置：</label>
+                        <input class="form-control width-25 " id="DOb0" type="text"  readonly="true" name="Ob0" value="Building_Code" >
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="Ob1">主鍵欄位名稱：</label>
+                        <input class="form-control width-25 " id="DOb1" type="text"  readonly="true" name="Ob1" value="Building_Code" >
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="Ob2">大樓代碼：</label>
+                        <input class="form-control width-25 " id="DOb2" type="text"  readonly="true" name="Ob2" >
+                	</div>
+                </div>
+                <div class="modal-footer">
+                	
+                    <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary">確定</button>
+                </div>
+            </form>
+          </div>
+        </div>
+    </div>
 
 </body>
 

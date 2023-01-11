@@ -45,7 +45,7 @@ if(session.getAttribute("Access_Type") ==null){
 			}
 			
 			DB.updateString("SELECT * FROM "+Arr.get(0)+" Where "+Arr.get(1)+" =  '"+Arr.get(2)+"';" , "1" , Arr.get(3));
-			
+			Arr.clear();
 		 	session.setAttribute("Alert","編輯成功！");
 			response.sendRedirect("../Ad_Class.jsp");
 			
@@ -61,7 +61,7 @@ if(session.getAttribute("Access_Type") ==null){
 				DB.updateString("SELECT * FROM "+Arr.get(0)+" Where "+Arr.get(1)+" =  '"+Arr.get(2)+"';" , j , Arr.get(i+3));
 				i++;
 			}
-
+			Arr.clear();
 		 	session.setAttribute("Alert","編輯成功！");
 			response.sendRedirect("../Ad_Class.jsp");
 			

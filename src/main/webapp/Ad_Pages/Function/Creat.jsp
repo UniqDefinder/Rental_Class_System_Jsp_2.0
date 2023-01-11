@@ -48,6 +48,7 @@ if(session.getAttribute("Access_Type") ==null){
   	try{
  		
 		DB.CRUD("INSERT INTO "+Arr.get(0)+" VALUES ("+Values+")");
+		Arr.clear();
 	 	session.setAttribute("Alert","新增成功！");
 		response.sendRedirect("../Ad_Class.jsp") ;
 		

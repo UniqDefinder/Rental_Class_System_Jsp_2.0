@@ -125,7 +125,7 @@ if(session.getAttribute("Access_Type") !="3"){
 				                	out.println("<td id='Ob7_"+i+"'>"+rs.getString("Email")+"</td>");
 				                	out.println("<td class='d-flex flex-nowarp jus'>");
 				                	out.println("<button onclick ='Edit("+i+")' type='button' data-bs-toggle='modal' data-bs-target='#Edit' class='btn btn-sm btn-danger'>編輯</button>");
-				                	out.println("<button onclick ='Delete("+i+")' type='button' data-bs-toggle='modal' data-bs-target='#Delet_Account' class='btn btn-sm btn-danger'>刪除</button>");
+				                	out.println("<button onclick ='Delete("+i+")' type='button' data-bs-toggle='modal' data-bs-target='#Delete_Account' class='btn btn-sm btn-danger'>刪除</button>");
 				                	out.println("</td>");
 				                	out.println("</tr>");
 			                	}else{
@@ -286,7 +286,7 @@ if(session.getAttribute("Access_Type") !="3"){
 
 
     <!-- 刪除 -->
-    <div class="modal fade" id="Delet_Account" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="Delete_Account" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
             <form action="Function/Delete.jsp" method="get">

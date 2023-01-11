@@ -44,11 +44,13 @@ if(session.getAttribute("Access_Type") ==null){
  		
 		DB.CRUD("DELETE FROM "+Arr.get(0)+" WHERE "+Arr.get(1)+" = '"+Arr.get(2)+"'");
 	 	session.setAttribute("Alert","刪除成功！");
+	 	Arr.clear();
 		response.sendRedirect("../Ad_Class.jsp") ;
 		
 	}catch(SQLException e){
-		out.print("錯誤："+e);
-	}   
+		session.setAttribute("Alert","請先把擁有該"+Arr.get(0)+"之教室更改成別的"+Arr.get(0)+"後，再嘗試一次看看！ 錯誤代碼："+e+"");
+		response.sendRedirect("../Ad_Class.jsp") ;
+	} 
 	
 	%>
 		 	
