@@ -1,0 +1,69 @@
+
+
+
+    
+.Container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 800px;
+    height:50vh;
+    min-width: 1000px ;
+    margin: 0px;
+    background:url(../Images/Index_Background.jpg) no-repeat   ;
+    background-size:cover;
+    box-shadow: 
+    0 -10px 15px 0 black inset,
+    0 10px 15px 0 black inset
+    ;
+}
+
+.Login{
+    width: 500px;
+    height: 300px;
+    padding-top: 10px;
+    display: flex;
+    align-content: center ;
+    flex-direction:column;
+    border-radius:10px;
+    border:1px #ae8a79e0 solid;
+    background-color: #e6e6e6c2;
+  
+}
+
+.Login h2{
+    font-size: 30px;
+    font-weight: bold;
+    margin: auto;
+    text-align: center;
+
+}
+
+
+.Login input {
+    display: block;
+    resize: none;
+    margin: auto 30%;
+    font-size: 20px;
+}
+
+.Login a{
+    display: flex;
+    justify-content: right;
+    font-size: 18px;
+    margin: auto 30%;
+}
+
+.Login_Btn{
+    border: 1px #ae8a79 solid;
+    background-color: rgb(255, 255, 255);
+    font-weight: bold;
+}
+
+.Login_Btn:hover{
+    background-color: rgb(173, 173, 173);
+}
+
+.Login button:hover{
+    background-color:rgb(224, 224, 224);
+}

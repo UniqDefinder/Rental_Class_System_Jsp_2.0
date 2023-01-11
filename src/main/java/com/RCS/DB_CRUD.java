@@ -8,8 +8,13 @@ public class DB_CRUD {
 	//private InputStream inputStream = getClass().getResourceAsStream("/NtunhsClassroom.accdb");
 	
 	private String DB ="jdbc:ucanaccess://C:\\Users\\login\\eclipse-workspace\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
+							//我家
 						  	//DB ="jdbc:ucanaccess://C:\\Users\\User\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
+							//學校電腦教室
+							//DB ="jdbc:ucanaccess://C:\\apache-tomcat-9.0.54\\webapps\\Rental_Class_System_Jsp_2.0\\NtunhsClassroom.accdb;";
+							//LeeLab
 							//DB = "jdbc:ucanaccess://C:\\Users\\login\\Desktop\\Rental_Class_System_Jsp_2.0\\src\\main\\webapp\\NtunhsClassroom.accdb;";
+							//筆電
 	public void CRUD (String Sql) throws ClassNotFoundException, SQLException {
 		
 	 	Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -100,7 +105,7 @@ public void updateString (String Sql ,String Index, String Data ) throws ClassNo
 		
 		
 	    }
-	
+
 
 	
 }

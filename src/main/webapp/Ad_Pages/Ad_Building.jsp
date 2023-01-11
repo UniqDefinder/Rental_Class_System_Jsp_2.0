@@ -132,28 +132,28 @@ if(session.getAttribute("Access_Type") !="3"){
     <div class="modal fade" id="Create_Class_Form" tabindex="-1" >
         <div class="modal-dialog">
           <div class="modal-content">
-            <form action="">
+            <form action="Function/Creat.jsp" method="get">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">教室資訊</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">新增大樓</h5>
                     <button type="reset" class="btn-close" data-bs-dismiss="modal" ></button>
                 </div>
                 <div class="modal-body">
                     <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="input_B">場地位置：</label>
-                        <input class="form-control width-25" id="input_B" type="text" placeholder="場地位置" >
+                        <label class="text-nowrap fs-4" for="COb0">資料表位置：</label>
+                        <input class="form-control width-25 " id="COb0" type="text"  readonly="true" name="Ob0" value="Building_Code" >
                     </div>
                     <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="input_C">教室名稱：</label>
-                        <input class="form-control" id="input_C" type="text" placeholder="教室名稱" >
+                        <label class="text-nowrap fs-4" for="COb1">大樓代碼：</label>
+                        <input class="form-control width-25 " id="COb1" type="text"   name="Ob1"  pattern="[0-9A-Z]" required>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="input_D">教室類型：</label>
-                        <input class="form-control" id="input_D" type="text" placeholder="教室類型" >
+                        <label class="text-nowrap fs-4" for="COb2">大樓名稱：</label>
+                        <input class="form-control width-25 " id="COb2" type="text"   name="Ob2" required>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">取消變更</button>
-                    <button type="submit" class="btn btn-primary">儲存變更</button>
+                    <button type="submit" class="btn btn-primary">新增大樓</button>
                 </div>
             </form>
           </div>
@@ -165,7 +165,7 @@ if(session.getAttribute("Access_Type") !="3"){
           <div class="modal-content">
             <form action="Function/Edit.jsp" method="get">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">編輯教室類型</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">編輯大樓</h5>
                     <button type="reset" class="btn-close" data-bs-dismiss="modal" ></button>
                 </div>
                 <div class="modal-body">

@@ -1,0 +1,116 @@
+body *{
+    font-family:微軟正黑體,Arial, Helvetica, sans-serif;
+}
+
+:root {
+    --Primary_Color:#bcc35a;
+    --User_Color:#e5ebf7;
+    --Inspector_Color:#ffd8be;
+  }
+
+html{
+    
+    background-color: var(--Primary_Color);
+    min-width: 1000px;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    min-height: 100vh;
+    
+    
+    background:url(../Images/Index_Texture.PNG) ;
+}
+
+.Header{
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: var(--Primary_Color);
+    border-bottom: 5px #9b6b53 solid;
+    
+}
+
+
+.Head{
+    display: flex;
+    align-content: center;
+    
+
+}
+
+.Head h1{
+    width: 300px;
+    margin:auto auto auto 10px;
+    color: white;
+    font-size: 50px;
+    font-weight: bold;
+}
+
+.Head img{
+    width: 100px;
+}
+
+
+
+.Logout{
+    display: flex;
+    
+
+}
+
+.Logout p{
+    margin: auto 10px;
+    font-size: 24px;
+    color: white;
+    font-weight: bold;
+}
+
+.Logout button{
+    width: 100px;
+    font-size: 24px;
+}
+.Logout a{
+    font-size: 26px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+    padding: 0 20px;
+    line-height: 100px;
+    height: 100%;
+    border: none;
+    background-color: var(--Primary_Color);
+}
+
+/*登出按鈕*/
+
+.Container{
+    margin: 0 15%;
+    height: 100%;
+    padding-bottom: 200px;
+}
+
+
+.Footer{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    border-top: 5px #9b6b53 solid;
+    height: 100px;
+    background-color: var(--Primary_Color);
+    padding-top: 10px;
+    width: 100%;
+    bottom: 0;
+}
+
+
+.Footer td{
+    padding: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+}
+

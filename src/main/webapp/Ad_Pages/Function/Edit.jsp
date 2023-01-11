@@ -35,20 +35,41 @@ if(session.getAttribute("Access_Type") ==null){
 	
 	DB_CRUD DB = new DB_CRUD();
 	
- 	try{
-		String j;
-		for(int i = 0 ; i<Arr.size()-3;  ){
-			j = Integer.toString(i+2);
-			DB.updateString("SELECT * FROM "+Arr.get(0)+" Where "+Arr.get(1)+" =  '"+Arr.get(2)+"';" , j , Arr.get(i+3));
-			i++;
-		}
+	if(Arr.get(0).equals("Classroom_Code")){
+		try{
+			String j;
+			for(int i = 0 ; i<Arr.size()-4;  ){
+				j = Integer.toString(i+2);
+				DB.updateString("SELECT * FROM "+Arr.get(0)+" Where "+Arr.get(1)+" =  '"+Arr.get(2)+"';" , j , Arr.get(i+4));
+				i++;
+			}
+			
+			DB.updateString("SELECT * FROM "+Arr.get(0)+" Where "+Arr.get(1)+" =  '"+Arr.get(2)+"';" , "1" , Arr.get(3));
+			
+		 	session.setAttribute("Alert","編輯成功！");
+			response.sendRedirect("../Ad_Class.jsp");
+			
+		}catch(SQLException e){
+			out.print("錯誤："+e);
+		} 
+	}else{
 
-	 	session.setAttribute("Alert","編輯成功！");
-		response.sendRedirect("../Ad_Class.jsp");
-		
-	}catch(SQLException e){
-		out.print("錯誤："+e);
-	} 
+	 	try{
+			String j;
+			for(int i = 0 ; i<Arr.size()-3;  ){
+				j = Integer.toString(i+2);
+				DB.updateString("SELECT * FROM "+Arr.get(0)+" Where "+Arr.get(1)+" =  '"+Arr.get(2)+"';" , j , Arr.get(i+3));
+				i++;
+			}
+
+		 	session.setAttribute("Alert","編輯成功！");
+			response.sendRedirect("../Ad_Class.jsp");
+			
+		}catch(SQLException e){
+			out.print("錯誤："+e);
+		} 
+	}
+	
 	
 	%>
 		 	

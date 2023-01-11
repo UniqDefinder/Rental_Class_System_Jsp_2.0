@@ -1,0 +1,105 @@
+11-Jan-2023 15:14:47.769 INFO [main] org.apache.catalina.core.ApplicationContext.log ContextListener: contextInitialized()
+11-Jan-2023 15:14:47.769 INFO [main] org.apache.catalina.core.ApplicationContext.log SessionListener: contextInitialized()
+11-Jan-2023 15:14:47.772 INFO [main] org.apache.catalina.core.ApplicationContext.log ContextListener: attributeAdded('StockTicker', 'async.Stockticker@5017e1')
+11-Jan-2023 15:15:33.744 SEVERE [http-nio-8080-exec-1] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Rental_Class_System_Jsp_2.0] threw exception [An exception occurred processing [/Ad_Pages/Ad_Class.jsp] at line [90]
+
+87:                 String Search = request.getParameter("Search");
+88:                  
+89:                 DB_CRUD DB = new DB_CRUD();
+90:                 ResultSet rs =DB.getResultSet("SELECT * FROM Classroom_Code WHERE Classroom_Code LIKE '%"+Search+"%' ");
+91:                 rs.last();
+92:                 
+93:                 if(Search != null &&  rs.getRow()!=0 ){
+
+
+Stacktrace:] with root cause
+	java.io.FileNotFoundException: given file does not exist: C:\apache-tomcat-9.0.54\webapps\Rental_Class_System_Jsp_2.0\NtunhsClassroom.accdb
+		at com.healthmarketscience.jackcess.impl.DatabaseImpl.open(DatabaseImpl.java:387)
+		at com.healthmarketscience.jackcess.DatabaseBuilder.open(DatabaseBuilder.java:267)
+		at net.ucanaccess.jdbc.DefaultJackcessOpener.open(DefaultJackcessOpener.java:37)
+		at net.ucanaccess.jdbc.DBReference.<init>(DBReference.java:171)
+		at net.ucanaccess.jdbc.DBReferenceSingleton.loadReference(DBReferenceSingleton.java:51)
+		at net.ucanaccess.jdbc.UcanaccessDriver.connect(UcanaccessDriver.java:91)
+		at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:681)
+		at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:252)
+		at com.RCS.DB_CRUD.getResultSet(DB_CRUD.java:43)
+		at org.apache.jsp.Ad_005fPages.Ad_005fClass_jsp._jspService(Ad_005fClass_jsp.java:228)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:71)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:467)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:378)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:326)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:687)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1707)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:833)
+11-Jan-2023 15:15:41.510 SEVERE [http-nio-8080-exec-3] org.apache.catalina.core.StandardWrapperValve.invoke Servlet.service() for servlet [jsp] in context with path [/Rental_Class_System_Jsp_2.0] threw exception [An exception occurred processing [/Index.jsp] at line [25]
+
+22: 	    if(request.getParameter("Account") !=null &&request.getParameter("Password") !=null){
+23: 	    	
+24: 	    	DB_CRUD DB = new DB_CRUD();
+25:             ResultSet rs =DB.getResultSet("SELECT * FROM User WHERE Account='"+request.getParameter("Account")+"' AND Password='" +request.getParameter("Password")+"'");
+26: 			
+27: 			if(rs.next()){
+28: 				
+
+
+Stacktrace:] with root cause
+	java.io.FileNotFoundException: given file does not exist: C:\apache-tomcat-9.0.54\webapps\Rental_Class_System_Jsp_2.0\NtunhsClassroom.accdb
+		at com.healthmarketscience.jackcess.impl.DatabaseImpl.open(DatabaseImpl.java:387)
+		at com.healthmarketscience.jackcess.DatabaseBuilder.open(DatabaseBuilder.java:267)
+		at net.ucanaccess.jdbc.DefaultJackcessOpener.open(DefaultJackcessOpener.java:37)
+		at net.ucanaccess.jdbc.DBReference.<init>(DBReference.java:171)
+		at net.ucanaccess.jdbc.DBReferenceSingleton.loadReference(DBReferenceSingleton.java:51)
+		at net.ucanaccess.jdbc.UcanaccessDriver.connect(UcanaccessDriver.java:91)
+		at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:681)
+		at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:252)
+		at com.RCS.DB_CRUD.getResultSet(DB_CRUD.java:43)
+		at org.apache.jsp.Index_jsp._jspService(Index_jsp.java:162)
+		at org.apache.jasper.runtime.HttpJspBase.service(HttpJspBase.java:71)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+		at org.apache.jasper.servlet.JspServletWrapper.service(JspServletWrapper.java:467)
+		at org.apache.jasper.servlet.JspServlet.serviceJspFile(JspServlet.java:378)
+		at org.apache.jasper.servlet.JspServlet.service(JspServlet.java:326)
+		at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+		at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+		at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189)
+		at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162)
+		at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+		at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
+		at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542)
+		at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143)
+		at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+		at org.apache.catalina.valves.AbstractAccessLogValve.invoke(AbstractAccessLogValve.java:687)
+		at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
+		at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:357)
+		at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374)
+		at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
+		at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:893)
+		at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1707)
+		at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+		at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+		at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+		at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+		at java.base/java.lang.Thread.run(Thread.java:833)

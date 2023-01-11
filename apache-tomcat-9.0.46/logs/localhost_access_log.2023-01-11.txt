@@ -1,0 +1,3 @@
+0:0:0:0:0:0:0:1 - - [11/Jan/2023:15:15:33 +0800] "GET /Rental_Class_System_Jsp_2.0/Ad_Pages/Ad_Class.jsp HTTP/1.1" 500 5305
+0:0:0:0:0:0:0:1 - - [11/Jan/2023:15:15:39 +0800] "GET /Rental_Class_System_Jsp_2.0/Index.jsp HTTP/1.1" 200 1817
+0:0:0:0:0:0:0:1 - - [11/Jan/2023:15:15:41 +0800] "POST /Rental_Class_System_Jsp_2.0/Index.jsp HTTP/1.1" 500 5222

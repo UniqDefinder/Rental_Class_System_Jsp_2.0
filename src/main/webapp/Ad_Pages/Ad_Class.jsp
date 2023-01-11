@@ -87,7 +87,7 @@ if(session.getAttribute("Access_Type") !="3"){
                 String Search = request.getParameter("Search");
                  
                 DB_CRUD DB = new DB_CRUD();
-                ResultSet rs =DB.getResultSet("SELECT * FROM Classroom_Code WHERE Classroom_Code LIKE '%"+Search+"%' ");
+                ResultSet rs =DB.getResultSet("SELECT * FROM (Classroom_Code AS a LEFT JOIN Classroom_Type_Code AS b ON a.Classroom_Type_Code = b.Type_Code) LEFT JOIN Building_Code AS c ON a.Building_Code = c.Building_Code WHERE a.Classroom_Code LIKE '%"+Search+"%' ");
                 rs.last();
                 
                 if(Search != null &&  rs.getRow()!=0 ){
@@ -103,7 +103,7 @@ if(session.getAttribute("Access_Type") !="3"){
                 while(rs.next()){
                 	out.println("<div class='accordion-item'>");
                 	out.println("<h2 class='accordion-header' >");
-                	out.println("<button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#H"+i+"' ><span>"+rs.getString("Classroom_Code")+"</span></button>");
+                	out.println("<button class='accordion-button collapsed' type='button' data-bs-toggle='collapse' data-bs-target='#H"+i+"' ><span id='Ob3_"+i+"'>"+rs.getString("Classroom_Code")+"</span></button>");
                 	out.println("</h2>");
                 	out.println("<div id='H"+i+"' class='accordion-collapse collapse' "+i+"' data-bs-parent='#accordionExample'>");
                 	out.println("<div class='accordion-body row'>");
@@ -112,8 +112,8 @@ if(session.getAttribute("Access_Type") !="3"){
                 	out.println("</div>");
                 	out.println("<div class='col-8'>");
                 	out.println(" <p>教室名稱：<span id='Ob2_"+i+"'>"+rs.getString("Classroom_Code")+"</span></p>");
-                	out.println(" <p>教室類型：［<span id='Ob3_"+i+"'>"+rs.getString("Classroom_Type_Code")+"</span>］<span>"+rs.getString("Type")+"</span></p>");
-                	out.println(" <p>大樓位置：［<span id='Ob4_"+i+"'>"+rs.getString("Building_Code")+"</span>］<span>"+rs.getString("Building_Name")+"</span></p>");
+                	out.println(" <p>教室類型：［<span id='Ob4_"+i+"'>"+rs.getString("Classroom_Type_Code")+"</span>］<span>"+rs.getString("Type")+"</span></p>");
+                	out.println(" <p>大樓位置：［<span id='Ob5_"+i+"'>"+rs.getString("Building_Code")+"</span>］<span>"+rs.getString("Building_Name")+"</span></p>");
                 	out.println(" </div>   ");
                 	out.println("<div class='col-12 mt-2 d-flex flex-column'>");
                 	out.println("<button type='button' onclick ='Edit("+i+")' data-bs-toggle='modal' data-bs-target='#Edit_Class_Form' class='btn btn-secondary '>編輯</button>");
@@ -135,15 +135,39 @@ if(session.getAttribute("Access_Type") !="3"){
     <div class="modal fade" id="Create_Class_Form" tabindex="-1" >
         <div class="modal-dialog">
           <div class="modal-content">
-            <form action="">
+            <form action="Function/Creat.jsp" method="get">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">教室資訊</h5>
                     <button type="reset" class="btn-close" data-bs-dismiss="modal" ></button>
                 </div>
                 <div class="modal-body">
+                	<div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="COb0">資料表位置：</label>
+                        <input class="form-control width-25 " id="COb0" type="text"  readonly="true" name="Ob0" value="Classroom_Code" >
+                    </div>
                     <div class="d-flex justify-content-center">
-                    	<label class="text-nowrap fs-4" for="input_B">大樓位置：</label>
-                    	<select class="form-control width-25"  id="input_B" name="Buliding">
+                        <label class="text-nowrap fs-4" for="COb1">教室名稱：</label>
+                        <input class="form-control" id="COb1" type="text" placeholder="教室名稱"  name="Ob1" required>
+                    </div>
+                    
+                    
+                    <div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="COb2">教室類型：</label>
+                    	<select class="form-control width-25"  id="COb2" name="Ob2" required>
+	                    <option value="" disabled selected>選擇教室類型</option>
+	                    <%
+	                    rs =DB.getResultSet("SELECT * FROM Classroom_Type_Code ");
+	        			
+	        			
+	        			while(rs.next()){
+	        				out.println("<option  value='" + rs.getString("Type_Code") + "'>" + rs.getString("Type") + "</option>");
+	        			}
+	                    %>
+                		</select>
+                    </div>
+                    <div class="d-flex justify-content-center">
+                    	<label class="text-nowrap fs-4" for="COb3">大樓位置：</label>
+                    	<select class="form-control width-25"  id="COb3" name="Ob3" required>
 	                    <option value="" disabled selected>選擇大樓位置</option>
 	                    <%
 	                    
@@ -156,26 +180,12 @@ if(session.getAttribute("Access_Type") !="3"){
 	        			
 	                    %> 
                 		</select>
-                       
+                       <div class="d-flex justify-content-center">
+	                        
+	                        <input class="form-control" id="COb4" type="text" readonly="true" placeholder="教室名稱"  name="Ob4" value="../Images/Classroom/F.PNG" required>
+                    	</div>
                     </div>
-                    <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="input_C">教室名稱：</label>
-                        <input class="form-control" id="input_C" type="text" placeholder="教室名稱" >
-                    </div>
-                    <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="input_C">教室類型：</label>
-                    	<select class="form-control width-25"  id="input_C" name="Buliding">
-	                    <option value="" disabled selected>選擇教室類型</option>
-	                    <%
-	                    rs =DB.getResultSet("SELECT * FROM Classroom_Type_Code ");
-	        			
-	        			
-	        			while(rs.next()){
-	        				out.println("<option  value='" + rs.getString("Type_Code") + "'>" + rs.getString("Type") + "</option>");
-	        			}
-	                    %>
-                		</select>
-                    </div>
+                    
                 </div>
                 <div class="modal-footer">
                     <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">取消操作</button>
@@ -204,12 +214,16 @@ if(session.getAttribute("Access_Type") !="3"){
                         <input class="form-control width-25 " id="Ob1" type="text"  readonly="true" name="Ob1" value="Classroom_Code" >
                     </div>
                     <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="Ob2">教室名稱：</label>
+                        <label class="text-nowrap fs-4" for="Ob2">原始教室名稱：</label>
                         <input class="form-control width-25 " id="Ob2" type="text"  readonly="true" name="Ob2" >
                     </div>
                     <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="Ob3">教室類型：</label>
-                    	<select class="form-control width-25"  id="Ob3" name="Ob3">
+                        <label class="text-nowrap fs-4" for="Ob3">教室名稱：</label>
+                        <input class="form-control width-25 " id="Ob3" type="text"   name="Ob3" >
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="Ob4">教室類型：</label>
+                    	<select class="form-control width-25"  id="Ob4" name="Ob4">
 	                    <option value="" disabled selected>選擇教室類型</option>
 	                    <%
 	                    rs =DB.getResultSet("SELECT * FROM Classroom_Type_Code ");
@@ -222,8 +236,8 @@ if(session.getAttribute("Access_Type") !="3"){
                 		</select>
                     </div>
                     <div class="d-flex justify-content-center">
-                    	<label class="text-nowrap fs-4" for="Ob4">大樓位置：</label>
-                    	<select class="form-control width-25"  id="Ob4" name="Ob4">
+                    	<label class="text-nowrap fs-4" for="Ob5">大樓位置：</label>
+                    	<select class="form-control width-25"  id="Ob5" name="Ob5">
 	                    <option value="" disabled selected>選擇大樓位置</option>
 	                    <%
 	                    

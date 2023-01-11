@@ -125,7 +125,7 @@ if(session.getAttribute("Access_Type") !="3"){
 				                	out.println("<td id='Ob7_"+i+"'>"+rs.getString("Email")+"</td>");
 				                	out.println("<td class='d-flex flex-nowarp jus'>");
 				                	out.println("<button onclick ='Edit("+i+")' type='button' data-bs-toggle='modal' data-bs-target='#Edit' class='btn btn-sm btn-danger'>編輯</button>");
-				                	out.println("<button onclick ='Edit("+i+")' type='button' data-bs-toggle='modal' data-bs-target='#Delet_Account' class='btn btn-sm btn-danger'>刪除</button>");
+				                	out.println("<button onclick ='Delete("+i+")' type='button' data-bs-toggle='modal' data-bs-target='#Delet_Account' class='btn btn-sm btn-danger'>刪除</button>");
 				                	out.println("</td>");
 				                	out.println("</tr>");
 			                	}else{
@@ -158,31 +158,54 @@ if(session.getAttribute("Access_Type") !="3"){
     <div class="modal fade" id="Create_Account" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
-            <form action="">
+            <form  action="Function/Creat.jsp" method="get" >
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">個人資料新增</h5>
                     <button type="reset" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="input_A">帳號：</label>
-                        <input class="form-control width-25" id="input_A" type="text" placeholder="帳號" aria-label="default input example">
+                        <label class="text-nowrap fs-4" for="COb0">資料表位置：</label>
+                        <input class="form-control width-25 " id="COb0" type="text"  readonly="true" name="Ob0" value="User" >
+                    </div>
+                    
+                    <div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="COb1">帳號：</label>
+                        <input class="form-control width-25 " id="COb1" type="text"   name="Ob1" required>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="input_B">密碼：</label>
-                        <input class="form-control" id="input_B" type="text" placeholder="密碼" aria-label="default input example">
+                        <label class="text-nowrap fs-4" for="COb2" >密碼：</label>
+                        <input class="form-control width-25 " id="COb2" type="text"  pattern="[a-zA-Z0-9]{6,}"  name="Ob2" required>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="input_C">身分：</label>
-                        <input class="form-control" id="input_C" type="text" placeholder="身分" aria-label="default input example">
+                        <label class="text-nowrap fs-4" for="COb3">身分：</label>
+                    	<select class="form-select width-25"  id="COb3" name="Ob3" required>
+	                    <option value="" disabled selected>選擇身分</option>
+	                    <%
+	                    rs =DB.getResultSet("SELECT * FROM User_Type_Code ");
+	        			
+	        			
+	        			while(rs.next()){
+	        				if(rs.getString("User_Type_Code").equals("3")!=true){
+	        					out.println("<option  value='" + rs.getString("User_Type_Code") + "'>" + rs.getString("User_Type_Name") + "</option>");
+	        				}
+	        				
+	        			}
+	                    %>
+                		</select>
+                    </div>
+                    
+                    <div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="COb4">姓名：</label>
+                        <input class="form-control width-25 " id="COb4" type="text"   name="Ob4" required>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="input_D">姓名：</label>
-                        <input class="form-control" id="input_D" type="text" placeholder="姓名" aria-label="default input example">
+                        <label class="text-nowrap fs-4" for="COb5">電話：</label>
+                        <input class="form-control width-25 " id="COb5" type="text" pattern="[0-9]{10,}"   name="Ob5" required>
                     </div>
                     <div class="d-flex justify-content-center">
-                        <label class="text-nowrap fs-4" for="input_E">電子信箱：</label>
-                        <input class="form-control" id="input_E" type="text" placeholder="電子信箱" aria-label="default input example">
+                        <label class="text-nowrap fs-4" for="COb6">電子信箱：</label>
+                        <input class="form-control width-25 " id="COb6" type="email"   name="Ob6" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -219,11 +242,11 @@ if(session.getAttribute("Access_Type") !="3"){
                     </div>
                     <div class="d-flex justify-content-center">
                         <label class="text-nowrap fs-4" for="Ob3">密碼：</label>
-                        <input class="form-control width-25 " id="Ob3" type="text"   name="Ob3" >
+                        <input class="form-control width-25 " id="Ob3" type="text"    name="Ob3" pattern="[a-zA-Z0-9]{6,}"  required>
                     </div>
                     <div class="d-flex justify-content-center">
                         <label class="text-nowrap fs-4" for="Ob4">身分：</label>
-                    	<select class="form-control width-25"  id="Ob4" name="Ob4">
+                    	<select class="form-control width-25"  id="Ob4" name="Ob4" required>
 	                    <option value="" disabled selected>選擇身分</option>
 	                    <%
 	                    rs =DB.getResultSet("SELECT * FROM User_Type_Code ");
@@ -241,15 +264,15 @@ if(session.getAttribute("Access_Type") !="3"){
                     
                     <div class="d-flex justify-content-center">
                         <label class="text-nowrap fs-4" for="Ob5">姓名：</label>
-                        <input class="form-control width-25 " id="Ob5" type="text"   name="Ob5" >
+                        <input class="form-control width-25 " id="Ob5" type="text"   name="Ob5" required>
                     </div>
                     <div class="d-flex justify-content-center">
                         <label class="text-nowrap fs-4" for="Ob6">電話：</label>
-                        <input class="form-control width-25 " id="Ob6" type="text"   name="Ob6" >
+                        <input class="form-control width-25 " id="Ob6" type="text"   name="Ob6" pattern="[0-9]{10,}" required>
                     </div>
                     <div class="d-flex justify-content-center">
                         <label class="text-nowrap fs-4" for="Ob7">電子信箱：</label>
-                        <input class="form-control width-25 " id="Ob7" type="text"   name="Ob7" >
+                        <input class="form-control width-25 " id="Ob7" type="email"   name="Ob7" required>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -266,12 +289,27 @@ if(session.getAttribute("Access_Type") !="3"){
     <div class="modal fade" id="Delet_Account" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
-            <form action="">
+            <form action="Function/Delete.jsp" method="get">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">確定刪除？</h5>
                     <button type="reset" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div class="modal-body">
+                	<div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="Ob0">資料表位置：</label>
+                        <input class="form-control width-25 " id="DOb0" type="text"  readonly="true" name="Ob0" value="User" >
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="Ob1">主鍵欄位名稱：</label>
+                        <input class="form-control width-25 " id="DOb1" type="text"  readonly="true" name="Ob1" value="Account" >
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="Ob2">帳號：</label>
+                        <input class="form-control width-25 " id="DOb2" type="text"  readonly="true" name="Ob2" >
+                	</div>
+                </div>
                 <div class="modal-footer">
+                	
                     <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
                     <button type="submit" class="btn btn-primary">確定</button>
                 </div>
