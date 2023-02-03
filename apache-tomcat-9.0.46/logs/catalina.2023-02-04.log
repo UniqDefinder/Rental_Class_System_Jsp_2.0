@@ -1,0 +1,45 @@
+04-Feb-2023 00:10:39.305 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version name:   Apache Tomcat/9.0.46
+04-Feb-2023 00:10:39.320 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:          May 8 2021 17:35:52 UTC
+04-Feb-2023 00:10:39.327 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Server version number: 9.0.46.0
+04-Feb-2023 00:10:39.330 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:               Windows 10
+04-Feb-2023 00:10:39.335 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log OS Version:            10.0
+04-Feb-2023 00:10:39.344 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Architecture:          amd64
+04-Feb-2023 00:10:39.344 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:             C:\Program Files\Java\jdk-17.0.5
+04-Feb-2023 00:10:39.350 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:           17.0.5+9-LTS-191
+04-Feb-2023 00:10:39.351 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Vendor:            Oracle Corporation
+04-Feb-2023 00:10:39.351 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:         C:\Users\login\Desktop\Rental_Class_System_Jsp_2.0\apache-tomcat-9.0.46
+04-Feb-2023 00:10:39.351 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:         C:\Users\login\Desktop\Rental_Class_System_Jsp_2.0\apache-tomcat-9.0.46
+04-Feb-2023 00:10:39.415 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.lang=ALL-UNNAMED
+04-Feb-2023 00:10:39.423 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.io=ALL-UNNAMED
+04-Feb-2023 00:10:39.424 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util=ALL-UNNAMED
+04-Feb-2023 00:10:39.424 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+04-Feb-2023 00:10:39.425 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+04-Feb-2023 00:10:39.426 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.config.file=C:\Users\login\Desktop\Rental_Class_System_Jsp_2.0\apache-tomcat-9.0.46\conf\logging.properties
+04-Feb-2023 00:10:39.428 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+04-Feb-2023 00:10:39.430 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djdk.tls.ephemeralDHKeySize=2048
+04-Feb-2023 00:10:39.431 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.protocol.handler.pkgs=org.apache.catalina.webresources
+04-Feb-2023 00:10:39.432 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dignore.endorsed.dirs=
+04-Feb-2023 00:10:39.435 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.base=C:\Users\login\Desktop\Rental_Class_System_Jsp_2.0\apache-tomcat-9.0.46
+04-Feb-2023 00:10:39.438 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Dcatalina.home=C:\Users\login\Desktop\Rental_Class_System_Jsp_2.0\apache-tomcat-9.0.46
+04-Feb-2023 00:10:39.440 INFO [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument: -Djava.io.tmpdir=C:\Users\login\Desktop\Rental_Class_System_Jsp_2.0\apache-tomcat-9.0.46\temp
+04-Feb-2023 00:10:39.453 INFO [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent The Apache Tomcat Native library which allows using OpenSSL was not found on the java.library.path: [C:\Program Files\Java\jdk-17.0.5\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\Sybase\Shared\PowerBuilder\;C:\Program Files\Java\jdk-17.0.5\bin;C:\Users\login\AppData\Local\Microsoft\WindowsApps;C:\Users\login\AppData\Local\Programs\Microsoft VS Code\bin;C:\Users\login\AppData\Local\GitHubDesktop\bin;.]
+04-Feb-2023 00:10:40.270 INFO [main] org.apache.coyote.AbstractProtocol.init Initializing ProtocolHandler ["http-nio-8080"]
+04-Feb-2023 00:10:40.670 INFO [main] org.apache.catalina.startup.Catalina.load Server initialization in [1986] milliseconds
+04-Feb-2023 00:10:40.792 INFO [main] org.apache.catalina.core.StandardService.startInternal Starting service [Catalina]
+04-Feb-2023 00:10:40.796 INFO [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.46]
+04-Feb-2023 00:10:40.894 INFO [main] org.apache.catalina.startup.HostConfig.deployWAR Deploying web application archive [C:\Users\login\Desktop\Rental_Class_System_Jsp_2.0\apache-tomcat-9.0.46\webapps\Rental_Class_System_Jsp_2.0.war]
+04-Feb-2023 00:10:41.011 INFO [main] org.apache.catalina.startup.ExpandWar.expand An expanded directory [C:\Users\login\Desktop\Rental_Class_System_Jsp_2.0\apache-tomcat-9.0.46\webapps\Rental_Class_System_Jsp_2.0] was found with a last modified time that did not match the associated WAR. It will be deleted.
+04-Feb-2023 00:10:44.238 INFO [main] org.apache.jasper.servlet.TldScanner.scanJars At least one JAR was scanned for TLDs yet contained no TLDs. Enable debug logging for this logger for a complete list of JARs that were scanned but no TLDs were found in them. Skipping unneeded JARs during scanning can improve startup time and JSP compilation time.
+04-Feb-2023 00:10:44.343 INFO [main] org.apache.catalina.startup.HostConfig.deployWAR Deployment of web application archive [C:\Users\login\Desktop\Rental_Class_System_Jsp_2.0\apache-tomcat-9.0.46\webapps\Rental_Class_System_Jsp_2.0.war] has finished in [3,448] ms
+04-Feb-2023 00:10:44.347 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\login\Desktop\Rental_Class_System_Jsp_2.0\apache-tomcat-9.0.46\webapps\docs]
+04-Feb-2023 00:10:44.442 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\login\Desktop\Rental_Class_System_Jsp_2.0\apache-tomcat-9.0.46\webapps\docs] has finished in [94] ms
+04-Feb-2023 00:10:44.443 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\login\Desktop\Rental_Class_System_Jsp_2.0\apache-tomcat-9.0.46\webapps\examples]
+04-Feb-2023 00:10:45.654 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\login\Desktop\Rental_Class_System_Jsp_2.0\apache-tomcat-9.0.46\webapps\examples] has finished in [1,212] ms
+04-Feb-2023 00:10:45.657 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\login\Desktop\Rental_Class_System_Jsp_2.0\apache-tomcat-9.0.46\webapps\host-manager]
+04-Feb-2023 00:10:45.859 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\login\Desktop\Rental_Class_System_Jsp_2.0\apache-tomcat-9.0.46\webapps\host-manager] has finished in [202] ms
+04-Feb-2023 00:10:45.862 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\login\Desktop\Rental_Class_System_Jsp_2.0\apache-tomcat-9.0.46\webapps\manager]
+04-Feb-2023 00:10:46.141 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\login\Desktop\Rental_Class_System_Jsp_2.0\apache-tomcat-9.0.46\webapps\manager] has finished in [279] ms
+04-Feb-2023 00:10:46.366 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deploying web application directory [C:\Users\login\Desktop\Rental_Class_System_Jsp_2.0\apache-tomcat-9.0.46\webapps\ROOT]
+04-Feb-2023 00:10:46.511 INFO [main] org.apache.catalina.startup.HostConfig.deployDirectory Deployment of web application directory [C:\Users\login\Desktop\Rental_Class_System_Jsp_2.0\apache-tomcat-9.0.46\webapps\ROOT] has finished in [144] ms
+04-Feb-2023 00:10:46.540 INFO [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+04-Feb-2023 00:10:46.581 INFO [main] org.apache.catalina.startup.Catalina.start Server startup in [5904] milliseconds

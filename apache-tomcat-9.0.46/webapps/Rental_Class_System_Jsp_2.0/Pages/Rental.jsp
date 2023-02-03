@@ -53,6 +53,7 @@ session.setAttribute("Date",Date);
                             <th>下午</th>
                         </tr>
         <%
+        boolean Chcek = false;
 	    if(request.getParameter("Classroom_Code") !=null &&request.getParameter("Date") !=null){
 	    	String Term[] = {"08：10至09：00","09：10至10：00","10：10至11：00","11：10至12：00","12：40至13：30","13：40至14：30","14：10至15：30","15：40至16：30","16：40至17：30","17：40至18：30"},
 	    				TF_Term[],
@@ -62,7 +63,7 @@ session.setAttribute("Date",Date);
 	    	
 	    	DB_CRUD DB = new DB_CRUD();
 			ResultSet rs =DB.getResultSet("SELECT * FROM Rental_Term WHERE Classroom_Code='"+request.getParameter("Classroom_Code")+"' AND Rental_Date=#" +request.getParameter("Date")+"#");
-			
+			Chcek = true;
 			rs.last();
 			
 			int count = rs.getRow();
@@ -84,6 +85,7 @@ session.setAttribute("Date",Date);
 							out.print("<tr><td><label><input type='checkbox' id='"+Term[i]+"' name='"+Empty_Term[i]+"' value = '"+TF_Term[i]+"'><span class='Check'>"+Term[i]+"</span></label></td><td><label><input type='checkbox' id='"+Term[i+5]+"'  name='"+Empty_Term[i+5]+"' value = '"+TF_Term[i+5]+"'><span class='Check'>"+Term[i+5]+"</span></label></td></tr>");
 							i++;
 						}
+
 				 
 			}
 			else{
@@ -91,6 +93,8 @@ session.setAttribute("Date",Date);
 					out.print("<tr><td><label><input type='checkbox' id='"+Term[i]+"'  name='T' value ='"+Term[i]+"'><span class='Check'>"+Term[i]+"</span></label></td><td><label><input type='checkbox' id='"+Term[i+5]+"'  name='T' value = '"+Term[i+5]+"'><span class='Check'>"+Term[i+5]+"</span></label></td></tr>");
 					i++;
 				}
+				
+
 			} 
 			
 	    }  
@@ -98,15 +102,20 @@ session.setAttribute("Date",Date);
 		%>
                     </table>
                 </div>
-                
             </div>
-            <p class="Bar">租借事由</p>
+            <% 
+            if(Chcek==true){
+	            out.print("<p class='Bar'>租借事由</p><div class='Reason'><input class='Reason_Text' id='Reason' type='text' name='Reason'></div> <div class='Submit'><input type='submit'></div>");
+
+            }
+            /*<p class="Bar">租借事由</p>
             <div class="Reason">
                 <input class="Reason_Text" id="Reason" type="text" name="Reason">
             </div> 
             <div class="Submit">
                 <input type="submit">
-            </div>
+            </div>*/
+            %>
             </form>
     </div>
 

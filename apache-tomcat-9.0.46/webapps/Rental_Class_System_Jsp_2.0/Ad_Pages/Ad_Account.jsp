@@ -125,7 +125,7 @@ if(session.getAttribute("Access_Type") !="3"){
 				                	out.println("<td id='Ob7_"+i+"'>"+rs.getString("Email")+"</td>");
 				                	out.println("<td class='d-flex flex-nowarp jus'>");
 				                	out.println("<button onclick ='Edit("+i+")' type='button' data-bs-toggle='modal' data-bs-target='#Edit' class='btn btn-sm btn-danger'>編輯</button>");
-				                	out.println("<button onclick ='Edit("+i+")' type='button' data-bs-toggle='modal' data-bs-target='#Delet_Account' class='btn btn-sm btn-danger'>刪除</button>");
+				                	out.println("<button onclick ='Delete("+i+")' type='button' data-bs-toggle='modal' data-bs-target='#Delete_Account' class='btn btn-sm btn-danger'>刪除</button>");
 				                	out.println("</td>");
 				                	out.println("</tr>");
 			                	}else{
@@ -286,15 +286,30 @@ if(session.getAttribute("Access_Type") !="3"){
 
 
     <!-- 刪除 -->
-    <div class="modal fade" id="Delet_Account" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="Delete_Account" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
           <div class="modal-content">
-            <form action="">
+            <form action="Function/Delete.jsp" method="get">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">確定刪除？</h5>
                     <button type="reset" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <div class="modal-body">
+                	<div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="Ob0">資料表位置：</label>
+                        <input class="form-control width-25 " id="DOb0" type="text"  readonly="true" name="Ob0" value="User" >
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="Ob1">主鍵欄位名稱：</label>
+                        <input class="form-control width-25 " id="DOb1" type="text"  readonly="true" name="Ob1" value="Account" >
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <label class="text-nowrap fs-4" for="Ob2">帳號：</label>
+                        <input class="form-control width-25 " id="DOb2" type="text"  readonly="true" name="Ob2" >
+                	</div>
+                </div>
                 <div class="modal-footer">
+                	
                     <button type="reset" class="btn btn-secondary" data-bs-dismiss="modal">取消</button>
                     <button type="submit" class="btn btn-primary">確定</button>
                 </div>

@@ -283,11 +283,24 @@
 .Record table th {
     font-size: 20px;
     font-weight: bold;
+    background-color:#f9d7a7;
+    padding: 10px 30px;
 }
 
-.Record table th ,.Record table td {
-    background-color: rgb(223, 223, 223);
+.Record table td {
+    background-color:#f9f9c8;
     padding: 10px 30px;
+}
+
+.Record table td a {
+    text-decoration:none;
+    color:red;
+    font-size:18px;
+    font-weight:bold;
+}
+
+.Record table td a::hover {
+   background-color:#c53636;
 }
 
 .Record table tr{
@@ -306,10 +319,12 @@
 .Approval  table th {
     font-size: 20px;
     font-weight: bold;
+    background-color:#f9d7a7;
+    padding: 10px 30px;
 }
 
-.Approval  table th ,.Approval  table td {
-    background-color: rgb(223, 223, 223);
+.Approval  table td {
+    background-color:#f9f9c8;
     padding: 10px 30px;
 }
 

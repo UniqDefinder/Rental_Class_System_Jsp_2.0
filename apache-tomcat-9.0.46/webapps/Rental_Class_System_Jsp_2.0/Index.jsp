@@ -79,7 +79,9 @@
                 <input type="text" id="Account" name="Account" placeholder="學號/教職員帳號">
                 <input type="password" id="Password" name="Password"  placeholder="密碼">
                 <input class="Login_Btn" type="submit" value="登錄">
-                <a href="">忘記密碼？</a>
+                <p>「系統管理員」帳號：a 密碼：a</p>
+                <p>「審核者」帳號：i 密碼：i</p>
+                <p>「一般使用者」帳號：u 密碼：u</p>
             </form>
         </div>
         <jsp:include page="Pages/Page_Function/Footer.jsp"></jsp:include>

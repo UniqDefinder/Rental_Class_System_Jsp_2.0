@@ -33,7 +33,7 @@
     <div class="Approval Container">
         <%@include file="Page_Function/Tabs.jsp" %>
         <p class="Bar">目前位置：審核專區</p>
-       
+       	<p style="margin-top:10px;padding-left:100px;color:red; font-weight:bold;">＊點擊申請編號查看詳細內容</p>
       
         <table>
             

@@ -47,11 +47,11 @@
     font-size: 20px;
 }
 
-.Login a{
-    display: flex;
-    justify-content: right;
-    font-size: 18px;
-    margin: auto 30%;
+.Login p{
+	color:red;
+	font-weight:bold;
+    text-align:center;
+    margin:5px ;
 }
 
 .Login_Btn{

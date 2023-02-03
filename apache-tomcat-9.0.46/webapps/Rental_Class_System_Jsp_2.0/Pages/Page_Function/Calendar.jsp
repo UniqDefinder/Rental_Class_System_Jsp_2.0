@@ -52,7 +52,7 @@
 			    <tr>
 			           <% for(int j=i*7;j<(i+1)*7;j++){%>
 			                    <%if((j-first+1)==day){%><!--判斷是否是當天-->  
-			                        <td class="Today" onclick="Post_Day(<%=year%>,<%=month%>,<%=days[j]%>)"><%=days[j]%></td>
+			                        <td style="cursor: pointer;" class="Today" onclick="Post_Day(<%=year%>,<%=month%>,<%=days[j]%>)"><%=days[j]%></td>
 			                        
 			                    <%}else if(j<first){%><!--判斷是否是上個月的日子-->  
 			                        <td class="Empty_Day"><%=days[j]%></td> 
@@ -61,7 +61,7 @@
 			                        <td class="Empty_Day"><%=days[j]%></td> 
 			                        
 			                    <%}else{%>
-			                        <td onclick="Post_Day(<%=year%>,<%=month%>,<%=days[j]%>)"><%=days[j]%></td>
+			                        <td style="cursor: pointer;" onclick="Post_Day(<%=year%>,<%=month%>,<%=days[j]%>)"><%=days[j]%></td>
 			                        <%}%>
 			                    <%}%>
 				</tr>

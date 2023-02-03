@@ -48,8 +48,10 @@ if(session.getAttribute("Access_Type") !="2"){
 	                <tr><th>租借時段</th><td><%=rs.getString(5) %></td></tr>
 	                <tr><th>租借事由</th><td><%=rs.getString(7) %></td></tr>
 	        </table>
-	        <a href="Page_Function/Approving.jsp?Serial_Number=<%=Serial_Number%>&Agree=F">拒絕</a>
-	        <a href="Page_Function/Approving.jsp?Serial_Number=<%=Serial_Number%>&Agree=T">核准</a>
+	        <div style="display:flex;justify-content:center;margin-top:20px;";>
+		        <a style="margin-right:30px;height:40px;width:80px;text-align:center;font-size:30px;font-weight: bold;text-decoration:none;color:red;" href="Page_Function/Approving.jsp?Serial_Number=<%=Serial_Number%>&Agree=F">拒絕</a>
+		        <a style="height:40px;width:80px;text-align:center;font-size:30px;font-weight: bold;text-decoration:none;color:red;" href="Page_Function/Approving.jsp?Serial_Number=<%=Serial_Number%>&Agree=T">核准</a>
+	        </div>
     </div>
 
    <jsp:include page="Page_Function/Footer.jsp"></jsp:include>

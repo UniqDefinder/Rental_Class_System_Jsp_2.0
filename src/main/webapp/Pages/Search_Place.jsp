@@ -116,7 +116,11 @@ session.setAttribute("Date",null);
    			 	}
         	}
         	else{
-        		out.print("請選擇類別或大樓");
+        		rs =DB.getResultSet("SELECT * FROM (Classroom_Code AS a LEFT JOIN Classroom_Type_Code AS b ON a.Classroom_Type_Code = b.Type_Code) LEFT JOIN Building_Code AS c ON a.Building_Code = c.Building_Code");
+			 		
+			 		while(rs.next()){
+		 			out.print("<form action='Rental.jsp' method='get'><li><img src='"+rs.getString("Imgs")+"' alt='圖片死了'><h3>"+ rs.getString("Building_Name") +"</h3><h4>"+rs.getString("Classroom_Code") +"</h4><p>"+rs.getString("Type")+"</p><input type='hidden' name='Classroom_Code'  value='"+ rs.getString("Classroom_Code") +"'>"+" <input type='submit' value='查看教室'></li></form>");
+		 		}
         	}
         	
         	%>
